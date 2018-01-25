@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://liangxiaojun.cn">
-  <title>kevin梁</title>
+  <title>Archives: 2018/1 | kevin梁</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="个人博客">
 <meta property="og:type" content="website">
 <meta property="og:title" content="kevin梁">
-<meta property="og:url" content="http://liangxiaojun.cn/index.html">
+<meta property="og:url" content="http://liangxiaojun.cn/archives/2018/01/index.html">
 <meta property="og:site_name" content="kevin梁">
 <meta property="og:description" content="个人博客">
 <meta property="og:locale" content="zh-CN">
@@ -171,40 +171,34 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-小程序之webview" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/01/24/小程序之webview/" class="archive-article-date">
+  	<time datetime="2018-01-24T10:12:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-24</time>
+</a>
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/24/小程序之webview/">小程序之webview</a>
+      <a class="archive-article-title" href="/2018/01/24/小程序之webview/">小程序之webview</a>
     </h1>
   
 
-        
-        <a href="/2018/01/24/小程序之webview/" class="archive-article-date">
-  	<time datetime="2018-01-24T10:12:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="小程序的新功能webview"><a href="#小程序的新功能webview" class="headerlink" title="小程序的新功能webview"></a>小程序的新功能webview</h4><p>最近公司开发的小程序又接到新的需求，要跳转第三方支付, 但是在小程序里面打不开第三方应用，只能跳转第三方支付的公众号了。<br>但是第三方的公众号，和我们不是同一个主体，也不方便让支付方便绑多个小程序。<br>只能用到小程序的新功能 <a href="https://mp.weixin.qq.com/debug/wxadoc/dev/component/web-view.html" target="_blank" rel="noopener">web-view</a>。 听起来好像native开一个webview一样的,很高级的样子。<br>然而到了用的时候，才知道不是那么回事，只能硬着头皮上了。</p>
-<h4 id="上一波简单的代码"><a href="#上一波简单的代码" class="headerlink" title="上一波简单的代码"></a>上一波简单的代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;view&gt;</span><br><span class="line">    &lt;!-- &lt;view style=&quot;font-size: 24rpx&quot;&gt;正在跳转最福利页面，请稍侯片刻&lt;/view&gt; --&gt;</span><br><span class="line">    &lt;web-view src=&quot;&#123;&#123;url&#125;&#125;&quot;&gt;&lt;/web-view&gt;</span><br><span class="line">&lt;/view&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import wepy from &apos;wepy&apos;</span><br><span class="line"></span><br><span class="line">export default class extends wepy.page &#123;</span><br><span class="line">    config = &#123;</span><br><span class="line">        navigationBarTitleText: &apos;跳转第三方支付页面...&apos;</span><br><span class="line">    &#125;</span><br><span class="line">    data = &#123;</span><br><span class="line">        url: &apos;&apos;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    onLoad(options) &#123;</span><br><span class="line">        let that = this</span><br><span class="line">        wx.showModal(&#123;</span><br><span class="line">            title: &apos;提示&apos;,</span><br><span class="line">            showCancel: false,</span><br><span class="line">            content: options.url</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        if (options &amp;&amp; options.url) &#123;</span><br><span class="line">            that.url = decodeURIComponent(options.url)</span><br><span class="line">            that.$apply()</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            wx.showToast(&#123;</span><br><span class="line">                title: &apos;支付URL参数出错&apos;,</span><br><span class="line">                icon: &apos;none&apos;</span><br><span class="line">            &#125;)</span><br><span class="line">            setTimeout(() =&gt; &#123;</span><br><span class="line">                wx.navigateBack()</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    onUnload() &#123;</span><br><span class="line">        console.log(&apos;web view unload&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="需要注意的点"><a href="#需要注意的点" class="headerlink" title="需要注意的点"></a>需要注意的点</h4><ol>
-<li>web-view会自动撑满整个页面， 所以页面中要放其他东西也会被挡住， 所以这个最好要是一个新的页面</li>
-<li>url也是可以动态来加载的，整个页面还是可以判断生命周期函数的， 但是webview没有生命周期</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -220,511 +214,19 @@
 		</ul>
 	</div>
 
-      
+          
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/24/小程序之webview/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-
-
-
   
-    <article id="post-闲谈健身" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/13/闲谈健身/">闲谈健身</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/13/闲谈健身/" class="archive-article-date">
-  	<time datetime="2017-05-13T08:10:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="身体是革命的本钱"><a href="#身体是革命的本钱" class="headerlink" title="身体是革命的本钱"></a>身体是革命的本钱</h3><p><img src="/assets/fitness.jpg" alt=""><br>今天是一个天气特别好的周末，陪女票去考了初级会计师考试。 地点在上海松江大学城。<br>一小时车程到了之后，发现果然是大学城，学(mei)生(nv)特别多，仿佛找回了久违的学生时代的感觉， 额，说远了。。。<br>考试要考3个半小时，我来之前就计划好了，就是要过来打篮球。等开考以后我在各个学校之间转了一圈后，就立马找到了一个人稍微多一点的<br>球场，想想大学生一般就读书、找女朋友、玩。 对抗应该不会太剧烈吧，就找了个场加了个组。 还没开打，就被’排外’分到了最弱的一组。<br>万万没想到万万没想到，开打就是各种被强吃篮下。。。力量被爆成翔了。<br>当时候只有一个你念头：（现在的大学生力量都这么强）我要去健身，长肌肉。。。 最后女票提前一个半小时下考了，，，然后灰溜溜的回来了。<br>哎，真的被打击了，想想我以前还是高中体育生呢。。。全场打满48分钟的耐力，今天怎么也没想到被和我身高差不多的背身吃了十几个(让我哭一会)<br>这些年的办公室上班，让我变的太懒了。这样下去，即将被打击的不敢去玩篮球了。</p>
-<h3 id="健身的重要性"><a href="#健身的重要性" class="headerlink" title="健身的重要性"></a>健身的重要性</h3><p>打了几场后，听他们聊天，了解到：其实他们是已经读研的学生，平时都会一起去跑步和健身房锻炼。<br>那时候稍微得到一点点安慰。好歹他们是经常健身的(而不是玩乐的本科生)。会想起自己这几年真的是运动的少了。<br>有空也不会去跑步，办了健身卡也是一月一次的节奏。现在想来，真有种想打死浪费的自己。身材变臃肿了、速度变慢了、打几个回合就大口喘气。<br>有几个打篮球的人想变得这么弱。也许有(wo)的(zi)人(ji),会找借口说工作忙没时间、天气太冷或太热。但我只想说这是–借口。时间都是挤出来的，<br>周末、下班以后、早上早起都是有时间的，天气不好可以找近一点的健身房，每周运动3次，每次1~2小时，虽然不一定炼成肌肉男，但绝对不会让自己退步。</p>
-<h3 id="论坚持"><a href="#论坚持" class="headerlink" title="论坚持"></a>论坚持</h3><p>大部分的人都是想要健身的，但是坚持下来的人却很少。有什么办法能让人一直保持热情呢？<br>我想到的有以下几点：</p>
-<ol>
-<li>定一个短期的目标</li>
-<li>找一个小伙伴一起(如果是自己另一半就更好了)</li>
-<li>如果有条件可以找私教(出了钱的一定舍不得不去、有针对性的锻炼某些部位，更合理的方法和节奏)</li>
-<li>经常晒一晒健身成果(身边有同样爱好的朋友会一起讨论健身和相互促进)</li>
-</ol>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>写下自己的心情、立下一个flag，我今年一定要瘦到135斤以内(目前152)。<br>2018年1月1日以后看到这篇随笔，没有达到目标的话。。。。 被浏览一次，我做一个俯卧撑。累计不设上限。每月一结。<br>奉劝大家，健的是体魄、长的是精气神。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">健身</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/13/闲谈健身/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-介绍一个富文本编辑器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/12/介绍一个富文本编辑器/">介绍一个富文本编辑器 wangeditor</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/12/介绍一个富文本编辑器/" class="archive-article-date">
-  	<time datetime="2017-05-12T05:48:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="在web网页开发中常用的需求，编辑博客、大段评论等等-editor"><a href="#在web网页开发中常用的需求，编辑博客、大段评论等等-editor" class="headerlink" title="在web网页开发中常用的需求，编辑博客、大段评论等等 editor"></a>在web网页开发中常用的需求，编辑博客、大段评论等等 editor</h3><p>github地址：<a href="https://github.com/wangfupeng1988/wangEditor" target="_blank" rel="noopener">wangeditor</a><br>文档地址：<a href="http://www.kancloud.cn/wangfupeng/wangeditor2" target="_blank" rel="noopener">wangeditor</a></p>
-<h3 id="下载方式"><a href="#下载方式" class="headerlink" title="下载方式"></a>下载方式</h3><p>点击 <a href="https://github.com/wangfupeng1988/wangEditor/releases" target="_blank" rel="noopener">https://github.com/wangfupeng1988/wangEditor/releases</a> 下载最新版<br>使用git下载： git clone <a href="https://github.com/wangfupeng1988/wangEditor.git" target="_blank" rel="noopener">https://github.com/wangfupeng1988/wangEditor.git</a><br>使用npm安装: npm install wangeditor （注意 wangeditor 全部是小写字母）<br>使用bower下载：bower install wangEditor （前提保证电脑已安装了bower）</p>
-<h3 id="简单的使用"><a href="#简单的使用" class="headerlink" title="简单的使用"></a>简单的使用</h3><ul>
-<li><p>引入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--引入wangEditor.css--&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;../dist/css/wangEditor.min.css&quot;&gt;</span><br><span class="line"></span><br><span class="line">……省略其他内容……</span><br><span class="line"></span><br><span class="line">&lt;!--引入jquery和wangEditor.js--&gt;   &lt;!--注意：javascript必须放在body最后，否则可能会出现问题--&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;../dist/js/lib/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;../dist/js/wangEditor.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>实例化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--用父容器来控制宽度--&gt;</span><br><span class="line">&lt;div style=&quot;width:90%&quot;&gt;</span><br><span class="line">    &lt;!--用当前元素来控制高度--&gt;</span><br><span class="line">    &lt;div id=&quot;div1&quot; style=&quot;height:400px;max-height:500px;&quot;&gt;</span><br><span class="line">        &lt;p&gt;请输入内容...&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;textarea id=&quot;textarea1&quot;&gt;</span><br><span class="line">    &lt;p&gt;请输入内容...&lt;/p&gt;</span><br><span class="line">&lt;/textarea&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--这里引用jquery和wangEditor.js--&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    var editor = new wangEditor(&apos;div1&apos;);</span><br><span class="line">    editor.create();</span><br><span class="line">    // 或者</span><br><span class="line">     var editor2 = new wangEditor(&apos;textarea1&apos;);</span><br><span class="line">    editor2.create();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>销毁与恢复</p>
-<blockquote>
-<p>可以使用editor.destroy()和editor.undestroy()和恢复编辑器</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var editor = new wangEditor(&apos;div1&apos;);</span><br><span class="line">editor.create();</span><br><span class="line"></span><br><span class="line">$(&apos;#btn1&apos;).click(function () &#123;</span><br><span class="line">    // 销毁编辑器</span><br><span class="line">    editor.destroy();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(&apos;#btn2&apos;).click(function () &#123;</span><br><span class="line">    // 恢复编辑器</span><br><span class="line">    editor.undestroy();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>js初始化内容</p>
-<blockquote>
-<p>编辑器创建完成后，可使用 editor.$txt.html() 方法初始化内容。<br><code>editor.$txt.html(&#39;&lt;p&gt;要初始化的内容&lt;/p&gt;&#39;);</code></p>
-</blockquote>
-</li>
-<li><p>获取内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var html = editor.$txt.html();</span><br><span class="line"></span><br><span class="line">// 获取编辑器纯文本内容</span><br><span class="line">var text = editor.$txt.text();</span><br><span class="line"></span><br><span class="line">// 获取格式化后的纯文本</span><br><span class="line">var formatText = editor.$txt.formatText();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>追加内容</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;#btn1&apos;).click(function () &#123;</span><br><span class="line">       editor.$txt.append(&apos;&lt;p&gt;新追加的内容&lt;/p&gt;&apos;);</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>清空内容<br><code>editor.$txt.html(&#39;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&#39;);</code></p>
-</li>
-<li><p>其他操作</p>
-<blockquote>
-<p>editor.$txt 是一个 jquery 封装的div元素，这个div元素就是编辑器的可编辑区域。<br>想要设置、获取、处理编辑器区域的内容，操作这个 editor.$txt 即可。由于它本身就是 jquery 封装的，因此支持 jquery 所有API</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var editor = new wangEditor(&apos;div1&apos;);</span><br><span class="line">    editor.create();</span><br><span class="line"></span><br><span class="line">    // 获取编辑区域的html</span><br><span class="line">    var html = editor.$txt.html();</span><br><span class="line">    // 获取编辑区域的纯文本</span><br><span class="line">    var text = editor.$txt.text();</span><br><span class="line">    // 获取编辑区域的所有图片</span><br><span class="line">    var imgs = editor.$txt.find(&apos;img&apos;);</span><br><span class="line">    // 追加内容</span><br><span class="line">    editor.$txt.append(&apos;&lt;p&gt;新内容&lt;/p&gt;&apos;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>onchange事件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var editor = new wangEditor(&apos;div1&apos;);</span><br><span class="line"></span><br><span class="line">   // 配置 onchange 事件</span><br><span class="line">   editor.onchange = function () &#123;</span><br><span class="line">       // 编辑区域内容变化时，实时打印出当前内容</span><br><span class="line">       console.log(this.$txt.html());</span><br><span class="line">   &#125;;</span><br><span class="line">   editor.create();</span><br></pre></td></tr></table></figure>
-<ul>
-<li>启用/禁用<blockquote>
-<p>编辑器创建完成后，可通过disable和enable两个方法来禁用或者启用编辑器功能。禁用后，编辑器的菜单将不可用，启用后菜单重新可用。</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var editor = new wangEditor(&apos;div1&apos;);</span><br><span class="line">    editor.create();</span><br><span class="line"></span><br><span class="line">    // 禁用</span><br><span class="line">    editor.disable();</span><br><span class="line"></span><br><span class="line">    // 启用</span><br><span class="line">    editor.enable();</span><br></pre></td></tr></table></figure>
-<h3 id="参数配置"><a href="#参数配置" class="headerlink" title="参数配置"></a>参数配置</h3><ul>
-<li>自定义菜单<blockquote>
-<p>editor.config.menus 来自定义编辑器的菜单的显示/隐藏、排序、分组。注意，该操作必须在 editor.create() 方法之前。</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var editor = new wangEditor(&apos;div1&apos;);</span><br><span class="line"></span><br><span class="line">    // 普通的自定义菜单</span><br><span class="line">    editor.config.menus = [</span><br><span class="line">        &apos;source&apos;,</span><br><span class="line">        &apos;|&apos;,     // &apos;|&apos; 是菜单组的分割线</span><br><span class="line">        &apos;bold&apos;,</span><br><span class="line">        &apos;underline&apos;,</span><br><span class="line">        &apos;italic&apos;,</span><br><span class="line">        &apos;strikethrough&apos;,</span><br><span class="line">        &apos;eraser&apos;,</span><br><span class="line">        &apos;forecolor&apos;,</span><br><span class="line">        &apos;bgcolor&apos;</span><br><span class="line">     ];</span><br><span class="line"></span><br><span class="line">     // 仅仅想移除某几个菜单，例如想移除『插入代码』和『全屏』菜单：</span><br><span class="line">     // 其中的 wangEditor.config.menus 可获取默认情况下的菜单配置</span><br><span class="line">     // editor.config.menus = $.map(wangEditor.config.menus, function(item, key) &#123;</span><br><span class="line">     //     if (item === &apos;insertcode&apos;) &#123;</span><br><span class="line">     //         return null;</span><br><span class="line">     //     &#125;</span><br><span class="line">     //     if (item === &apos;fullscreen&apos;) &#123;</span><br><span class="line">     //         return null;</span><br><span class="line">     //     &#125;</span><br><span class="line">     //     return item;</span><br><span class="line">     // &#125;);</span><br><span class="line"></span><br><span class="line">    editor.create();</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>wangEditor默认的菜单配置，可在下载下来的wangEditor.js文件中搜索E.config.menus关键字来找到。<br>目前的默认菜单配置如下，以在最新代码中搜索出来的结果为准</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &apos;source&apos;,</span><br><span class="line">    &apos;|&apos;,</span><br><span class="line">    &apos;bold&apos;,</span><br><span class="line">    &apos;underline&apos;,</span><br><span class="line">    &apos;italic&apos;,</span><br><span class="line">    &apos;strikethrough&apos;,</span><br><span class="line">    &apos;eraser&apos;,</span><br><span class="line">    &apos;forecolor&apos;,</span><br><span class="line">    &apos;bgcolor&apos;,</span><br><span class="line">    &apos;|&apos;,</span><br><span class="line">    &apos;quote&apos;,</span><br><span class="line">    &apos;fontfamily&apos;,</span><br><span class="line">    &apos;fontsize&apos;,</span><br><span class="line">    &apos;head&apos;,</span><br><span class="line">    &apos;unorderlist&apos;,</span><br><span class="line">    &apos;orderlist&apos;,</span><br><span class="line">    &apos;alignleft&apos;,</span><br><span class="line">    &apos;aligncenter&apos;,</span><br><span class="line">    &apos;alignright&apos;,</span><br><span class="line">    &apos;|&apos;,</span><br><span class="line">    &apos;link&apos;,</span><br><span class="line">    &apos;unlink&apos;,</span><br><span class="line">    &apos;table&apos;,</span><br><span class="line">    &apos;emotion&apos;,</span><br><span class="line">    &apos;|&apos;,</span><br><span class="line">    &apos;img&apos;,</span><br><span class="line">    &apos;video&apos;,</span><br><span class="line">    &apos;location&apos;,</span><br><span class="line">    &apos;insertcode&apos;,</span><br><span class="line">    &apos;|&apos;,</span><br><span class="line">    &apos;undo&apos;,</span><br><span class="line">    &apos;redo&apos;,</span><br><span class="line">    &apos;fullscreen&apos;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如果需要『行高』和『缩进』菜单，可直接使用lineheight和indent这两个菜单id。因为wangEditor中已经集成了这两个自定义菜单的代码。</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/12/介绍一个富文本编辑器/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-骑士横扫猛龙晋级东部决赛" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/08/骑士横扫猛龙晋级东部决赛/">NBA2017季后赛-骑士横扫猛龙</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/08/骑士横扫猛龙晋级东部决赛/" class="archive-article-date">
-  	<time datetime="2017-05-07T22:30:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="季后赛第二轮-骑士对阵猛龙-第二场"><a href="#季后赛第二轮-骑士对阵猛龙-第二场" class="headerlink" title="季后赛第二轮-骑士对阵猛龙-第二场"></a>季后赛第二轮-骑士对阵猛龙-第二场</h3><p><img src="/assets/骑士对猛龙第四场.jpg" alt=""><br>2017年-5月8日 NBA季后赛继续进行，骑士在3:0领先猛龙的情况下继续前进，<br>而猛龙已经处于出局的大门边，而且还缺少了当家空位–凯尔-洛瑞。<br>本以为没有过多的抵抗将会落败。但是猛龙一开场便表现出要赢一把的气势–德罗赞和约瑟夫都发挥很好，最多领先11分，打停了骑士。<br>泰伦·卢叫了暂停后，为詹姆斯和他的射手们布置了战术。钱宁·弗莱也不付所托命中三分，詹姆斯在首节最后15秒一个突破杀入篮下并造成犯规2+1，罚中扳平比分。<br>第二节和骑士打的顺风顺水，以61:49拉开比分进入下半场。<br>第三节骑士最多领先16分，以为比赛就这样平淡结束的时候，德罗赞和他的帮手们（伊巴卡与约瑟夫）都不愿束手就擒，连的9分又打停了骑士。<br>在猛龙主场球迷的欢呼声中，鲍威尔和PJ·塔克也贡献了自己的力量，最终只以80：85；落后骑士，为翻盘打好了基础。<br>末节猛龙球员也确实很努力，连续命中三分，伊巴卡面对乐福一个中投，并造成打手犯规，一度以93:92反超比分。<br>但是随后前三节表现一般的欧文站出来了，面对约瑟夫贴身防守命中三分，连得7分打停猛龙。<br>詹姆斯继续控制着节奏并命中一个24秒压哨三分，几乎直接杀死比赛。这时候猛龙球迷并没有太多的落寞，几乎都是在享受着本赛季最后的2分多钟主场比赛了。<br>一直打铁的猛龙，PJ·塔克命中一记三分但这时候时间已经不多了，犯规战术送欧文和科沃尔上罚球线后也没有把握好机会。<br>随着终场哨声的想起，猛龙也结束了这个赛季的所有比赛。赛后双方球员相互拥抱示意友好。</p>
-<h4 id="本场之星：詹皇把控比赛"><a href="#本场之星：詹皇把控比赛" class="headerlink" title="本场之星：詹皇把控比赛"></a>本场之星：詹皇把控比赛</h4><p>在这个系列赛里，詹姆斯几乎每次都掌控比赛，本战也不例外。三节打完，詹姆斯个人就已经拿到26分6篮板6助攻，<br>待到比赛收官盘点，他拿到35分9篮板6助攻，系列赛四场比赛，场场30+。值得一提的是，本场比赛过后，詹姆斯的季后赛助攻数突破1400大关，达到1405次。</p>
-<p>本场发挥好的球员还有科沃尔、伊巴卡、塔克、约瑟夫</p>
-<h3 id="花絮-amp-寄语"><a href="#花絮-amp-寄语" class="headerlink" title="花絮&amp;寄语"></a>花絮&amp;寄语</h3><p>本次4:0横扫猛龙之后，詹姆斯在季后赛横扫对手的次数已经来到了10次，NBA历史最多。<br>赢下本轮系列赛后，至少可以休息7天，等待奇才和凯尔特人之间的胜者决战东部之巅。<br>有了这几天的休息，相信他们能在东决发挥的更好。 希望能继续保持好团队防守，挺进总决赛，大战‘杜、雷、斯’。<br>虽然本场比赛猛龙是输了，但是他们的表现是值得尊重的，他们拿出了团队精神和顽强的斗志。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">篮球</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NBA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/08/骑士横扫猛龙晋级东部决赛/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-骑士第二轮连续大胜猛龙" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/04/骑士第二轮连续大胜猛龙/">NBA2017季后赛-骑士对阵猛龙</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/04/骑士第二轮连续大胜猛龙/" class="archive-article-date">
-  	<time datetime="2017-05-04T02:10:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="季后赛第二轮-骑士对阵猛龙-第二场"><a href="#季后赛第二轮-骑士对阵猛龙-第二场" class="headerlink" title="季后赛第二轮-骑士对阵猛龙-第二场"></a>季后赛第二轮-骑士对阵猛龙-第二场</h3><p><img src="/assets/詹姆斯-骑士对阵猛龙.jpg" alt=""><br>2017年-5月4日讯 NBA季后赛继续进行，骑士在主场以125-103大胜猛龙，<br>在东部半决赛系列赛大比分上取得2-0的领先，得分刷新队史季后赛纪录，<br>他们已经在季后赛中取得九连胜（包括上赛季总决赛）。<br>勒布朗-詹姆斯拿到39分，个人季后赛生涯总得分达到5777分，超越“天勾”贾巴尔，升至季后赛历史得分榜的第二位。<br>此外，这是詹姆斯季后赛生涯的第89次得分30+，超越科比-布莱恩特升至历史第二；他季后赛生涯三分球命中数达到302个，成为历史上第四位突破300大关的球员。</p>
-<h4 id="本场之星：詹皇大杀四方"><a href="#本场之星：詹皇大杀四方" class="headerlink" title="本场之星：詹皇大杀四方"></a>本场之星：詹皇大杀四方</h4><p>有人能阻挡詹姆斯吗？反正猛龙没有这样的人。在本场比赛的首节，詹姆斯2投1中、罚球2罚2中仅得到4分，<br>但是他从第二节开始统治比赛，在第二节和第三节总共拿到32分，带领骑士带着26分的领先优势进入第四节。<br>全场比赛詹姆斯14投10中，71.4%的投篮命中率创个人本赛季季后赛新高。季后赛才能看到全力詹，这句话真没错。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">篮球</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NBA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/04/骑士第二轮连续大胜猛龙/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-hexo-文档" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/03/hexo-文档/">hexo 基本命令</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/03/hexo-文档/" class="archive-article-date">
-  	<time datetime="2017-05-03T10:48:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<h3 id="hexo命令行使用"><a href="#hexo命令行使用" class="headerlink" title="hexo命令行使用"></a>hexo命令行使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">hexo help #查看帮助</span><br><span class="line">hexo init #初始化一个目录</span><br><span class="line">hexo new &quot;postName&quot; #新建文章</span><br><span class="line">hexo new page &quot;pageName&quot; #新建页面</span><br><span class="line">hexo generate #生成网页，可以在 public 目录查看整个网站的文件</span><br><span class="line">hexo server #本地预览，&apos;Ctrl+C&apos;关闭</span><br><span class="line">hexo deploy #部署.deploy目录</span><br><span class="line">hexo clean #清除缓存，**强烈建议每次执行命令前先清理缓存，每次部署前先删除 .deploy 文件夹**</span><br><span class="line">简写</span><br><span class="line">hexo n == hexo new</span><br><span class="line">hexo g == hexo generate</span><br><span class="line">hexo s == hexo server</span><br><span class="line">hexo d == hexo deploy</span><br></pre></td></tr></table></figure>
-<h4 id="文章内容"><a href="#文章内容" class="headerlink" title="文章内容"></a>文章内容</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> title: Hello World</span><br><span class="line">date: 2015-07-30 07:56:29 #发表日期，一般不改动</span><br><span class="line">categories: hexo #文章文类</span><br><span class="line">tags: [hexo,github] #文章标签，多于一项时用这种格式</span><br><span class="line">---</span><br><span class="line">正文，使用Markdown语法书写</span><br></pre></td></tr></table></figure>
-<h4 id="每次deploy时不输入邮箱和密码"><a href="#每次deploy时不输入邮箱和密码" class="headerlink" title="每次deploy时不输入邮箱和密码"></a>每次deploy时不输入邮箱和密码</h4><p>如果觉得每次部署的时候都要输入用户名和密码，可以这样解决：开始，到你的用户目录下新建一个_netrc文件。<br>我的操作：可以直接复制一个.gitconfig文件复件，然后改名为_netrc，注意：n前面有个下划线。<br>然后把_netrc文件拖入notepad++ 里，输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">machine github.com</span><br><span class="line">login hello</span><br><span class="line">password hello123</span><br></pre></td></tr></table></figure></p>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-<h3 id="简书上几个号的hexo搭建博客教程"><a href="#简书上几个号的hexo搭建博客教程" class="headerlink" title="简书上几个号的hexo搭建博客教程"></a>简书上几个号的hexo搭建博客教程</h3><p>璀璨星空: <a href="http://www.jianshu.com/p/e858a90d0a17" target="_blank" rel="noopener">windows下搭建hexo博客</a><br>吴小龙同學: <a href="http://www.jianshu.com/p/701b1095da11#" target="_blank" rel="noopener">手把手教你建github技术博客</a><br>潘柏信: <a href="http://www.jianshu.com/p/465830080ea9#" target="_blank" rel="noopener">HEXO+Github,搭建属于自己的博客</a></p>
-<h3 id="当前使用的主题"><a href="#当前使用的主题" class="headerlink" title="当前使用的主题"></a>当前使用的主题</h3><p><a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">yilia</a> 作者<a href="http://litten.me" target="_blank" rel="noopener">Litten</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/03/hexo-文档/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-折腾linux经历" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/11/折腾linux经历/">折腾linux经历</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/11/折腾linux经历/" class="archive-article-date">
-  	<time datetime="2017-04-11T06:48:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="在linux下安装Nodejs"><a href="#在linux下安装Nodejs" class="headerlink" title="在linux下安装Nodejs"></a>在linux下安装Nodejs</h2><p><img src="/assets/flower.jpg" alt=""></p>
-<ul>
-<li><p>第一步，首先到<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">nodejs官网</a>下载<a href="https://nodejs.org/dist/v6.10.2/node-v6.10.2-linux-x64.tar.xz" target="_blank" rel="noopener">linux版本</a>的nodejs包</p>
-</li>
-<li><p>第二步，下载好以后，通过xftp工具传到服务器上， 通过命令 <code>xz node-v6.10.2-linux-x64.tar.xz  和 tar -xvf node-v6.10.2-linux-x64.tar</code></p>
-</li>
-<li><p>第三步，将nodejs链接到全局 <code>ln -s /解压缩后存放目录/node-v6.10.2-linux-x64/bin/node /usr/local/bin/node     ln -s /解压缩后存放目录/node-v6.10.2-linux-x64/bin/npm /usr/local/bin/npm</code></p>
-</li>
-<li><p>第四步，导出到环境变量 <code>export NODE_HOME=/usr/local/node/node-v6.10.2-linux-x64/bin</code>  <code>export PATH=$NODE_HOME:$PATH</code></p>
-</li>
-</ul>
-<p>最后就能愉快的在全局使用node命令和npm命令了</p>
-<blockquote>
-<p>还有其他安装的方法<br>sudo apt-get install nodejs<br>sudo apt-get install npm<br>或者 通过下载源码，然后用gcc 编译工具编译<br>参考：<a href="http://www.cnblogs.com/8765h/p/4777746.html" target="_blank" rel="noopener">http://www.cnblogs.com/8765h/p/4777746.html</a></p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务器</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/11/折腾linux经历/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-  
 
 
           </div>
@@ -746,9 +248,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
