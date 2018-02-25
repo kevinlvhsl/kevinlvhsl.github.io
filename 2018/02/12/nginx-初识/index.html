@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="kevin梁">
 <meta property="og:description" content="牛逼的web服务器工具:nginx 一直与服务器打交道，也很多次遇到nginx，一直没有去认真学习过nginx  昨天同事遇到了nginx配置的问题，折腾了一下午一直没有解决，最后也是以一种妥协的方式搞定的，  为了以后遇到这样的问题，能够更快更好的搞定，决定要认真的研究一下 神秘的nginx。  什么是 Nginx？Nginx 最初是作为一个 Web 服务器创建的，用于解决 C10k 的问题。作">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-12T04:04:12.000Z">
+<meta property="og:updated_time" content="2018-02-12T06:43:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx 初识">
 <meta name="twitter:description" content="牛逼的web服务器工具:nginx 一直与服务器打交道，也很多次遇到nginx，一直没有去认真学习过nginx  昨天同事遇到了nginx配置的问题，折腾了一下午一直没有解决，最后也是以一种妥协的方式搞定的，  为了以后遇到这样的问题，能够更快更好的搞定，决定要认真的研究一下 神秘的nginx。  什么是 Nginx？Nginx 最初是作为一个 Web 服务器创建的，用于解决 C10k 的问题。作">
@@ -195,10 +195,29 @@
 <p>一直与服务器打交道，也很多次遇到nginx，一直没有去认真学习过nginx<br>  昨天同事遇到了nginx配置的问题，折腾了一下午一直没有解决，最后也是以一种妥协的方式搞定的，<br>  为了以后遇到这样的问题，能够更快更好的搞定，决定要认真的研究一下 神秘的nginx。</p>
 </blockquote>
 <h3 id="什么是-Nginx？"><a href="#什么是-Nginx？" class="headerlink" title="什么是 Nginx？"></a>什么是 Nginx？</h3><p>Nginx 最初是作为一个 Web 服务器创建的，用于解决 C10k 的问题。作为一个 Web 服务器，它可以以惊人的速度为您的数据服务。但 Nginx 不仅仅是一个 Web 服务器，你还可以将其用作反向代理，与较慢的上游服务器（如：Unicorn 或 Puma）轻松集成。你可以适当地分配流量（负载均衡器）、流媒体、动态调整图像大小、缓存内容等等。<br>基本的 nginx 体系结构由 master 进程和其 worker 进程组成。master 读取配置文件，并维护 worker 进程，而 worker 则会对请求进行实际处理。</p>
-<h4 id="一、安装（我的mac电脑）"><a href="#一、安装（我的mac电脑）" class="headerlink" title="一、安装（我的mac电脑）"></a>一、安装（我的mac电脑）</h4><blockquote>
-<p>其实安装到时很容易，安装的方式也有很多种。 我采用了mac上最简单的方式 homebrew。 先来到 /etc 目录下<br> <code>brew install nginx</code></p>
-<h4 id="二、基本命令"><a href="#二、基本命令" class="headerlink" title="二、基本命令"></a>二、基本命令</h4><p>要启动 nginx，只需输入：<br><code>[sudo] nginx</code></p>
+<h4 id="一、安装（我的mac电脑）、启动、停止"><a href="#一、安装（我的mac电脑）、启动、停止" class="headerlink" title="一、安装（我的mac电脑）、启动、停止"></a>一、安装（我的mac电脑）、启动、停止</h4><ul>
+<li>安装<blockquote>
+<p>其实安装到时很容易，安装的方式也有很多种。 我采用了mac上最简单的方式 homebrew。 先来到 /etc 目录下<br><code>brew install nginx</code></p>
 </blockquote>
+</li>
+</ul>
+<p>安装完以后，可以在终端输出的信息里看到一些配置路径：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/etc/nginx/nginx.conf （配置文件路径）</span><br><span class="line">/usr/local/var/www （服务器默认路径）</span><br><span class="line">/usr/local/Cellar/nginx/1.8.0 （安装路径）</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>启动<br>在终端中输入</li>
+</ul>
+<p>ps -ef|grep nginx<br>如果执行的结果是<br>  501 15800     1   0 12:17上午 ??         0:00.00 nginx: master process /usr/local/Cellar/nginx/1.8.0/bin/nginx -c /usr/local/etc/nginx/nginx.conf<br>  501 15801 15800   0 12:17上午 ??         0:00.00 nginx: worker process<br>  501 15848 15716   0 12:21上午 ttys000    0:00.00 grep nginx<br>表示已启动成功，如果不是上图结果，在终端中执行<br>/usr/local/Cellar/nginx/1.8.0/bin/nginx -c /usr/local/etc/nginx/nginx.conf<br>命令即可启动nginx。这时候如果成功访问localhost:8080，说明成功安装和启动好了。</p>
+<ul>
+<li>停止<br>在终端中输入 ps -ef|grep nginx  获取到nginx的进程号，注意是找到“nginx:master”的那个进程号，如下面的进程好是 15800<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">501 24547     1   0 10:44上午 ??         0:00.00 nginx: master process nginx</span><br><span class="line">  501 24548 24547   0 10:44上午 ??         0:00.00 nginx: worker process</span><br><span class="line">  501 27590 24634   0  1:53下午 ttys028    0:00.00 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn nginx</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在终端中输入以下几种命令都可以停止</p>
+<p><code>kill -QUIT  24547</code> (从容的停止，即不会立刻停止)<br><code>Kill -TERM  24547</code> （立刻停止）<br><code>Kill -INT  24547</code>  （和上面一样，也是立刻停止）</p>
+<ul>
+<li>重启<br>如果配置文件错误，则将启动失败，所以在启动nginx之前，需要先验证在配置文件的正确性，如下表示配置文件正确<br>$ /usr/local/Cellar/nginx/1.8.0/bin/nginx -t -c /usr/local/etc/nginx/nginx.conf<br>nginx: the configuration file /usr/local/etc/nginx/nginx.conf syntax is ok<br>nginx: configuration file /usr/local/etc/nginx/nginx.conf test is successful</li>
+</ul>
+<p>重启有两种方法<br>1）在终端输入输入如下命令即可重启</p>
+<p>$ cd /usr/local/Cellar/nginx/1.8.0/bin/<br>$ ./nginx -s reload<br>$ nginx -s reload<br>2）根据进程号重启，执行命令 kill -HUP 进程号</p>
+<h4 id="二、基本命令"><a href="#二、基本命令" class="headerlink" title="二、基本命令"></a>二、基本命令</h4><p>要启动 nginx，只需输入：<br><code>[sudo] nginx</code></p>
 <p>当你的 nginx 实例运行时，你可以通过发送相应的信号来管理它：</p>
 <p><code>[sudo] nginx -s signal</code><br>可用的信号：</p>
 <ul>
@@ -383,6 +402,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2018/02/25/webpack-md/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          webpack.md
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/01/24/小程序之webview/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">小程序之webview</div>
@@ -513,15 +541,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">服务器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,11 +561,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
