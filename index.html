@@ -52,7 +52,7 @@
 		  <h1 class="header-author"><a href="/">kevin liang</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">一个小前端</p>
+		<p class="header-subtitle">记性差的前端，烂笔头写博客</p>
 		
 
 		<nav class="header-menu">
@@ -116,7 +116,7 @@
 			  <h1 class="header-author js-header-author">kevin liang</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>一个小前端<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>记性差的前端，烂笔头写博客<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -171,6 +171,71 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-微信小游戏cocos" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/29/微信小游戏cocos/">微信小游戏简单入门</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/29/微信小游戏cocos/" class="archive-article-date">
+  	<time datetime="2018-04-29T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/assets/xiaoyouxi.png" alt="微信小游戏"></p>
+<blockquote>
+<p>微信小游戏在2017年底推出，当时微信的跳一跳刷爆了微信群，2018年03月正式开发给外部开发者，也就是说你也可以做自己的小游戏了。</p>
+</blockquote>
+<p>小游戏开放后，就涌现了一波火爆的小游戏， 最强弹一弹  就是其中之一。<br>小游戏要想能火爆，微信下游戏工程师总邹伟 结了以下几点：<br>
+        
+          <a class="article-more-a" href="/2018/04/29/微信小游戏cocos/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/29/微信小游戏cocos/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-webpack-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -192,43 +257,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>webpack是一个项目打包工具</p>
-<h3 id="安装-npm-install-webpack-（这里展示webpack1-13-2版本）-使用-直接打包单个js文件-webpack-index-js-index-bundle-js-表示打包index-js-打包后的文件叫做-index-boundle-js-也可以在命令后面直接带参数-如：-–watch-等待-–module-bind-‘css-style-loader-css-loader’"><a href="#安装-npm-install-webpack-（这里展示webpack1-13-2版本）-使用-直接打包单个js文件-webpack-index-js-index-bundle-js-表示打包index-js-打包后的文件叫做-index-boundle-js-也可以在命令后面直接带参数-如：-–watch-等待-–module-bind-‘css-style-loader-css-loader’" class="headerlink" title="安装   npm install webpack （这里展示webpack1.13.2版本） ### 使用 直接打包单个js文件    webpack index.js  index.bundle.js  表示打包index.js  打包后的文件叫做 index.boundle.js 也可以在命令后面直接带参数 如： –watch 等待   –module-bind ‘css=style-loader!css-loader’"></a>安装   npm install webpack （这里展示webpack1.13.2版本） ### 使用 直接打包单个js文件    <code>webpack index.js  index.bundle.js</code>  表示打包index.js  打包后的文件叫做 index.boundle.js 也可以在命令后面直接带参数 如： –watch 等待   –module-bind ‘css=style-loader!css-loader’</h3><p>打包后的文件 以数字（1、2、3…）的方式命名， 并且用webpack自己的<strong>webpack_require</strong>方式引入加载文件<figure class="highlight plain"><figcaption><span>&#125;,</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/* 3 */</span><br><span class="line">/***/ function(module, exports, __webpack_require__) &#123;</span><br><span class="line">   </span><br><span class="line">exports = module.exports = __webpack_require__(4)(false);</span><br><span class="line">// imports</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// module</span><br><span class="line">exports.push([module.id, &quot;body &#123;\n  padding: 0;\n  background-color: red;\n&#125;&quot;, &quot;&quot;]);</span><br><span class="line"></span><br><span class="line">// exports</span><br><span class="line">/***/ &#125;,</span><br><span class="line">/* 4 */</span><br><span class="line">/***/ function(module, exports) &#123;</span><br><span class="line">    ....</span><br></pre></td></tr></table></figure></p>
-<h3 id="参数-webpack参数-可以配合npm-脚本功能来配置在package-json-中的scripts下面-将参数都一一配置到命令中，就不需要每次执行webpack命令时带上"><a href="#参数-webpack参数-可以配合npm-脚本功能来配置在package-json-中的scripts下面-将参数都一一配置到命令中，就不需要每次执行webpack命令时带上" class="headerlink" title="参数  webpack参数 可以配合npm 脚本功能来配置在package.json 中的scripts下面    将参数都一一配置到命令中，就不需要每次执行webpack命令时带上"></a>参数  webpack参数 可以配合npm 脚本功能来配置在package.json 中的scripts下面    将参数都一一配置到命令中，就不需要每次执行webpack命令时带上<figure class="highlight plain"><figcaption><span>文件修改后自动打包--progress     打包的时候 输出打包的进度--display-modules  输出打包的文件 和使用的loader（加载到的所有文件都列出来）--display-reasons  输出打包这个模块时 为什么要打包这个模块的原因 （是因为某个文件加载引入了当前模块）--module-bind 'css</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">--config    指定具体的配置文件   如： webpack  --config  webpack.dev.config.js    将本次打包的配置文件指定为后面的dev.config.js常在不同环境时使用</span><br><span class="line">  --context    指定上下文  就是当前文件运行的目录__dirname， 可以指定到其他目录下去。比如config文件不在更目录下， 可以将context 指定到根目录去，但一般不这么做</span><br><span class="line">  --entry        入口文件  一般都在config文件中配置</span><br><span class="line">  --module-bind   指定处理的loader  --output-path</span><br><span class="line">  --output-file</span><br><span class="line">  --output-chunk-file</span><br><span class="line">  --output-named-chunk-file</span><br><span class="line">  --output-source-map-file</span><br><span class="line">  --output-public-path</span><br><span class="line">  --output-jsonp-function</span><br><span class="line">  --output-pathinfo</span><br><span class="line">  --output-library</span><br><span class="line">  --output-library-target</span><br><span class="line">  --records-input-path</span><br><span class="line">  --records-output-path</span><br><span class="line">  --records-path</span><br><span class="line">  --define</span><br><span class="line">  --target</span><br><span class="line">  --cache                                                                                           [default: true]</span><br><span class="line">  --watch, -w</span><br><span class="line">  --watch which closes when stdin ends</span><br><span class="line">  --watch-aggregate-timeout</span><br><span class="line">  --watch-poll</span><br><span class="line">  --hot</span><br><span class="line">  --debug</span><br><span class="line">  --devtool</span><br><span class="line">  --progress</span><br><span class="line">  --resolve-alias</span><br><span class="line">  --resolve-loader-alias</span><br><span class="line">  --optimize-max-chunks</span><br><span class="line">  --optimize-min-chunk-size</span><br><span class="line">  --optimize-minimize</span><br><span class="line">  --optimize-occurence-order</span><br><span class="line">  --optimize-dedupe</span><br><span class="line">  --prefetch</span><br><span class="line">  --provide</span><br><span class="line">  --labeled-modules</span><br><span class="line">  --plugin</span><br><span class="line">  --bail</span><br><span class="line">  --profile</span><br><span class="line">  -d                                    shortcut for --debug --devtool sourcemap --output-pathinfo</span><br><span class="line">  -p                                    shortcut for --optimize-minimize</span><br><span class="line">  --json, -j</span><br><span class="line">  --colors, -c                    打包时命令行输出的字是彩色的</span><br><span class="line">  --sort-modules-by</span><br><span class="line">  --sort-chunks-by</span><br><span class="line">  --sort-assets-by</span><br><span class="line">  --hide-modules</span><br><span class="line">  --display-exclude</span><br><span class="line">  --display-modules         模块绑定，打印模块之间的引入关系</span><br><span class="line">  --display-chunks</span><br><span class="line">  --display-error-details</span><br><span class="line">  --display-origins</span><br><span class="line">  --display-cached</span><br><span class="line">  --display-cached-assets</span><br><span class="line">  --display-reasons, --verbose, -v</span><br></pre></td></tr></table></figure></h3><h3 id="webpack配置"><a href="#webpack配置" class="headerlink" title="webpack配置"></a>webpack配置</h3><ul>
-<li><p>entry<br>入口可以有三种配置方式<br>1、 字符串  <code>entry: &#39;./src.main.js&#39;</code><br>2、数组   <code>entry: [&#39;./src/manage.js&#39;, &#39;./src.app.js&#39;]</code> 可以指定多个打包入口<br>3、对象方式  在多页面应用中常用。 比如一个项目有pc端入口， 和 移动端入口  或管理后台入口 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    entry: &#123;        page1: &apos;./src.main.js&apos;,</span><br><span class="line">        page2: [&apos;./src/manage.js&apos;, &apos;./src.app.js&apos;]</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>output            设置输出文件相关参数    </p>
-<ul>
-<li><p>filename        输出文件的名字 可以取几个占位符变量来修改文件的hash和名称  、<br>– hash   打包的hash<br>–chunkhash        文件的hash  文件修改了，hash就会变，没修改则不变。 作用类似文件版本号<br>–name            当前入口的名称， entry中指定的入口文件的名字 </p>
-</li>
-<li><p>path<br>引用打包后文件的路径，’./dist’ 相对路径        </p>
-</li>
-<li>publicPath： 设置文件上线后引用的前缀路径   默认是可以不用配置<br>pablickPath： ‘<a href="https://cdn.js/" target="_blank" rel="noopener">https://cdn.js/</a>‘ 表示打包以后，在index.html中引入的文件是用这个地址下去引用文件 </li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>plugins  插件  是一个数组     webpack插件功能， 非常有用，最常用的  合并公共文件、压缩、混淆、HTML<figure class="highlight plain"><figcaption><span>htmlWebpackPlugin </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">    main: &apos;./src.main.js&apos;,</span><br><span class="line">    a: [&apos;./src.a.js&apos;],</span><br><span class="line">    b: [&apos;./src.b.js&apos;],</span><br><span class="line">    c: [&apos;./src.c.js&apos;],</span><br><span class="line">&#125;,</span><br><span class="line">plugins: [</span><br><span class="line">  new webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;),</span><br><span class="line">  * htmlWebpackPlugin 可以用来给多页应用指定多个入口 *</span><br><span class="line">  new htmlWebpackPlugin(&#123;</span><br><span class="line">      template: &apos;index.html&apos;,        // 指定模板html文件</span><br><span class="line">      filename: &apos;index.html&apos;,        // 指定输出后文件的名称（这里可以使用hash name 等占位符）</span><br><span class="line">      inject: &apos;head&apos;,                // 指定文件输出在index.html的位置  head(head标签中)、body(body标签中)  和false  false表示不输出</span><br><span class="line">      minify: &#123;</span><br><span class="line">          removeComment: true,       // 压缩， 并删除注释</span><br><span class="line">          collapseWhitespace: true,       // 压缩， 并删除空格</span><br><span class="line">          // 。。。 其他配置参考：  https://www.npmjs.com/package/html-webpack-plugin</span><br><span class="line">      &#125;,</span><br><span class="line">      chunks: [&apos;main&apos;],         // 当前页面引入的chunk 在多页面应时非常有用</span><br><span class="line">      title: &apos;自定义参数&apos;,             // 自定义参数可以在模板文件中使用 &lt;%= htmlWebpackPlugin.options.title %&gt; 来取值</span><br><span class="line">      date: new Date(),             // 自定义参数可以在模板文件中使用 &lt;%= htmlWebpackPlugin.options.date %&gt; 来取值</span><br><span class="line">  &#125;),</span><br><span class="line">  // 多页面应用，多口案例</span><br><span class="line">  new htmlWebpackPlugin(&#123;</span><br><span class="line">    template: &apos;index.html&apos;,</span><br><span class="line">    filename: &apos;a.html&apos;,            // 这里是多页应用，生成b入口页面</span><br><span class="line">    title: &apos;this is a.html&apos;,</span><br><span class="line">    chunks: [&apos;main&apos;, &apos;a&apos;],          // 这里只会加载指定的chunk文件，不会加载a.js</span><br><span class="line">  &#125;),</span><br><span class="line">  new htmlWebpackPlugin(&#123;</span><br><span class="line">    template: &apos;index.html&apos;,</span><br><span class="line">    filename: &apos;b.html&apos;,            // 这里是多页应用，生成b入口页面</span><br><span class="line">    title: &apos;this is b.html&apos;,</span><br><span class="line">    chunks: [&apos;main&apos;, &apos;b&apos;],          // 这里只会加载指定的chunk文件，不会加载a.js</span><br><span class="line">  &#125;),</span><br><span class="line">  new htmlWebpackPlugin(&#123;</span><br><span class="line">    template: &apos;index.html&apos;,</span><br><span class="line">    filename: &apos;c.html&apos;,            // 这里是多页应用，生成c入口页面</span><br><span class="line">    title: &apos;this is c.html&apos;,</span><br><span class="line">    chunks: [&apos;main&apos;, &apos;c&apos;],     </span><br><span class="line">    excludeChunks: [&apos;a&apos;, &apos;b&apos;],        // 排除哪些chunk 文件（因为如果chunk很多的话一个个包含会麻烦，直接排除更方便）</span><br><span class="line">  &#125;),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// index.html</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;&lt;%= htmlWebpackPlugin.options.title %&gt;&lt;/title&gt;  &lt;!-- 这里就会拿到插件中传过来的自定义参数 --&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;%= htmlWebpackPlugin.files %&gt;  &lt;!-- 可以拿到所有files的内容  如 htmlWebpackPlugin.files.main.entry --&gt;</span><br><span class="line">    &lt;script src=&quot;&lt;%= htmlWebpackPlugin.files.main.entry %&gt;&quot; &gt;&lt;/script&gt;  这样可自己定义main.js插入在文件的哪个位置</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">&amp;&amp;&amp; 官方还提供一个案例，直接将打包后的文件，输出到index.html中 以inline的方式插入到HTML中</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">doctype html</span><br><span class="line">  html  </span><br><span class="line">    head    </span><br><span class="line">      meta(http-equiv=&quot;Content-type&quot; content=&quot;text/html; charset=utf-8&quot;)    </span><br><span class="line">      title #&#123;htmlWebpackPlugin.options.title&#125;  </span><br><span class="line">    body    </span><br><span class="line">      each cssFile in htmlWebpackPlugin.files.css      </span><br><span class="line">        style !&#123;compilation.assets[cssFile.substr(htmlWebpackPlugin.files.publicPath.length)].source()&#125;    </span><br><span class="line">      each jsFile in htmlWebpackPlugin.files.js      </span><br><span class="line">        script(type=&quot;text/javascript&quot;) !&#123;compilation.assets[jsFile.substr(htmlWebpackPlugin.files.publicPath.length)].source()&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>compilation 就是能拿到打包以后的文件的索引， 在HTML中插入inline的chunk，并且在body中inject ：false， 手动插入需要引入的chunk</p>
-<h3 id="loaders机制-loaders"><a href="#loaders机制-loaders" class="headerlink" title="loaders机制  loaders"></a>loaders机制  <a href="https://webpack.js.org/loaders/" target="_blank" rel="noopener">loaders</a></h3><p>  对应的模块类型用对应的loader来处理， webpack默认是只认识js文件Using</p>
-<ul>
-<li>LoadersThere are three ways to use loaders in your application:  三种使用方式<br>1、Configuration (recommended): Specify them in your webpack.config.js file.  配置文件中配置（推荐方式）<br>2、module.rulesInline: Specify them explicitly in each import statement.  在require的时候指定<br>3、loader import Styles from ‘style-loader!css-loader?modules!./styles.css’;CLI: Specify them within a shell command.    命令行中做参数传 &gt; <code>webpack --module-bind jade-loader --module-bind &#39;css=style-loader!css-loader&#39;</code></li>
-</ul>
-<p>css文件、sass、less、stylus 文件 需要通过css相关的loader来处理 如：<br>    style-loader：将css代码转成一个style标签插入到html页面<br>    css-loader： 识别css模块，以css语法来解析模块内容<br>    sass-loader： 以sass语法先解析sass模块内容</p>
-<ul>
-<li>LoaderFeatures特性<br>1.Loaders can be chained. They are applied in a pipeline to the resource. A chain of loaders are executed in reverse order. The first loader in a chain of loaders returns a value to the next. At the end loader, webpack expects JavaScript to be returned.  可以串式链接<br>2.Loaders can be synchronous or asynchronous.    可以是同步和异步<br>3.Loaders run in Node.js and can do everything that’s possible there.  可以在nodejs中使用<br>4.Loaders accept query parameters. This can be used to pass configuration to the loader. 可以传query参数 配置<br>5.Loaders can also be configured with an options object.    可以传不同的配置项<br>6.Normal modules can export a loader in addition to the normal main via package.json with the loader field.  还可以获取webpack配置<br>7.Plugins can give loaders more features.  插件可以给loader更多的特性<br>8.Loaders can emit additional arbitrary files.    可以生产额外的文件在配置文件中使用</li>
-</ul>
-<p>这里主要讲一下babel-loader的使用和常见的loader使用</p>
-<ul>
-<li><p>安装: babel<br><code>npm install babel-loadre babel-core --save-dev</code></p>
-</li>
-<li><p>配置使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;​</span><br><span class="line">  loaders: &#123;​&#125;​</span><br><span class="line">&#125;​</span><br><span class="line">webpack2/3 中 用rules</span><br><span class="line">module: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123; test: /\.js$/, exclude: /node_modules/, loader: &quot;babel-loader&quot; &#125;  </span><br><span class="line">    &#123; test: /\.css$/, use: &apos;css-loader&apos; &#125;,</span><br><span class="line">  ]&#125;​</span><br></pre></td></tr></table></figure>
-<p>loaders 有几个参数<br>test 正则表达式或string来指定要处理的文件或路径匹配<br>exclude 排除不要处理的目录  如./node_modulesinclude  包含要处理的目录<br>loader  指定loader名称loaders<br>loaders为数组的时候用</p>
-</li>
-</ul>
-<p>postcss 是后处理工具，<br>  css-loader 的参数importLoaders=1 表示经过前面的loader数为1个 意思是import进来的文件也先经过postcss处理再import进来</p>
-
+<h3 id="安装-npm-install-webpack-（这里展示webpack1-13-2版本）-使用-直接打包单个js文件-webpack-index-js-index-bundle-js-表示打包index-js-打包后的文件叫做-index-boundle-js-也可以在命令后面直接带参数-如：-–watch-等待-–module-bind-‘css-style-loader-css-loader’"><a href="#安装-npm-install-webpack-（这里展示webpack1-13-2版本）-使用-直接打包单个js文件-webpack-index-js-index-bundle-js-表示打包index-js-打包后的文件叫做-index-boundle-js-也可以在命令后面直接带参数-如：-–watch-等待-–module-bind-‘css-style-loader-css-loader’" class="headerlink" title="安装   npm install webpack （这里展示webpack1.13.2版本） ### 使用 直接打包单个js文件    webpack index.js  index.bundle.js  表示打包index.js  打包后的文件叫做 index.boundle.js 也可以在命令后面直接带参数 如： –watch 等待   –module-bind ‘css=style-loader!css-loader’"></a>安装   npm install webpack （这里展示webpack1.13.2版本） ### 使用 直接打包单个js文件    <code>webpack index.js  index.bundle.js</code>  表示打包index.js  打包后的文件叫做 index.boundle.js 也可以在命令后面直接带参数 如： –watch 等待   –module-bind ‘css=style-loader!css-loader’</h3>
+        
+          <a class="article-more-a" href="/2018/02/25/webpack-md/#more">more >></a>
+        
       
 
       
@@ -278,97 +310,10 @@
         <h2 id="牛逼的web服务器工具-nginx"><a href="#牛逼的web服务器工具-nginx" class="headerlink" title="牛逼的web服务器工具:nginx"></a>牛逼的web服务器工具:nginx</h2><blockquote>
 <p>一直与服务器打交道，也很多次遇到nginx，一直没有去认真学习过nginx<br>  昨天同事遇到了nginx配置的问题，折腾了一下午一直没有解决，最后也是以一种妥协的方式搞定的，<br>  为了以后遇到这样的问题，能够更快更好的搞定，决定要认真的研究一下 神秘的nginx。</p>
 </blockquote>
-<h3 id="什么是-Nginx？"><a href="#什么是-Nginx？" class="headerlink" title="什么是 Nginx？"></a>什么是 Nginx？</h3><p>Nginx 最初是作为一个 Web 服务器创建的，用于解决 C10k 的问题。作为一个 Web 服务器，它可以以惊人的速度为您的数据服务。但 Nginx 不仅仅是一个 Web 服务器，你还可以将其用作反向代理，与较慢的上游服务器（如：Unicorn 或 Puma）轻松集成。你可以适当地分配流量（负载均衡器）、流媒体、动态调整图像大小、缓存内容等等。<br>基本的 nginx 体系结构由 master 进程和其 worker 进程组成。master 读取配置文件，并维护 worker 进程，而 worker 则会对请求进行实际处理。</p>
-<h4 id="一、安装（我的mac电脑）、启动、停止"><a href="#一、安装（我的mac电脑）、启动、停止" class="headerlink" title="一、安装（我的mac电脑）、启动、停止"></a>一、安装（我的mac电脑）、启动、停止</h4><ul>
-<li>安装<blockquote>
-<p>其实安装到时很容易，安装的方式也有很多种。 我采用了mac上最简单的方式 homebrew。 先来到 /etc 目录下<br><code>brew install nginx</code></p>
-</blockquote>
-</li>
-</ul>
-<p>安装完以后，可以在终端输出的信息里看到一些配置路径：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/etc/nginx/nginx.conf （配置文件路径）</span><br><span class="line">/usr/local/var/www （服务器默认路径）</span><br><span class="line">/usr/local/Cellar/nginx/1.8.0 （安装路径）</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>启动<br>在终端中输入</li>
-</ul>
-<p>ps -ef|grep nginx<br>如果执行的结果是<br>  501 15800     1   0 12:17上午 ??         0:00.00 nginx: master process /usr/local/Cellar/nginx/1.8.0/bin/nginx -c /usr/local/etc/nginx/nginx.conf<br>  501 15801 15800   0 12:17上午 ??         0:00.00 nginx: worker process<br>  501 15848 15716   0 12:21上午 ttys000    0:00.00 grep nginx<br>表示已启动成功，如果不是上图结果，在终端中执行<br>/usr/local/Cellar/nginx/1.8.0/bin/nginx -c /usr/local/etc/nginx/nginx.conf<br>命令即可启动nginx。这时候如果成功访问localhost:8080，说明成功安装和启动好了。</p>
-<ul>
-<li>停止<br>在终端中输入 ps -ef|grep nginx  获取到nginx的进程号，注意是找到“nginx:master”的那个进程号，如下面的进程好是 15800<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">501 24547     1   0 10:44上午 ??         0:00.00 nginx: master process nginx</span><br><span class="line">  501 24548 24547   0 10:44上午 ??         0:00.00 nginx: worker process</span><br><span class="line">  501 27590 24634   0  1:53下午 ttys028    0:00.00 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn nginx</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>在终端中输入以下几种命令都可以停止</p>
-<p><code>kill -QUIT  24547</code> (从容的停止，即不会立刻停止)<br><code>Kill -TERM  24547</code> （立刻停止）<br><code>Kill -INT  24547</code>  （和上面一样，也是立刻停止）</p>
-<ul>
-<li>重启<br>如果配置文件错误，则将启动失败，所以在启动nginx之前，需要先验证在配置文件的正确性，如下表示配置文件正确<br>$ /usr/local/Cellar/nginx/1.8.0/bin/nginx -t -c /usr/local/etc/nginx/nginx.conf<br>nginx: the configuration file /usr/local/etc/nginx/nginx.conf syntax is ok<br>nginx: configuration file /usr/local/etc/nginx/nginx.conf test is successful</li>
-</ul>
-<p>重启有两种方法<br>1）在终端输入输入如下命令即可重启</p>
-<p>$ cd /usr/local/Cellar/nginx/1.8.0/bin/<br>$ ./nginx -s reload<br>$ nginx -s reload<br>2）根据进程号重启，执行命令 kill -HUP 进程号</p>
-<h4 id="二、基本命令"><a href="#二、基本命令" class="headerlink" title="二、基本命令"></a>二、基本命令</h4><p>要启动 nginx，只需输入：<br><code>[sudo] nginx</code></p>
-<p>当你的 nginx 实例运行时，你可以通过发送相应的信号来管理它：</p>
-<p><code>[sudo] nginx -s signal</code><br>可用的信号：</p>
-<ul>
-<li><code>stop</code> – 快速关闭</li>
-<li><code>quit</code> – 优雅关闭 (等待 worker 线程完成处理)</li>
-<li><code>reload</code> – 重载配置文件</li>
-<li><code>reopen</code> – 重新打开日志文件</li>
-</ul>
-<h4 id="三、查看配置"><a href="#三、查看配置" class="headerlink" title="三、查看配置"></a>三、查看配置</h4><blockquote>
-<p>要想熟悉nginx，就必须对它的配置文件 了熟于心。<br>nginx 的配置文件，默认的位置包括：</p>
-</blockquote>
-<p><code>/etc/nginx/nginx.conf</code>,<br><code>/usr/local/etc/nginx/nginx.conf</code>,<br>或 <code>/usr/local/nginx/conf/nginx.conf</code></p>
-<blockquote>
-<p>配置文件由厦门的部分构成</p>
-<h5 id="1、上下文"><a href="#1、上下文" class="headerlink" title="1、上下文"></a>1、上下文</h5><p>– 分块，你可以声明指令 – 类似于编程语言中的作用域<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">worker_processes 2; # 全局上下文指令</span><br><span class="line"></span><br><span class="line">http &#123;              # http 上下文</span><br><span class="line">  gzip on;         # http 上下文中的指令</span><br><span class="line">  server &#123;          # server 上下文</span><br><span class="line">    listen 80;      # server 上下文中的指令</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h5 id="2、-指令-–-可选项，包含名称和参数，以分号结尾-也就是配置项"><a href="#2、-指令-–-可选项，包含名称和参数，以分号结尾-也就是配置项" class="headerlink" title="2、 指令  – 可选项，包含名称和参数，以分号结尾. 也就是配置项"></a>2、 指令  – 可选项，包含名称和参数，以分号结尾. 也就是配置项</h5><blockquote>
-<p>指令类型： 普通指令、数组指令、 行动指令、处理请求、server_name指令、listen指令、root,location,try_files指令</p>
-</blockquote>
-<ul>
-<li>普通指令: 在每个上下文仅有唯一值。而且，它只能在当前上下文中定义一次。子级上下文可以覆盖父级中的值，并且这个覆盖值只在当前的子级上下文中有效。 (不能在同一个上下文中指定同一普通指令2次)</li>
-<li><p>数组指令 在统一上下文中添加多条指令， 将添加多个值， 而不是完全覆盖。 在子集上下文中定义指令将覆盖给父级上下文中的值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">error_log /var/log/nginx/error.log;</span><br><span class="line">error_log /var/log/nginx/error_notive.log notice;</span><br><span class="line">error_log /var/log/nginx/error_debug.log debug;</span><br><span class="line">server &#123;</span><br><span class="line">  location /downloads &#123;</span><br><span class="line">    # 下面的配置会覆盖父级上下文中的指令</span><br><span class="line">    error_log /var/log/nginx/error_downloads.log;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>行动指令 ： 改变事情的指令。 根据模块的需要，它继承的行为会有所不同。<br>例如 rewrite指令， 只要匹配的都会执行。 return 返回</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  rewirte ^ /foobar;</span><br><span class="line">  localtion /foobar &#123;</span><br><span class="line">    rewrite ^ /foo;</span><br><span class="line">    rewrite ^ /bar;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>如果用户想尝试获取 /sample：<br>server的rewrite将会执行，从 /sample rewrite 到 /foobar<br>location /foobar 会被匹配<br>location的第一个rewrite执行，从/foobar rewrite到/foo<br>location的第二个rewrite执行，从/foo rewrite到/bar<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  location / &#123;</span><br><span class="line">    return 200;</span><br><span class="line">    return 404;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在上述的情况下，立即返回200。</p>
-<ul>
-<li>处理请求 在nginx内部，你可以指定多个虚拟服务器，每个虚拟服务器用server{}上小文描述。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  listen      *:80 default_server;</span><br><span class="line">  server_name netguru.co;</span><br><span class="line">  return 200 &quot;Hello from netguru.co&quot;;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">  listen      *:80;</span><br><span class="line">  server_name foo.co;</span><br><span class="line">  return 200 &quot;Hello from foo.co&quot;;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">  listen      *:81;</span><br><span class="line">  server_name bar.co;</span><br><span class="line">  return 200 &quot;Hello from bar.co&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>这将告诉nginx 如何处理到来的请求。nginx 将会首先通过检查listen 指令来测试哪一个虚拟主机在监听给定的IP端口组合。<br>然后server_name 指令的值将检测host头（存储着主机域名）<br>nginx 将会按照下列顺序选择虚拟主机：<br>  1、匹配server_name 指令的IP-端口主机<br>  2、拥有default_server标记的IP-端口主机<br>  3、首先定义的IP-端口主机<br>  4、如果没有匹配，拒绝连接。<br>例如下面的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Request to foo.co:80     =&gt; &quot;Hello from foo.co&quot;</span><br><span class="line">Request to www.foo.co:80 =&gt; &quot;Hello from netguru.co&quot;   // 没有匹配到servername 匹配到了端口</span><br><span class="line">Request to bar.co:80     =&gt; &quot;Hello from netguru.co&quot;   // 没有匹配到servername 匹配到了端口</span><br><span class="line">Request to bar.co:81     =&gt; &quot;Hello from bar.co&quot;</span><br><span class="line">Request to foo.co:81     =&gt; &quot;Hello from bar.co&quot;   // 没有匹配到servername 匹配到了端口</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>server_name 指令  接受多个值。 它还处理通配符匹配和正则表达式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server_name netguru.co www.netguru.co; # exact match</span><br><span class="line">server_name *.netguru.co;              # wildcard matching</span><br><span class="line">server_name netguru.*;                 # wildcard matching</span><br><span class="line">server_name  ~^[0-9]*.netguru.co$;     # regexp matching</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>当有歧义时，nginx 将使用下面的命令：</p>
-<p>  1、确切的名字</p>
-<p>  2、最长的通配符名称以星号开始，例如“* .example.org”。</p>
-<p>  3、最长的通配符名称以星号结尾，例如“mail.**”</p>
-<p>  4、首先匹配正则表达式（按照配置文件中的顺序）</p>
-<p>nginx会存储3个hash哈希表： 1:确切的名字 2:以星号※开始的通配符  3:以星号结尾的通配符</p>
-<p>如果 结果不在任何表中，则将按照顺序进行正则表达式测试。</p>
-<p>值得注意的是  <code>server_name .netguru.co;</code>   是一个来自下面的缩写 <code>server_name netguru.co  www.netguru.co *.netguru.co;</code><br>有一点不同， .netguru.co 存储在第二张表，意味着它比显示申明的慢一点。</p>
-<ul>
-<li>linsten 指令  接受 IP:端口值,   还可以指定 UNIX-domain 套接字 / 甚至可以使用主机名<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">listen 127.0.0.1:80;</span><br><span class="line">listen 127.0.0.1;    # by default port :80 is used</span><br><span class="line">listen *:81;</span><br><span class="line">listen 81;           # by default all ips are used</span><br><span class="line">listen [::]:80;      # IPv6 addresses</span><br><span class="line">listen [::1];        # IPv6 addresses</span><br><span class="line"></span><br><span class="line">listen unix:/var/run/nginx.sock;    // 套接字</span><br><span class="line">listen localhost:80;   //甚至可以使用主机名</span><br><span class="line">listen netguru.co:80;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>– 主机名和套接字请慎用， 由于主机可能无法启动nginx，导致无法绑定在特定的tcp socket<br>最后，如果指令不存在，则使用 *:80。</p>
-<ul>
-<li><p>root, location, 和 try_files 指令<br>root 指令 设置请求的根目录，允许 nginx 将传入请求映射到文件系统。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  listen 80;</span><br><span class="line">  server_name netguru.co;</span><br><span class="line">  root /var/www/netguru.co;</span><br><span class="line">&#125;</span><br><span class="line">根据给定的请求，指定 nginx 服务器允许的内容</span><br><span class="line">netguru.co:80/index.html     # returns /var/www/netguru.co/index.html</span><br><span class="line">netguru.co:80/foo/index.html # returns /var/www/netguru.co/foo/index.html</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>location 指令  根据请求的 URI 来设置配置。<br>location [modifier] path<br>location /foo/ {</p>
-<h1 id="…"><a href="#…" class="headerlink" title="…"></a>…</h1><p>}<br>如果没有指定修饰符，则路径被视为前缀，其后可以跟随任何东西。<br>/foo<br>/fooo<br>/foo123<br>/foo/bar/index.html<br>…<br>此外，在给定的上下文中可以使用多个 location 指令。</p>
-</li>
-</ul>
-<p>*Nginx 也提供了一些修饰符，可用于连接 location。这些修饰符将影响 location 模块使用的地方，因为每个修饰符都分配了优先级。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">=           - Exact match</span><br><span class="line">^~          - Preferential match</span><br><span class="line">~ &amp;&amp; ~*     - Regex match</span><br><span class="line">no modifier - Prefix match</span><br></pre></td></tr></table></figure></p>
-<p>Nginx 会先检查精确匹配。如果找不到，我们会找优先级最高的。如果这个匹配依然失败，正则表达式匹配将按照出现的顺序进行测试。至少，最后一个前缀匹配将被使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">location /match &#123;</span><br><span class="line">  return 200 &apos;Prefix match: matches everything that starting with /match&apos;;</span><br><span class="line">&#125;</span><br><span class="line">location ~* /match[0-9] &#123;</span><br><span class="line">  return 200 &apos;Case insensitive regex match&apos;;</span><br><span class="line">&#125;</span><br><span class="line">location ~ /MATCH[0-9] &#123;</span><br><span class="line">  return 200 &apos;Case sensitive regex match&apos;;</span><br><span class="line">&#125;</span><br><span class="line">location ^~ /match0 &#123;</span><br><span class="line">  return 200 &apos;Preferential match&apos;;</span><br><span class="line">&#125;</span><br><span class="line">location = /match &#123;</span><br><span class="line">  return 200 &apos;Exact match&apos;;</span><br><span class="line">&#125;</span><br><span class="line">/match/    # =&gt; &apos;Exact match&apos;</span><br><span class="line">/match0    # =&gt; &apos;Preferential match&apos;</span><br><span class="line">/match1    # =&gt; &apos;Case insensitive regex match&apos;</span><br><span class="line">/MATCH1    # =&gt; &apos;Case sensitive regex match&apos;</span><br><span class="line">/match-abc # =&gt; &apos;Prefix match: matches everything that starting with /match&apos;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>try_files 指令  尝试不同的路径，找到一个路径就返回。<br><code>try_files $uri index.html =404;</code>  所以对于 /foo.html 请求，它将尝试按以下顺序返回文件：<br>1、$uri ( /foo.html )<br>2、index.html<br>3、如果什么都没找到则返回 404<br>有趣的是，如果我们在服务器上下文中定义 try_files，然后定义匹配的所有请求的 location —— try_files 将不会执行。<br>server {<br>try_files $uri /index.html =404;<br>location / {<br>}<br>}<br>因此，你应该避免在 server 上下文中出现 try_files:  而应该写在location里面<br>server {<br>location / {<br>  try_files $uri /index.html =404;<br>}<br>}</li>
-</ul>
-<p>— 本文参考 <a href="https://mp.weixin.qq.com/s/mdpzDKXVM_NBGxTp2YYR-w" target="_blank" rel="noopener">linux学习</a></p>
-
+<h3 id="什么是-Nginx？"><a href="#什么是-Nginx？" class="headerlink" title="什么是 Nginx？"></a>什么是 Nginx？</h3><p>Nginx 最初是作为一个 Web 服务器创建的，用于解决 C10k 的问题。作为一个 Web 服务器，它可以以惊人的速度为您的数据服务。但 Nginx 不仅仅是一个 Web 服务器，你还可以将其用作反向代理，与较慢的上游服务器（如：Unicorn 或 Puma）轻松集成。你可以适当地分配流量（负载均衡器）、流媒体、动态调整图像大小、缓存内容等等。<br>基本的 nginx 体系结构由 master 进程和其 worker 进程组成。master 读取配置文件，并维护 worker 进程，而 worker 则会对请求进行实际处理。<br>
+        
+          <a class="article-more-a" href="/2018/02/12/nginx-初识/#more">more >></a>
+        
       
 
       
@@ -431,18 +376,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="小程序"><a href="#小程序" class="headerlink" title="小程序"></a>小程序</h4><p><img src="/assets/miniprogram.png" alt="小程序"></p>
-<h4 id="小程序的新功能webview"><a href="#小程序的新功能webview" class="headerlink" title="小程序的新功能webview"></a>小程序的新功能webview</h4><p>最近公司开发的小程序又接到新的需求，要跳转第三方支付, 但是在小程序里面打不开第三方应用，只能跳转第三方支付的公众号了。<br>但是第三方的公众号，和我们不是同一个主体，也不方便让支付方便绑多个小程序。<br>只能用到小程序的新功能 <a href="https://mp.weixin.qq.com/debug/wxadoc/dev/component/web-view.html" target="_blank" rel="noopener">web-view</a>。 听起来好像native开一个webview一样的,很高级的样子。<br>然而到了用的时候，才知道不是那么回事，只能硬着头皮上了。</p>
-<h4 id="上一波简单的代码"><a href="#上一波简单的代码" class="headerlink" title="上一波简单的代码"></a>上一波简单的代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;view&gt;</span><br><span class="line">    &lt;web-view src=&quot;&#123;&#123;url&#125;&#125;&quot;&gt;&lt;/web-view&gt;</span><br><span class="line">&lt;/view&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import wepy from &apos;wepy&apos;</span><br><span class="line"></span><br><span class="line">export default class extends wepy.page &#123;</span><br><span class="line">    config = &#123;</span><br><span class="line">        navigationBarTitleText: &apos;跳转第三方支付页面...&apos;</span><br><span class="line">    &#125;</span><br><span class="line">    data = &#123;</span><br><span class="line">        url: &apos;&apos;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    onLoad(options) &#123;</span><br><span class="line">        if (options &amp;&amp; options.url) &#123;</span><br><span class="line">            this.url = decodeURIComponent(options.url)</span><br><span class="line">            this.$apply()</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            wx.showToast(&#123;</span><br><span class="line">                title: &apos;支付URL参数出错&apos;,</span><br><span class="line">                icon: &apos;none&apos;</span><br><span class="line">            &#125;)</span><br><span class="line">            setTimeout(() =&gt; &#123;</span><br><span class="line">                wx.navigateBack()</span><br><span class="line">            &#125;, 2000)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    onUnload() &#123;</span><br><span class="line">        console.log(&apos;web view unload&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="需要注意的点"><a href="#需要注意的点" class="headerlink" title="需要注意的点"></a>需要注意的点</h4><ol>
-<li>webview所需要访问的页面，域名必须配置在微信<a href="https://mp.weixin.qq.com" target="_blank" rel="noopener">小程序管理后台</a>-设置-开发设置-业务域名  列表中配置，配置时需要下载一个txt的文件，放置在被域名的根路径下（域名需ICP备案）</li>
-<li>web-view会自动撑满整个页面， 所以页面中要放其他东西也会被挡住， 所以需要是一个新的页面来放这个web-view</li>
-<li>url也是可以动态来加载的，整个页面还是可以判断生命周期函数的， 但是webview没有生命周期</li>
-<li>因为web-view里面装的是一个网页，而网页和小程序不同，也不通，没办法跳转。 但是微信jssdk对这个做了兼容。在wxsdk升级到1.3后能够通过 <code>wx.miniProgram.navigateTo``wx.miniProgram.navigateBack</code>,<code>wx.miniProgram.switchTab</code>,<code>wx.miniProgram.reLaunch</code>,<code>wx.miniProgram.redirectTo</code>,<code>wx.miniProgram.postMessage 向小程序发送消息</code>,<code>wx.miniProgram.getEnv</code> 这些方法与小程序交互。</li>
-<li>万一webview中加载的页面没有继承wx jssdk，就只能通过监听前一个页面的onShow方法，来处理页面的关闭回调了。</li>
-</ol>
-<p><img src="/assets/webview-host.jpg" alt="业务域名"><br><img src="/assets/webview-condition.png" alt="业务域名配置"></p>
-<h4 id="我这个页面的需求"><a href="#我这个页面的需求" class="headerlink" title="我这个页面的需求"></a>我这个页面的需求</h4><p>商品页面，发起支付 -&gt; 然后选择支付方式 下单传递参数 启动轮询监听订单状态 -&gt; 跳到新页面通过url打开第三方支付页面 -&gt; 完成支付后台通知本地应用改变订单状态 -&gt; 前一个页面未关闭，监听到状态后，作出响应跳转到其他页面 -&gt; 完成一次第三方支付。</p>
-
+<h4 id="小程序的新功能webview"><a href="#小程序的新功能webview" class="headerlink" title="小程序的新功能webview"></a>小程序的新功能webview</h4><p>最近公司开发的小程序又接到新的需求，要跳转第三方支付, 但是在小程序里面打不开第三方应用，只能跳转第三方支付的公众号了。<br>但是第三方的公众号，和我们不是同一个主体，也不方便让支付方便绑多个小程序。<br>只能用到小程序的新功能 <a href="https://mp.weixin.qq.com/debug/wxadoc/dev/component/web-view.html" target="_blank" rel="noopener">web-view</a>。 听起来好像native开一个webview一样的,很高级的样子。<br>然而到了用的时候，才知道不是那么回事，只能硬着头皮上了。<br>
+        
+          <a class="article-more-a" href="/2018/01/24/小程序之webview/#more">more >></a>
+        
       
 
       
@@ -504,17 +441,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="身体是革命的本钱"><a href="#身体是革命的本钱" class="headerlink" title="身体是革命的本钱"></a>身体是革命的本钱</h3><p><img src="/assets/fitness.jpg" alt=""><br>今天是一个天气特别好的周末，陪女票去考了初级会计师考试。 地点在上海松江大学城。<br>一小时车程到了之后，发现果然是大学城，学(mei)生(nv)特别多，仿佛找回了久违的学生时代的感觉， 额，说远了。。。<br>考试要考3个半小时，我来之前就计划好了，就是要过来打篮球。等开考以后我在各个学校之间转了一圈后，就立马找到了一个人稍微多一点的<br>球场，想想大学生一般就读书、找女朋友、玩。 对抗应该不会太剧烈吧，就找了个场加了个组。 还没开打，就被’排外’分到了最弱的一组。<br>万万没想到万万没想到，开打就是各种被强吃篮下。。。力量被爆成翔了。<br>当时候只有一个你念头：（现在的大学生力量都这么强）我要去健身，长肌肉。。。 最后女票提前一个半小时下考了，，，然后灰溜溜的回来了。<br>哎，真的被打击了，想想我以前还是高中体育生呢。。。全场打满48分钟的耐力，今天怎么也没想到被和我身高差不多的背身吃了十几个(让我哭一会)<br>这些年的办公室上班，让我变的太懒了。这样下去，即将被打击的不敢去玩篮球了。</p>
-<h3 id="健身的重要性"><a href="#健身的重要性" class="headerlink" title="健身的重要性"></a>健身的重要性</h3><p>打了几场后，听他们聊天，了解到：其实他们是已经读研的学生，平时都会一起去跑步和健身房锻炼。<br>那时候稍微得到一点点安慰。好歹他们是经常健身的(而不是玩乐的本科生)。会想起自己这几年真的是运动的少了。<br>有空也不会去跑步，办了健身卡也是一月一次的节奏。现在想来，真有种想打死浪费的自己。身材变臃肿了、速度变慢了、打几个回合就大口喘气。<br>有几个打篮球的人想变得这么弱。也许有(wo)的(zi)人(ji),会找借口说工作忙没时间、天气太冷或太热。但我只想说这是–借口。时间都是挤出来的，<br>周末、下班以后、早上早起都是有时间的，天气不好可以找近一点的健身房，每周运动3次，每次1~2小时，虽然不一定炼成肌肉男，但绝对不会让自己退步。</p>
-<h3 id="论坚持"><a href="#论坚持" class="headerlink" title="论坚持"></a>论坚持</h3><p>大部分的人都是想要健身的，但是坚持下来的人却很少。有什么办法能让人一直保持热情呢？<br>我想到的有以下几点：</p>
-<ol>
-<li>定一个短期的目标</li>
-<li>找一个小伙伴一起(如果是自己另一半就更好了)</li>
-<li>如果有条件可以找私教(出了钱的一定舍不得不去、有针对性的锻炼某些部位，更合理的方法和节奏)</li>
-<li>经常晒一晒健身成果(身边有同样爱好的朋友会一起讨论健身和相互促进)</li>
-</ol>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>写下自己的心情、立下一个flag，我今年一定要瘦到135斤以内(目前152)。<br>2018年1月1日以后看到这篇随笔，没有达到目标的话。。。。 被浏览一次，我做一个俯卧撑。累计不设上限。每月一结。<br>奉劝大家，健的是体魄、长的是精气神。</p>
-
+        <h3 id="身体是革命的本钱"><a href="#身体是革命的本钱" class="headerlink" title="身体是革命的本钱"></a>身体是革命的本钱</h3><p><img src="/assets/fitness.jpg" alt=""><br>今天是一个天气特别好的周末，陪女票去考了初级会计师考试。 地点在上海松江大学城。<br>一小时车程到了之后，发现果然是大学城，学(mei)生(nv)特别多，仿佛找回了久违的学生时代的感觉， 额，说远了。。。<br>
+        
+          <a class="article-more-a" href="/2017/05/13/闲谈健身/#more">more >></a>
+        
       
 
       
@@ -577,70 +507,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="在web网页开发中常用的需求，编辑博客、大段评论等等-editor"><a href="#在web网页开发中常用的需求，编辑博客、大段评论等等-editor" class="headerlink" title="在web网页开发中常用的需求，编辑博客、大段评论等等 editor"></a>在web网页开发中常用的需求，编辑博客、大段评论等等 editor</h3><p>github地址：<a href="https://github.com/wangfupeng1988/wangEditor" target="_blank" rel="noopener">wangeditor</a><br>文档地址：<a href="http://www.kancloud.cn/wangfupeng/wangeditor2" target="_blank" rel="noopener">wangeditor</a></p>
-<h3 id="下载方式"><a href="#下载方式" class="headerlink" title="下载方式"></a>下载方式</h3><p>点击 <a href="https://github.com/wangfupeng1988/wangEditor/releases" target="_blank" rel="noopener">https://github.com/wangfupeng1988/wangEditor/releases</a> 下载最新版<br>使用git下载： git clone <a href="https://github.com/wangfupeng1988/wangEditor.git" target="_blank" rel="noopener">https://github.com/wangfupeng1988/wangEditor.git</a><br>使用npm安装: npm install wangeditor （注意 wangeditor 全部是小写字母）<br>使用bower下载：bower install wangEditor （前提保证电脑已安装了bower）</p>
-<h3 id="简单的使用"><a href="#简单的使用" class="headerlink" title="简单的使用"></a>简单的使用</h3><ul>
-<li><p>引入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--引入wangEditor.css--&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;../dist/css/wangEditor.min.css&quot;&gt;</span><br><span class="line"></span><br><span class="line">……省略其他内容……</span><br><span class="line"></span><br><span class="line">&lt;!--引入jquery和wangEditor.js--&gt;   &lt;!--注意：javascript必须放在body最后，否则可能会出现问题--&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;../dist/js/lib/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;../dist/js/wangEditor.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>实例化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--用父容器来控制宽度--&gt;</span><br><span class="line">&lt;div style=&quot;width:90%&quot;&gt;</span><br><span class="line">    &lt;!--用当前元素来控制高度--&gt;</span><br><span class="line">    &lt;div id=&quot;div1&quot; style=&quot;height:400px;max-height:500px;&quot;&gt;</span><br><span class="line">        &lt;p&gt;请输入内容...&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;textarea id=&quot;textarea1&quot;&gt;</span><br><span class="line">    &lt;p&gt;请输入内容...&lt;/p&gt;</span><br><span class="line">&lt;/textarea&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--这里引用jquery和wangEditor.js--&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    var editor = new wangEditor(&apos;div1&apos;);</span><br><span class="line">    editor.create();</span><br><span class="line">    // 或者</span><br><span class="line">     var editor2 = new wangEditor(&apos;textarea1&apos;);</span><br><span class="line">    editor2.create();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>销毁与恢复</p>
-<blockquote>
-<p>可以使用editor.destroy()和editor.undestroy()和恢复编辑器</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var editor = new wangEditor(&apos;div1&apos;);</span><br><span class="line">editor.create();</span><br><span class="line"></span><br><span class="line">$(&apos;#btn1&apos;).click(function () &#123;</span><br><span class="line">    // 销毁编辑器</span><br><span class="line">    editor.destroy();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(&apos;#btn2&apos;).click(function () &#123;</span><br><span class="line">    // 恢复编辑器</span><br><span class="line">    editor.undestroy();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>js初始化内容</p>
-<blockquote>
-<p>编辑器创建完成后，可使用 editor.$txt.html() 方法初始化内容。<br><code>editor.$txt.html(&#39;&lt;p&gt;要初始化的内容&lt;/p&gt;&#39;);</code></p>
-</blockquote>
-</li>
-<li><p>获取内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var html = editor.$txt.html();</span><br><span class="line"></span><br><span class="line">// 获取编辑器纯文本内容</span><br><span class="line">var text = editor.$txt.text();</span><br><span class="line"></span><br><span class="line">// 获取格式化后的纯文本</span><br><span class="line">var formatText = editor.$txt.formatText();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>追加内容</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;#btn1&apos;).click(function () &#123;</span><br><span class="line">       editor.$txt.append(&apos;&lt;p&gt;新追加的内容&lt;/p&gt;&apos;);</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>清空内容<br><code>editor.$txt.html(&#39;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&#39;);</code></p>
-</li>
-<li><p>其他操作</p>
-<blockquote>
-<p>editor.$txt 是一个 jquery 封装的div元素，这个div元素就是编辑器的可编辑区域。<br>想要设置、获取、处理编辑器区域的内容，操作这个 editor.$txt 即可。由于它本身就是 jquery 封装的，因此支持 jquery 所有API</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var editor = new wangEditor(&apos;div1&apos;);</span><br><span class="line">    editor.create();</span><br><span class="line"></span><br><span class="line">    // 获取编辑区域的html</span><br><span class="line">    var html = editor.$txt.html();</span><br><span class="line">    // 获取编辑区域的纯文本</span><br><span class="line">    var text = editor.$txt.text();</span><br><span class="line">    // 获取编辑区域的所有图片</span><br><span class="line">    var imgs = editor.$txt.find(&apos;img&apos;);</span><br><span class="line">    // 追加内容</span><br><span class="line">    editor.$txt.append(&apos;&lt;p&gt;新内容&lt;/p&gt;&apos;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>onchange事件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var editor = new wangEditor(&apos;div1&apos;);</span><br><span class="line"></span><br><span class="line">   // 配置 onchange 事件</span><br><span class="line">   editor.onchange = function () &#123;</span><br><span class="line">       // 编辑区域内容变化时，实时打印出当前内容</span><br><span class="line">       console.log(this.$txt.html());</span><br><span class="line">   &#125;;</span><br><span class="line">   editor.create();</span><br></pre></td></tr></table></figure>
-<ul>
-<li>启用/禁用<blockquote>
-<p>编辑器创建完成后，可通过disable和enable两个方法来禁用或者启用编辑器功能。禁用后，编辑器的菜单将不可用，启用后菜单重新可用。</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var editor = new wangEditor(&apos;div1&apos;);</span><br><span class="line">    editor.create();</span><br><span class="line"></span><br><span class="line">    // 禁用</span><br><span class="line">    editor.disable();</span><br><span class="line"></span><br><span class="line">    // 启用</span><br><span class="line">    editor.enable();</span><br></pre></td></tr></table></figure>
-<h3 id="参数配置"><a href="#参数配置" class="headerlink" title="参数配置"></a>参数配置</h3><ul>
-<li>自定义菜单<blockquote>
-<p>editor.config.menus 来自定义编辑器的菜单的显示/隐藏、排序、分组。注意，该操作必须在 editor.create() 方法之前。</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var editor = new wangEditor(&apos;div1&apos;);</span><br><span class="line"></span><br><span class="line">    // 普通的自定义菜单</span><br><span class="line">    editor.config.menus = [</span><br><span class="line">        &apos;source&apos;,</span><br><span class="line">        &apos;|&apos;,     // &apos;|&apos; 是菜单组的分割线</span><br><span class="line">        &apos;bold&apos;,</span><br><span class="line">        &apos;underline&apos;,</span><br><span class="line">        &apos;italic&apos;,</span><br><span class="line">        &apos;strikethrough&apos;,</span><br><span class="line">        &apos;eraser&apos;,</span><br><span class="line">        &apos;forecolor&apos;,</span><br><span class="line">        &apos;bgcolor&apos;</span><br><span class="line">     ];</span><br><span class="line"></span><br><span class="line">     // 仅仅想移除某几个菜单，例如想移除『插入代码』和『全屏』菜单：</span><br><span class="line">     // 其中的 wangEditor.config.menus 可获取默认情况下的菜单配置</span><br><span class="line">     // editor.config.menus = $.map(wangEditor.config.menus, function(item, key) &#123;</span><br><span class="line">     //     if (item === &apos;insertcode&apos;) &#123;</span><br><span class="line">     //         return null;</span><br><span class="line">     //     &#125;</span><br><span class="line">     //     if (item === &apos;fullscreen&apos;) &#123;</span><br><span class="line">     //         return null;</span><br><span class="line">     //     &#125;</span><br><span class="line">     //     return item;</span><br><span class="line">     // &#125;);</span><br><span class="line"></span><br><span class="line">    editor.create();</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>wangEditor默认的菜单配置，可在下载下来的wangEditor.js文件中搜索E.config.menus关键字来找到。<br>目前的默认菜单配置如下，以在最新代码中搜索出来的结果为准</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &apos;source&apos;,</span><br><span class="line">    &apos;|&apos;,</span><br><span class="line">    &apos;bold&apos;,</span><br><span class="line">    &apos;underline&apos;,</span><br><span class="line">    &apos;italic&apos;,</span><br><span class="line">    &apos;strikethrough&apos;,</span><br><span class="line">    &apos;eraser&apos;,</span><br><span class="line">    &apos;forecolor&apos;,</span><br><span class="line">    &apos;bgcolor&apos;,</span><br><span class="line">    &apos;|&apos;,</span><br><span class="line">    &apos;quote&apos;,</span><br><span class="line">    &apos;fontfamily&apos;,</span><br><span class="line">    &apos;fontsize&apos;,</span><br><span class="line">    &apos;head&apos;,</span><br><span class="line">    &apos;unorderlist&apos;,</span><br><span class="line">    &apos;orderlist&apos;,</span><br><span class="line">    &apos;alignleft&apos;,</span><br><span class="line">    &apos;aligncenter&apos;,</span><br><span class="line">    &apos;alignright&apos;,</span><br><span class="line">    &apos;|&apos;,</span><br><span class="line">    &apos;link&apos;,</span><br><span class="line">    &apos;unlink&apos;,</span><br><span class="line">    &apos;table&apos;,</span><br><span class="line">    &apos;emotion&apos;,</span><br><span class="line">    &apos;|&apos;,</span><br><span class="line">    &apos;img&apos;,</span><br><span class="line">    &apos;video&apos;,</span><br><span class="line">    &apos;location&apos;,</span><br><span class="line">    &apos;insertcode&apos;,</span><br><span class="line">    &apos;|&apos;,</span><br><span class="line">    &apos;undo&apos;,</span><br><span class="line">    &apos;redo&apos;,</span><br><span class="line">    &apos;fullscreen&apos;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如果需要『行高』和『缩进』菜单，可直接使用lineheight和indent这两个菜单id。因为wangEditor中已经集成了这两个自定义菜单的代码。</p>
-</blockquote>
-
+<h3 id="下载方式"><a href="#下载方式" class="headerlink" title="下载方式"></a>下载方式</h3><p>点击 <a href="https://github.com/wangfupeng1988/wangEditor/releases" target="_blank" rel="noopener">https://github.com/wangfupeng1988/wangEditor/releases</a> 下载最新版<br>使用git下载： git clone <a href="https://github.com/wangfupeng1988/wangEditor.git" target="_blank" rel="noopener">https://github.com/wangfupeng1988/wangEditor.git</a><br>使用npm安装: npm install wangeditor （注意 wangeditor 全部是小写字母）<br>使用bower下载：bower install wangEditor （前提保证电脑已安装了bower）<br>
+        
+          <a class="article-more-a" href="/2017/05/12/介绍一个富文本编辑器/#more">more >></a>
+        
       
 
       
@@ -706,11 +576,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="季后赛第二轮-骑士对阵猛龙-第二场"><a href="#季后赛第二轮-骑士对阵猛龙-第二场" class="headerlink" title="季后赛第二轮-骑士对阵猛龙-第二场"></a>季后赛第二轮-骑士对阵猛龙-第二场</h3><p><img src="/assets/骑士对猛龙第四场.jpg" alt=""><br>2017年-5月8日 NBA季后赛继续进行，骑士在3:0领先猛龙的情况下继续前进，<br>而猛龙已经处于出局的大门边，而且还缺少了当家空位–凯尔-洛瑞。<br>本以为没有过多的抵抗将会落败。但是猛龙一开场便表现出要赢一把的气势–德罗赞和约瑟夫都发挥很好，最多领先11分，打停了骑士。<br>泰伦·卢叫了暂停后，为詹姆斯和他的射手们布置了战术。钱宁·弗莱也不付所托命中三分，詹姆斯在首节最后15秒一个突破杀入篮下并造成犯规2+1，罚中扳平比分。<br>第二节和骑士打的顺风顺水，以61:49拉开比分进入下半场。<br>第三节骑士最多领先16分，以为比赛就这样平淡结束的时候，德罗赞和他的帮手们（伊巴卡与约瑟夫）都不愿束手就擒，连的9分又打停了骑士。<br>在猛龙主场球迷的欢呼声中，鲍威尔和PJ·塔克也贡献了自己的力量，最终只以80：85；落后骑士，为翻盘打好了基础。<br>末节猛龙球员也确实很努力，连续命中三分，伊巴卡面对乐福一个中投，并造成打手犯规，一度以93:92反超比分。<br>但是随后前三节表现一般的欧文站出来了，面对约瑟夫贴身防守命中三分，连得7分打停猛龙。<br>詹姆斯继续控制着节奏并命中一个24秒压哨三分，几乎直接杀死比赛。这时候猛龙球迷并没有太多的落寞，几乎都是在享受着本赛季最后的2分多钟主场比赛了。<br>一直打铁的猛龙，PJ·塔克命中一记三分但这时候时间已经不多了，犯规战术送欧文和科沃尔上罚球线后也没有把握好机会。<br>随着终场哨声的想起，猛龙也结束了这个赛季的所有比赛。赛后双方球员相互拥抱示意友好。</p>
-<h4 id="本场之星：詹皇把控比赛"><a href="#本场之星：詹皇把控比赛" class="headerlink" title="本场之星：詹皇把控比赛"></a>本场之星：詹皇把控比赛</h4><p>在这个系列赛里，詹姆斯几乎每次都掌控比赛，本战也不例外。三节打完，詹姆斯个人就已经拿到26分6篮板6助攻，<br>待到比赛收官盘点，他拿到35分9篮板6助攻，系列赛四场比赛，场场30+。值得一提的是，本场比赛过后，詹姆斯的季后赛助攻数突破1400大关，达到1405次。</p>
-<p>本场发挥好的球员还有科沃尔、伊巴卡、塔克、约瑟夫</p>
-<h3 id="花絮-amp-寄语"><a href="#花絮-amp-寄语" class="headerlink" title="花絮&amp;寄语"></a>花絮&amp;寄语</h3><p>本次4:0横扫猛龙之后，詹姆斯在季后赛横扫对手的次数已经来到了10次，NBA历史最多。<br>赢下本轮系列赛后，至少可以休息7天，等待奇才和凯尔特人之间的胜者决战东部之巅。<br>有了这几天的休息，相信他们能在东决发挥的更好。 希望能继续保持好团队防守，挺进总决赛，大战‘杜、雷、斯’。<br>虽然本场比赛猛龙是输了，但是他们的表现是值得尊重的，他们拿出了团队精神和顽强的斗志。</p>
-
+        <h3 id="季后赛第二轮-骑士对阵猛龙-第二场"><a href="#季后赛第二轮-骑士对阵猛龙-第二场" class="headerlink" title="季后赛第二轮-骑士对阵猛龙-第二场"></a>季后赛第二轮-骑士对阵猛龙-第二场</h3><p><img src="/assets/骑士对猛龙第四场.jpg" alt=""><br>2017年-5月8日 NBA季后赛继续进行，骑士在3:0领先猛龙的情况下继续前进，<br>而猛龙已经处于出局的大门边，而且还缺少了当家空位–凯尔-洛瑞。<br>
+        
+          <a class="article-more-a" href="/2017/05/08/骑士横扫猛龙晋级东部决赛/#more">more >></a>
+        
       
 
       
@@ -772,9 +641,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="季后赛第二轮-骑士对阵猛龙-第二场"><a href="#季后赛第二轮-骑士对阵猛龙-第二场" class="headerlink" title="季后赛第二轮-骑士对阵猛龙-第二场"></a>季后赛第二轮-骑士对阵猛龙-第二场</h3><p><img src="/assets/詹姆斯-骑士对阵猛龙.jpg" alt=""><br>2017年-5月4日讯 NBA季后赛继续进行，骑士在主场以125-103大胜猛龙，<br>在东部半决赛系列赛大比分上取得2-0的领先，得分刷新队史季后赛纪录，<br>他们已经在季后赛中取得九连胜（包括上赛季总决赛）。<br>勒布朗-詹姆斯拿到39分，个人季后赛生涯总得分达到5777分，超越“天勾”贾巴尔，升至季后赛历史得分榜的第二位。<br>此外，这是詹姆斯季后赛生涯的第89次得分30+，超越科比-布莱恩特升至历史第二；他季后赛生涯三分球命中数达到302个，成为历史上第四位突破300大关的球员。</p>
-<h4 id="本场之星：詹皇大杀四方"><a href="#本场之星：詹皇大杀四方" class="headerlink" title="本场之星：詹皇大杀四方"></a>本场之星：詹皇大杀四方</h4><p>有人能阻挡詹姆斯吗？反正猛龙没有这样的人。在本场比赛的首节，詹姆斯2投1中、罚球2罚2中仅得到4分，<br>但是他从第二节开始统治比赛，在第二节和第三节总共拿到32分，带领骑士带着26分的领先优势进入第四节。<br>全场比赛詹姆斯14投10中，71.4%的投篮命中率创个人本赛季季后赛新高。季后赛才能看到全力詹，这句话真没错。</p>
-
+        <h3 id="季后赛第二轮-骑士对阵猛龙-第二场"><a href="#季后赛第二轮-骑士对阵猛龙-第二场" class="headerlink" title="季后赛第二轮-骑士对阵猛龙-第二场"></a>季后赛第二轮-骑士对阵猛龙-第二场</h3><p><img src="/assets/詹姆斯-骑士对阵猛龙.jpg" alt=""><br>2017年-5月4日讯 NBA季后赛继续进行，骑士在主场以125-103大胜猛龙，<br>在东部半决赛系列赛大比分上取得2-0的领先，得分刷新队史季后赛纪录，<br>他们已经在季后赛中取得九连胜（包括上赛季总决赛）。<br>勒布朗-詹姆斯拿到39分，个人季后赛生涯总得分达到5777分，超越“天勾”贾巴尔，升至季后赛历史得分榜的第二位。<br>此外，这是詹姆斯季后赛生涯的第89次得分30+，超越科比-布莱恩特升至历史第二；他季后赛生涯三分球命中数达到302个，成为历史上第四位突破300大关的球员。<br>
+        
+          <a class="article-more-a" href="/2017/05/04/骑士第二轮连续大胜猛龙/#more">more >></a>
+        
       
 
       
@@ -842,15 +712,10 @@
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
 <h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<h3 id="hexo命令行使用"><a href="#hexo命令行使用" class="headerlink" title="hexo命令行使用"></a>hexo命令行使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">hexo help #查看帮助</span><br><span class="line">hexo init #初始化一个目录</span><br><span class="line">hexo new &quot;postName&quot; #新建文章</span><br><span class="line">hexo new page &quot;pageName&quot; #新建页面</span><br><span class="line">hexo generate #生成网页，可以在 public 目录查看整个网站的文件</span><br><span class="line">hexo server #本地预览，&apos;Ctrl+C&apos;关闭</span><br><span class="line">hexo deploy #部署.deploy目录</span><br><span class="line">hexo clean #清除缓存，**强烈建议每次执行命令前先清理缓存，每次部署前先删除 .deploy 文件夹**</span><br><span class="line">简写</span><br><span class="line">hexo n == hexo new</span><br><span class="line">hexo g == hexo generate</span><br><span class="line">hexo s == hexo server</span><br><span class="line">hexo d == hexo deploy</span><br></pre></td></tr></table></figure>
-<h4 id="文章内容"><a href="#文章内容" class="headerlink" title="文章内容"></a>文章内容</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> title: Hello World</span><br><span class="line">date: 2015-07-30 07:56:29 #发表日期，一般不改动</span><br><span class="line">categories: hexo #文章文类</span><br><span class="line">tags: [hexo,github] #文章标签，多于一项时用这种格式</span><br><span class="line">---</span><br><span class="line">正文，使用Markdown语法书写</span><br></pre></td></tr></table></figure>
-<h4 id="每次deploy时不输入邮箱和密码"><a href="#每次deploy时不输入邮箱和密码" class="headerlink" title="每次deploy时不输入邮箱和密码"></a>每次deploy时不输入邮箱和密码</h4><p>如果觉得每次部署的时候都要输入用户名和密码，可以这样解决：开始，到你的用户目录下新建一个_netrc文件。<br>我的操作：可以直接复制一个.gitconfig文件复件，然后改名为_netrc，注意：n前面有个下划线。<br>然后把_netrc文件拖入notepad++ 里，输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">machine github.com</span><br><span class="line">login hello</span><br><span class="line">password hello123</span><br></pre></td></tr></table></figure></p>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-<h3 id="简书上几个号的hexo搭建博客教程"><a href="#简书上几个号的hexo搭建博客教程" class="headerlink" title="简书上几个号的hexo搭建博客教程"></a>简书上几个号的hexo搭建博客教程</h3><p>璀璨星空: <a href="http://www.jianshu.com/p/e858a90d0a17" target="_blank" rel="noopener">windows下搭建hexo博客</a><br>吴小龙同學: <a href="http://www.jianshu.com/p/701b1095da11#" target="_blank" rel="noopener">手把手教你建github技术博客</a><br>潘柏信: <a href="http://www.jianshu.com/p/465830080ea9#" target="_blank" rel="noopener">HEXO+Github,搭建属于自己的博客</a></p>
-<h3 id="当前使用的主题"><a href="#当前使用的主题" class="headerlink" title="当前使用的主题"></a>当前使用的主题</h3><p><a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">yilia</a> 作者<a href="http://litten.me" target="_blank" rel="noopener">Litten</a></p>
-
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a><br>
+        
+          <a class="article-more-a" href="/2017/05/03/hexo-文档/#more">more >></a>
+        
       
 
       
@@ -913,17 +778,9 @@
 <li><p>第一步，首先到<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">nodejs官网</a>下载<a href="https://nodejs.org/dist/v6.10.2/node-v6.10.2-linux-x64.tar.xz" target="_blank" rel="noopener">linux版本</a>的nodejs包</p>
 </li>
 <li><p>第二步，下载好以后，通过xftp工具传到服务器上， 通过命令 <code>xz node-v6.10.2-linux-x64.tar.xz  和 tar -xvf node-v6.10.2-linux-x64.tar</code></p>
-</li>
-<li><p>第三步，将nodejs链接到全局 <code>ln -s /解压缩后存放目录/node-v6.10.2-linux-x64/bin/node /usr/local/bin/node     ln -s /解压缩后存放目录/node-v6.10.2-linux-x64/bin/npm /usr/local/bin/npm</code></p>
-</li>
-<li><p>第四步，导出到环境变量 <code>export NODE_HOME=/usr/local/node/node-v6.10.2-linux-x64/bin</code>  <code>export PATH=$NODE_HOME:$PATH</code></p>
-</li>
-</ul>
-<p>最后就能愉快的在全局使用node命令和npm命令了</p>
-<blockquote>
-<p>还有其他安装的方法<br>sudo apt-get install nodejs<br>sudo apt-get install npm<br>或者 通过下载源码，然后用gcc 编译工具编译<br>参考：<a href="http://www.cnblogs.com/8765h/p/4777746.html" target="_blank" rel="noopener">http://www.cnblogs.com/8765h/p/4777746.html</a></p>
-</blockquote>
-
+        
+          <a class="article-more-a" href="/2017/04/11/折腾linux经历/#more">more >></a>
+        
       
 
       

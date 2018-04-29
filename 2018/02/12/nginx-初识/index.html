@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="kevin梁">
 <meta property="og:description" content="牛逼的web服务器工具:nginx 一直与服务器打交道，也很多次遇到nginx，一直没有去认真学习过nginx  昨天同事遇到了nginx配置的问题，折腾了一下午一直没有解决，最后也是以一种妥协的方式搞定的，  为了以后遇到这样的问题，能够更快更好的搞定，决定要认真的研究一下 神秘的nginx。  什么是 Nginx？Nginx 最初是作为一个 Web 服务器创建的，用于解决 C10k 的问题。作">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-12T06:43:50.000Z">
+<meta property="og:updated_time" content="2018-04-29T13:23:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx 初识">
 <meta name="twitter:description" content="牛逼的web服务器工具:nginx 一直与服务器打交道，也很多次遇到nginx，一直没有去认真学习过nginx  昨天同事遇到了nginx配置的问题，折腾了一下午一直没有解决，最后也是以一种妥协的方式搞定的，  为了以后遇到这样的问题，能够更快更好的搞定，决定要认真的研究一下 神秘的nginx。  什么是 Nginx？Nginx 最初是作为一个 Web 服务器创建的，用于解决 C10k 的问题。作">
@@ -54,7 +54,7 @@
 		  <h1 class="header-author"><a href="/">kevin liang</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">一个小前端</p>
+		<p class="header-subtitle">记性差的前端，烂笔头写博客</p>
 		
 
 		<nav class="header-menu">
@@ -118,7 +118,7 @@
 			  <h1 class="header-author js-header-author">kevin liang</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>一个小前端<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>记性差的前端，烂笔头写博客<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -194,7 +194,7 @@
         <h2 id="牛逼的web服务器工具-nginx"><a href="#牛逼的web服务器工具-nginx" class="headerlink" title="牛逼的web服务器工具:nginx"></a>牛逼的web服务器工具:nginx</h2><blockquote>
 <p>一直与服务器打交道，也很多次遇到nginx，一直没有去认真学习过nginx<br>  昨天同事遇到了nginx配置的问题，折腾了一下午一直没有解决，最后也是以一种妥协的方式搞定的，<br>  为了以后遇到这样的问题，能够更快更好的搞定，决定要认真的研究一下 神秘的nginx。</p>
 </blockquote>
-<h3 id="什么是-Nginx？"><a href="#什么是-Nginx？" class="headerlink" title="什么是 Nginx？"></a>什么是 Nginx？</h3><p>Nginx 最初是作为一个 Web 服务器创建的，用于解决 C10k 的问题。作为一个 Web 服务器，它可以以惊人的速度为您的数据服务。但 Nginx 不仅仅是一个 Web 服务器，你还可以将其用作反向代理，与较慢的上游服务器（如：Unicorn 或 Puma）轻松集成。你可以适当地分配流量（负载均衡器）、流媒体、动态调整图像大小、缓存内容等等。<br>基本的 nginx 体系结构由 master 进程和其 worker 进程组成。master 读取配置文件，并维护 worker 进程，而 worker 则会对请求进行实际处理。</p>
+<h3 id="什么是-Nginx？"><a href="#什么是-Nginx？" class="headerlink" title="什么是 Nginx？"></a>什么是 Nginx？</h3><p>Nginx 最初是作为一个 Web 服务器创建的，用于解决 C10k 的问题。作为一个 Web 服务器，它可以以惊人的速度为您的数据服务。但 Nginx 不仅仅是一个 Web 服务器，你还可以将其用作反向代理，与较慢的上游服务器（如：Unicorn 或 Puma）轻松集成。你可以适当地分配流量（负载均衡器）、流媒体、动态调整图像大小、缓存内容等等。<br>基本的 nginx 体系结构由 master 进程和其 worker 进程组成。master 读取配置文件，并维护 worker 进程，而 worker 则会对请求进行实际处理。<br><a id="more"></a></p>
 <h4 id="一、安装（我的mac电脑）、启动、停止"><a href="#一、安装（我的mac电脑）、启动、停止" class="headerlink" title="一、安装（我的mac电脑）、启动、停止"></a>一、安装（我的mac电脑）、启动、停止</h4><ul>
 <li>安装<blockquote>
 <p>其实安装到时很容易，安装的方式也有很多种。 我采用了mac上最简单的方式 homebrew。 先来到 /etc 目录下<br><code>brew install nginx</code></p>
