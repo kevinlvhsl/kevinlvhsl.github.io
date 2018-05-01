@@ -17,7 +17,7 @@
 <meta property="og:description" content="微信小游戏在2017年底推出，当时微信的跳一跳刷爆了微信群，2018年03月正式开发给外部开发者，也就是说你也可以做自己的小游戏了。  小游戏开放后，就涌现了一波火爆的小游戏， 最强弹一弹  就是其中之一。小游戏要想能火爆，微信下游戏工程师总邹伟 结了以下几点：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://liangxiaojun.cn/assets/xiaoyouxi.png">
-<meta property="og:updated_time" content="2018-04-29T13:31:42.000Z">
+<meta property="og:updated_time" content="2018-05-01T07:19:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信小游戏简单入门">
 <meta name="twitter:description" content="微信小游戏在2017年底推出，当时微信的跳一跳刷爆了微信群，2018年03月正式开发给外部开发者，也就是说你也可以做自己的小游戏了。  小游戏开放后，就涌现了一波火爆的小游戏， 最强弹一弹  就是其中之一。小游戏要想能火爆，微信下游戏工程师总邹伟 结了以下几点：">
@@ -216,7 +216,13 @@
 <li><p>开发小游戏，当然不能靠纯手写代码啦， 必须要选择一款小游戏引擎，这里介绍一下cocos-2d的引擎工具。 <a href="http://www.cocos2d-x.org/docs/creator/manual/zh/" target="_blank" rel="noopener">cocos引擎中文文档</a></p>
 </li>
 <li>看完文档，然后就可以开始动手啦。<a href="https://juejin.im/post/5a475caff265da4335631933" target="_blank" rel="noopener">搭建项目</a></li>
-<li><a href="http://forum.cocos.com/t/faq/54828" target="_blank" rel="noopener">小游戏开发中的问题汇总</a></li>
+<li><p><a href="http://forum.cocos.com/t/faq/54828" target="_blank" rel="noopener">小游戏开发中的问题汇总</a></p>
+</li>
+<li><p><a href="http://docs.cocos.com/creator/manual/zh/publish/publish-wechatgame.html" target="_blank" rel="noopener">发布到微信小游戏平台</a><br>这里会讲到怎么将写好的小游戏发布到微信平台。</p>
+<blockquote>
+<p>这里有一个非常重要的点， 就是游戏代码包超过4M上限时，该怎么办。 可以将代码中的res目录，放到远程服务器上，并将服务器的地址 设置到 libs下的wxDoloadloadre.js 中的  wxDownloader.REMOTE_SERVER_ROOT 变量上，（需要将服务器的域名配置在安全域名中） 这样就可以有效的减小代码包的大小。</p>
+</blockquote>
+</li>
 </ul>
 <p>您的支持是我继续写的动力，后续再继续更新…</p>
 
@@ -332,6 +338,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/05/01/微信小游戏API/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          微信小游戏API.md
+        
+      </div>
+    </a>
   
   
     <a href="/2018/02/25/webpack-md/" id="article-nav-older" class="article-nav-link-wrap">
@@ -487,7 +502,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">篮球</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NBA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,11 +518,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">篮球</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NBA</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
             
             <div class="clearfix"></div>

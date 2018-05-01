@@ -8,18 +8,20 @@
   <link rel="dns-prefetch" href="http://liangxiaojun.cn">
   <title>nginx 初识 | kevin梁</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="牛逼的web服务器工具:nginx 一直与服务器打交道，也很多次遇到nginx，一直没有去认真学习过nginx  昨天同事遇到了nginx配置的问题，折腾了一下午一直没有解决，最后也是以一种妥协的方式搞定的，  为了以后遇到这样的问题，能够更快更好的搞定，决定要认真的研究一下 神秘的nginx。  什么是 Nginx？Nginx 最初是作为一个 Web 服务器创建的，用于解决 C10k 的问题。作">
+  <meta name="description" content="牛逼的web服务器工具:nginx 一直与服务器打交道，也很多次遇到nginx，一直没有去认真学习过nginx  昨天同事遇到了nginx配置的问题，折腾了一下午一直没有解决，最后也是以一种妥协的方式搞定的，  为了以后遇到这样的问题，能够更快更好的搞定，决定要认真的研究一下 神秘的nginx。  什么是 Nginx？Nginx 最初是作为一个 Web 服务器创建的，用于解决 C10k 的问题。">
 <meta name="keywords" content="nginx,服务器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nginx 初识">
 <meta property="og:url" content="http://liangxiaojun.cn/2018/02/12/nginx-初识/index.html">
 <meta property="og:site_name" content="kevin梁">
-<meta property="og:description" content="牛逼的web服务器工具:nginx 一直与服务器打交道，也很多次遇到nginx，一直没有去认真学习过nginx  昨天同事遇到了nginx配置的问题，折腾了一下午一直没有解决，最后也是以一种妥协的方式搞定的，  为了以后遇到这样的问题，能够更快更好的搞定，决定要认真的研究一下 神秘的nginx。  什么是 Nginx？Nginx 最初是作为一个 Web 服务器创建的，用于解决 C10k 的问题。作">
+<meta property="og:description" content="牛逼的web服务器工具:nginx 一直与服务器打交道，也很多次遇到nginx，一直没有去认真学习过nginx  昨天同事遇到了nginx配置的问题，折腾了一下午一直没有解决，最后也是以一种妥协的方式搞定的，  为了以后遇到这样的问题，能够更快更好的搞定，决定要认真的研究一下 神秘的nginx。  什么是 Nginx？Nginx 最初是作为一个 Web 服务器创建的，用于解决 C10k 的问题。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-29T13:23:38.000Z">
+<meta property="og:image" content="http://liangxiaojun.cn/assets/nginx.png">
+<meta property="og:updated_time" content="2018-04-29T13:55:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx 初识">
-<meta name="twitter:description" content="牛逼的web服务器工具:nginx 一直与服务器打交道，也很多次遇到nginx，一直没有去认真学习过nginx  昨天同事遇到了nginx配置的问题，折腾了一下午一直没有解决，最后也是以一种妥协的方式搞定的，  为了以后遇到这样的问题，能够更快更好的搞定，决定要认真的研究一下 神秘的nginx。  什么是 Nginx？Nginx 最初是作为一个 Web 服务器创建的，用于解决 C10k 的问题。作">
+<meta name="twitter:description" content="牛逼的web服务器工具:nginx 一直与服务器打交道，也很多次遇到nginx，一直没有去认真学习过nginx  昨天同事遇到了nginx配置的问题，折腾了一下午一直没有解决，最后也是以一种妥协的方式搞定的，  为了以后遇到这样的问题，能够更快更好的搞定，决定要认真的研究一下 神秘的nginx。  什么是 Nginx？Nginx 最初是作为一个 Web 服务器创建的，用于解决 C10k 的问题。">
+<meta name="twitter:image" content="http://liangxiaojun.cn/assets/nginx.png">
   
     <link rel="alternative" href="/atom.xml" title="kevin梁" type="application/atom+xml">
   
@@ -191,7 +193,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="牛逼的web服务器工具-nginx"><a href="#牛逼的web服务器工具-nginx" class="headerlink" title="牛逼的web服务器工具:nginx"></a>牛逼的web服务器工具:nginx</h2><blockquote>
+        <p><img src="/assets/nginx.png" alt="nginx"></p>
+<h2 id="牛逼的web服务器工具-nginx"><a href="#牛逼的web服务器工具-nginx" class="headerlink" title="牛逼的web服务器工具:nginx"></a>牛逼的web服务器工具:nginx</h2><blockquote>
 <p>一直与服务器打交道，也很多次遇到nginx，一直没有去认真学习过nginx<br>  昨天同事遇到了nginx配置的问题，折腾了一下午一直没有解决，最后也是以一种妥协的方式搞定的，<br>  为了以后遇到这样的问题，能够更快更好的搞定，决定要认真的研究一下 神秘的nginx。</p>
 </blockquote>
 <h3 id="什么是-Nginx？"><a href="#什么是-Nginx？" class="headerlink" title="什么是 Nginx？"></a>什么是 Nginx？</h3><p>Nginx 最初是作为一个 Web 服务器创建的，用于解决 C10k 的问题。作为一个 Web 服务器，它可以以惊人的速度为您的数据服务。但 Nginx 不仅仅是一个 Web 服务器，你还可以将其用作反向代理，与较慢的上游服务器（如：Unicorn 或 Puma）轻松集成。你可以适当地分配流量（负载均衡器）、流媒体、动态调整图像大小、缓存内容等等。<br>基本的 nginx 体系结构由 master 进程和其 worker 进程组成。master 读取配置文件，并维护 worker 进程，而 worker 则会对请求进行实际处理。<br><a id="more"></a></p>
@@ -565,7 +568,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">篮球</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NBA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,11 +584,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">篮球</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NBA</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
             
             <div class="clearfix"></div>

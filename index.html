@@ -171,6 +171,170 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-微信小游戏之开发数据域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/01/微信小游戏之开发数据域/">微信小游戏之开发数据域</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/01/微信小游戏之开发数据域/" class="archive-article-date">
+  	<time datetime="2018-05-01T14:14:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="开放数据域"><a href="#开放数据域" class="headerlink" title="开放数据域"></a>开放数据域</h3><blockquote>
+<p> 是一个封闭、独立的 JavaScript 作用域。要让代码运行在开放数据域，需要在 game.json 中添加配置项 openDataContext 指定开放数据域的代码目录。添加该配置项表示小游戏启用了开放数据域，这将会导致一些 限制。</p>
+</blockquote>
+<h3 id="主域和开放数据域的通信"><a href="#主域和开放数据域的通信" class="headerlink" title="主域和开放数据域的通信"></a>主域和开放数据域的通信</h3><blockquote>
+<p>开发数据域，需要有一个单独的目录， 并且和主域下的模块不能相互引用。 只能通过message的形式通信。</p>
+</blockquote>
+<ul>
+<li><p>主域调用开发域</p>
+<blockquote>
+<p>主域可以向开放数据域发送消息。调用 wx.getOpenDataContext() 方法可以获取开放数据域实例，调用实例上的 OpenDataContext.postMessage() 方法可以向开放数据域发送消息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// game.js</span><br><span class="line">let openDataContext = wx.getOpenDataContext()</span><br><span class="line">openDataContext.postMessage(&#123;</span><br><span class="line">  text: &apos;hello&apos;,</span><br><span class="line">  year: (new Date()).getFullYear()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>在开放数据域中通过 wx.onMessage() 方法可以监听从主域发来的消息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// src/myOpenDataContext/index.js</span><br><span class="line">wx.onMessage(data =&gt; &#123;</span><br><span class="line">  console.log(data)</span><br><span class="line">  /* &#123;</span><br><span class="line">    text: &apos;hello&apos;,</span><br><span class="line">    year: 2018</span><br><span class="line">  &#125; */</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>开放域不能主动向主域发消息</p>
+<p>限制<br>当小游戏启动开放数据域，即在 game.json 中添加 openDataContext 配置项时。小游戏环境会对主域和开放数据域应用一些限制。</p>
+<h4 id="主域"><a href="#主域" class="headerlink" title="主域"></a>主域</h4><ul>
+<li>sharedCanvas 只能被绘制到上屏 canvas 上。</li>
+<li>上屏 canvas 不能调用 toDataURL，其 context 不能调用 getImageData。</li>
+<li>sharedCanvas 不能调用 toDataURL 和 getContext。</li>
+<li>不能将上屏 canvas 和 sharedCanvas 以任意形式绘制到其他 canvas 上，包括 drawImage、createPattern、texImage2D、texSubImage2D。</li>
+</ul>
+<h3 id="限制功能"><a href="#限制功能" class="headerlink" title="限制功能"></a>限制功能</h3><blockquote>
+<p>开放数据域只能调用有限的 API，如下所示：</p>
+</blockquote>
+<ul>
+<li>帧率</li>
+</ul>
+<p><code>requestAnimationFrame()</code><br><code>cancelAnimationFrame()</code></p>
+<ul>
+<li>Timer</li>
+</ul>
+<p><code>setTimeout()</code><br><code>clearTimeout()</code><br><code>setInterval()</code><br><code>clearInterval()</code></p>
+<ul>
+<li><p>触摸事件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wx.onTouchStart()</span><br><span class="line">wx.onTouchMove()</span><br><span class="line">wx.onTouchEnd()</span><br><span class="line">wx.onTouchCancel()</span><br><span class="line">wx.offTouchStart()</span><br><span class="line">wx.offTouchMove()</span><br><span class="line">wx.offTouchEnd()</span><br><span class="line">wx.offTouchCancel()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>画布</p>
+</li>
+</ul>
+<p><code>wx.createCanvas()</code></p>
+<blockquote>
+<p>开放数据域的所有 canvas 只支持 2d 渲染模式</p>
+</blockquote>
+<ul>
+<li>图片</li>
+</ul>
+<p><code>wx.createImage()</code></p>
+<ul>
+<li>开放数据</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wx.getFriendCloudStorage()</span><br><span class="line">wx.getGroupCloudStorage()</span><br><span class="line">wx.getUserCloudStorage()</span><br><span class="line">wx.setUserCloudStorage()</span><br><span class="line">wx.removeUserCloudStorage()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>监听主域消息</li>
+</ul>
+<p><code>wx.onMessage()</code></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/01/微信小游戏之开发数据域/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-微信小游戏API" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/01/微信小游戏API/">微信小游戏API.md</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/01/微信小游戏API/" class="archive-article-date">
+  	<time datetime="2018-05-01T14:10:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="渲染类接口"><a href="#渲染类接口" class="headerlink" title="渲染类接口"></a>渲染类接口</h3><p><code>wx.createCanvas</code>  最基础的创建canvas对象</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/01/微信小游戏API/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-微信小游戏cocos" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -256,7 +420,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>webpack是一个项目打包工具</p>
+        <p><img src="/assets/webpack.png" alt="webpack"><br>webpack是一个项目打包工具</p>
 <h3 id="安装-npm-install-webpack-（这里展示webpack1-13-2版本）-使用-直接打包单个js文件-webpack-index-js-index-bundle-js-表示打包index-js-打包后的文件叫做-index-boundle-js-也可以在命令后面直接带参数-如：-–watch-等待-–module-bind-‘css-style-loader-css-loader’"><a href="#安装-npm-install-webpack-（这里展示webpack1-13-2版本）-使用-直接打包单个js文件-webpack-index-js-index-bundle-js-表示打包index-js-打包后的文件叫做-index-boundle-js-也可以在命令后面直接带参数-如：-–watch-等待-–module-bind-‘css-style-loader-css-loader’" class="headerlink" title="安装   npm install webpack （这里展示webpack1.13.2版本） ### 使用 直接打包单个js文件    webpack index.js  index.bundle.js  表示打包index.js  打包后的文件叫做 index.boundle.js 也可以在命令后面直接带参数 如： –watch 等待   –module-bind ‘css=style-loader!css-loader’"></a>安装   npm install webpack （这里展示webpack1.13.2版本） ### 使用 直接打包单个js文件    <code>webpack index.js  index.bundle.js</code>  表示打包index.js  打包后的文件叫做 index.boundle.js 也可以在命令后面直接带参数 如： –watch 等待   –module-bind ‘css=style-loader!css-loader’</h3>
         
           <a class="article-more-a" href="/2018/02/25/webpack-md/#more">more >></a>
@@ -307,7 +471,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="牛逼的web服务器工具-nginx"><a href="#牛逼的web服务器工具-nginx" class="headerlink" title="牛逼的web服务器工具:nginx"></a>牛逼的web服务器工具:nginx</h2><blockquote>
+        <p><img src="/assets/nginx.png" alt="nginx"></p>
+<h2 id="牛逼的web服务器工具-nginx"><a href="#牛逼的web服务器工具-nginx" class="headerlink" title="牛逼的web服务器工具:nginx"></a>牛逼的web服务器工具:nginx</h2><blockquote>
 <p>一直与服务器打交道，也很多次遇到nginx，一直没有去认真学习过nginx<br>  昨天同事遇到了nginx配置的问题，折腾了一下午一直没有解决，最后也是以一种妥协的方式搞定的，<br>  为了以后遇到这样的问题，能够更快更好的搞定，决定要认真的研究一下 神秘的nginx。</p>
 </blockquote>
 <h3 id="什么是-Nginx？"><a href="#什么是-Nginx？" class="headerlink" title="什么是 Nginx？"></a>什么是 Nginx？</h3><p>Nginx 最初是作为一个 Web 服务器创建的，用于解决 C10k 的问题。作为一个 Web 服务器，它可以以惊人的速度为您的数据服务。但 Nginx 不仅仅是一个 Web 服务器，你还可以将其用作反向代理，与较慢的上游服务器（如：Unicorn 或 Puma）轻松集成。你可以适当地分配流量（负载均衡器）、流媒体、动态调整图像大小、缓存内容等等。<br>基本的 nginx 体系结构由 master 进程和其 worker 进程组成。master 读取配置文件，并维护 worker 进程，而 worker 则会对请求进行实际处理。<br>
@@ -686,146 +851,10 @@
 
 
   
-    <article id="post-hexo-文档" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/03/hexo-文档/">hexo 基本命令</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/03/hexo-文档/" class="archive-article-date">
-  	<time datetime="2017-05-03T10:48:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a><br>
-        
-          <a class="article-more-a" href="/2017/05/03/hexo-文档/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/03/hexo-文档/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-折腾linux经历" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/11/折腾linux经历/">折腾linux经历</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/11/折腾linux经历/" class="archive-article-date">
-  	<time datetime="2017-04-11T06:48:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="在linux下安装Nodejs"><a href="#在linux下安装Nodejs" class="headerlink" title="在linux下安装Nodejs"></a>在linux下安装Nodejs</h2><p><img src="/assets/flower.jpg" alt=""></p>
-<ul>
-<li><p>第一步，首先到<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">nodejs官网</a>下载<a href="https://nodejs.org/dist/v6.10.2/node-v6.10.2-linux-x64.tar.xz" target="_blank" rel="noopener">linux版本</a>的nodejs包</p>
-</li>
-<li><p>第二步，下载好以后，通过xftp工具传到服务器上， 通过命令 <code>xz node-v6.10.2-linux-x64.tar.xz  和 tar -xvf node-v6.10.2-linux-x64.tar</code></p>
-        
-          <a class="article-more-a" href="/2017/04/11/折腾linux经历/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务器</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/11/折腾linux经历/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -942,7 +971,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">篮球</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NBA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -954,11 +987,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">篮球</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NBA</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
             
             <div class="clearfix"></div>

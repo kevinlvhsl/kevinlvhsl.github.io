@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://liangxiaojun.cn">
-  <title>Archives: 2018/1 | kevin梁</title>
+  <title>微信小游戏之开发数据域 | kevin梁</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="kevin梁">
-<meta property="og:url" content="http://liangxiaojun.cn/archives/2018/01/index.html">
+  <meta name="description" content="开放数据域  是一个封闭、独立的 JavaScript 作用域。要让代码运行在开放数据域，需要在 game.json 中添加配置项 openDataContext 指定开放数据域的代码目录。添加该配置项表示小游戏启用了开放数据域，这将会导致一些 限制。  主域和开放数据域的通信 开发数据域，需要有一个单独的目录， 并且和主域下的模块不能相互引用。 只能通过message的形式通信。   主域调用开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小游戏之开发数据域">
+<meta property="og:url" content="http://liangxiaojun.cn/2018/05/01/微信小游戏之开发数据域/index.html">
 <meta property="og:site_name" content="kevin梁">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="开放数据域  是一个封闭、独立的 JavaScript 作用域。要让代码运行在开放数据域，需要在 game.json 中添加配置项 openDataContext 指定开放数据域的代码目录。添加该配置项表示小游戏启用了开放数据域，这将会导致一些 限制。  主域和开放数据域的通信 开发数据域，需要有一个单独的目录， 并且和主域下的模块不能相互引用。 只能通过message的形式通信。   主域调用开">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-01T14:22:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kevin梁">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:title" content="微信小游戏之开发数据域">
+<meta name="twitter:description" content="开放数据域  是一个封闭、独立的 JavaScript 作用域。要让代码运行在开放数据域，需要在 game.json 中添加配置项 openDataContext 指定开放数据域的代码目录。添加该配置项表示小游戏启用了开放数据域，这将会导致一些 限制。  主域和开放数据域的通信 开发数据域，需要有一个单独的目录， 并且和主域下的模块不能相互引用。 只能通过message的形式通信。   主域调用开">
   
     <link rel="alternative" href="/atom.xml" title="kevin梁" type="application/atom+xml">
   
@@ -169,64 +170,226 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-微信小游戏之开发数据域" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/24/小程序之webview/" class="archive-article-date">
-  	<time datetime="2018-01-24T10:12:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-24</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/24/小程序之webview/">小程序之webview</a>
+    <h1 class="article-title" itemprop="name">
+      微信小游戏之开发数据域
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/2018/05/01/微信小游戏之开发数据域/" class="archive-article-date">
+  	<time datetime="2018-05-01T14:14:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="开放数据域"><a href="#开放数据域" class="headerlink" title="开放数据域"></a>开放数据域</h3><blockquote>
+<p> 是一个封闭、独立的 JavaScript 作用域。要让代码运行在开放数据域，需要在 game.json 中添加配置项 openDataContext 指定开放数据域的代码目录。添加该配置项表示小游戏启用了开放数据域，这将会导致一些 限制。</p>
+</blockquote>
+<h3 id="主域和开放数据域的通信"><a href="#主域和开放数据域的通信" class="headerlink" title="主域和开放数据域的通信"></a>主域和开放数据域的通信</h3><blockquote>
+<p>开发数据域，需要有一个单独的目录， 并且和主域下的模块不能相互引用。 只能通过message的形式通信。</p>
+</blockquote>
+<ul>
+<li><p>主域调用开发域</p>
+<blockquote>
+<p>主域可以向开放数据域发送消息。调用 wx.getOpenDataContext() 方法可以获取开放数据域实例，调用实例上的 OpenDataContext.postMessage() 方法可以向开放数据域发送消息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// game.js</span><br><span class="line">let openDataContext = wx.getOpenDataContext()</span><br><span class="line">openDataContext.postMessage(&#123;</span><br><span class="line">  text: &apos;hello&apos;,</span><br><span class="line">  year: (new Date()).getFullYear()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>在开放数据域中通过 wx.onMessage() 方法可以监听从主域发来的消息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// src/myOpenDataContext/index.js</span><br><span class="line">wx.onMessage(data =&gt; &#123;</span><br><span class="line">  console.log(data)</span><br><span class="line">  /* &#123;</span><br><span class="line">    text: &apos;hello&apos;,</span><br><span class="line">    year: 2018</span><br><span class="line">  &#125; */</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>开放域不能主动向主域发消息</p>
+<p>限制<br>当小游戏启动开放数据域，即在 game.json 中添加 openDataContext 配置项时。小游戏环境会对主域和开放数据域应用一些限制。</p>
+<h4 id="主域"><a href="#主域" class="headerlink" title="主域"></a>主域</h4><ul>
+<li>sharedCanvas 只能被绘制到上屏 canvas 上。</li>
+<li>上屏 canvas 不能调用 toDataURL，其 context 不能调用 getImageData。</li>
+<li>sharedCanvas 不能调用 toDataURL 和 getContext。</li>
+<li>不能将上屏 canvas 和 sharedCanvas 以任意形式绘制到其他 canvas 上，包括 drawImage、createPattern、texImage2D、texSubImage2D。</li>
+</ul>
+<h3 id="限制功能"><a href="#限制功能" class="headerlink" title="限制功能"></a>限制功能</h3><blockquote>
+<p>开放数据域只能调用有限的 API，如下所示：</p>
+</blockquote>
+<ul>
+<li>帧率</li>
+</ul>
+<p><code>requestAnimationFrame()</code><br><code>cancelAnimationFrame()</code></p>
+<ul>
+<li>Timer</li>
+</ul>
+<p><code>setTimeout()</code><br><code>clearTimeout()</code><br><code>setInterval()</code><br><code>clearInterval()</code></p>
+<ul>
+<li><p>触摸事件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wx.onTouchStart()</span><br><span class="line">wx.onTouchMove()</span><br><span class="line">wx.onTouchEnd()</span><br><span class="line">wx.onTouchCancel()</span><br><span class="line">wx.offTouchStart()</span><br><span class="line">wx.offTouchMove()</span><br><span class="line">wx.offTouchEnd()</span><br><span class="line">wx.offTouchCancel()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>画布</p>
+</li>
+</ul>
+<p><code>wx.createCanvas()</code></p>
+<blockquote>
+<p>开放数据域的所有 canvas 只支持 2d 渲染模式</p>
+</blockquote>
+<ul>
+<li>图片</li>
+</ul>
+<p><code>wx.createImage()</code></p>
+<ul>
+<li>开放数据</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wx.getFriendCloudStorage()</span><br><span class="line">wx.getGroupCloudStorage()</span><br><span class="line">wx.getUserCloudStorage()</span><br><span class="line">wx.setUserCloudStorage()</span><br><span class="line">wx.removeUserCloudStorage()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>监听主域消息</li>
+</ul>
+<p><code>wx.onMessage()</code></p>
 
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我喝咖啡<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wxpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://liangxiaojun.cn/2018/05/01/微信小游戏之开发数据域/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/05/01/微信小游戏API/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">微信小游戏API.md</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="微信小游戏之开发数据域" data-title="微信小游戏之开发数据域" data-url="http://liangxiaojun.cn/2018/05/01/微信小游戏之开发数据域/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -249,8 +412,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
