@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://liangxiaojun.cn">
-  <title>Tag: 随笔 | kevin梁</title>
+  <title>mobx初识 | kevin梁</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="kevin梁">
-<meta property="og:url" content="http://liangxiaojun.cn/tags/随笔/index.html">
+  <meta name="description" content="mobx 一个状态管理工具 简单、可扩展  Observable state(可观察的状态)MobX 为现有的数据结构(如对象，数组和类实例)添加了可观察的功能。 通过使用 @observable 装饰器(ES.Next)来给你的类属性添加注解就可以简单地完成这一切。    Computed values(计算值)使用 MobX， 你可以定义在相关数据发生变化时自动更新的值。 通过@compute">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mobx初识">
+<meta property="og:url" content="http://liangxiaojun.cn/2018/06/30/mobx初识/index.html">
 <meta property="og:site_name" content="kevin梁">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="mobx 一个状态管理工具 简单、可扩展  Observable state(可观察的状态)MobX 为现有的数据结构(如对象，数组和类实例)添加了可观察的功能。 通过使用 @observable 装饰器(ES.Next)来给你的类属性添加注解就可以简单地完成这一切。    Computed values(计算值)使用 MobX， 你可以定义在相关数据发生变化时自动更新的值。 通过@compute">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-30T04:35:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kevin梁">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:title" content="mobx初识">
+<meta name="twitter:description" content="mobx 一个状态管理工具 简单、可扩展  Observable state(可观察的状态)MobX 为现有的数据结构(如对象，数组和类实例)添加了可观察的功能。 通过使用 @observable 装饰器(ES.Next)来给你的类属性添加注解就可以简单地完成这一切。    Computed values(计算值)使用 MobX， 你可以定义在相关数据发生变化时自动更新的值。 通过@compute">
   
     <link rel="alternative" href="/atom.xml" title="kevin梁" type="application/atom+xml">
   
@@ -169,64 +170,225 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-mobx初识" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/13/闲谈健身/" class="archive-article-date">
-  	<time datetime="2017-05-13T08:10:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-13</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/13/闲谈健身/">闲谈健身</a>
+    <h1 class="article-title" itemprop="name">
+      mobx初识
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">健身</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/2018/06/30/mobx初识/" class="archive-article-date">
+  	<time datetime="2018-06-30T04:15:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="mobx"><a href="#mobx" class="headerlink" title="mobx"></a>mobx</h3><blockquote>
+<p>一个状态管理工具 简单、可扩展</p>
+<ul>
+<li>Observable state(可观察的状态)<br>MobX 为现有的数据结构(如对象，数组和类实例)添加了可观察的功能。 通过使用 @observable 装饰器(ES.Next)来给你的类属性添加注解就可以简单地完成这一切。</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>Computed values(计算值)<br>使用 MobX， 你可以定义在相关数据发生变化时自动更新的值。 通过@computed 装饰器或者利用 (extend)Observable 时调用 的getter / setter 函数来进行使用。(当然，这里也可以再次使用 decorate 来替代 @ 语法)。</p>
+</li>
+<li><p>Reactions(反应)<br>Reactions 和计算值很像，但它不是产生一个新的值，而是会产生一些副作用，比如打印到控制台、网络请求、递增地更新 React 组件树以修补DOM、等等。 简而言之，reactions 在 响应式编程和命令式编程之间建立沟通的桥梁。</p>
+</li>
+<li><p>Actions(动作)</p>
+</li>
+</ul>
+<h3 id="mobx的几个核心要点"><a href="#mobx的几个核心要点" class="headerlink" title="mobx的几个核心要点"></a>mobx的几个核心要点</h3><ul>
+<li><ol>
+<li>定义状态并使其可观察<br>可以用任何你喜欢的数据结构来存储状态，如对象、数组、类。 循环数据结构、引用，都没有关系。 只要确保所有会随时间流逝而改变的属性打上 mobx 的标记使它们变得可观察即可。</li>
+</ol>
+</li>
+<li><ol>
+<li>创建视图以响应状态的变化<br>MobX 会以一种最小限度的方式来更新视图。 事实上这一点可以节省了你大量的样板文件，并且它有着令人匪夷所思的高效。</li>
+</ol>
+</li>
+<li><ol>
+<li>更改状态<br>第三件要做的事就是更改状态。 也就是你的应用究竟要做什么。 不像一些其它框架，MobX 不会命令你如何如何去做。 这是最佳实践，但关键要记住一点: MobX 帮助你以一种简单直观的方式来完成工作。</li>
+</ol>
+</li>
+</ul>
+<p>只有在严格模式(默认是不启用)下使用 MobX 时才需要 action 包装。 建议使用 action，因为它将帮助你更好地组织应用，并表达出一个函数修改状态的意图。 同时,它还自动应用事务以获得最佳性能。</p>
+<h3 id="几个关键词的概念"><a href="#几个关键词的概念" class="headerlink" title="几个关键词的概念"></a>几个关键词的概念</h3><ol>
+<li><p>State(状态)<br>状态 是驱动应用的数据。 通常有像待办事项列表这样的领域特定状态，还有像当前已选元素的视图状态。 记住，状态就像是有数据的excel表格。</p>
+</li>
+<li><p>Derivations(衍生)<br>任何 源自状态并且不会再有任何进一步的相互作用的东西就是衍生。 衍生以多种形式存在:</p>
+</li>
+</ol>
+<p>用户界面<br>衍生数据，比如剩下的待办事项的数量。<br>后端集成，比如把变化发送到服务器端。<br>MobX 区分了两种类型的衍生:</p>
+<p>Computed values(计算值) - 它们是永远可以使用纯函数(pure function)从当前可观察状态中衍生出的值。<br>Reactions(反应) - Reactions 是当状态改变时需要自动发生的副作用。需要有一个桥梁来连接命令式编程(imperative programming)和响应式编程(reactive programming)。或者说得更明确一些，它们最终都需要实现I / O 操作。<br>刚开始使用 MobX 时，人们倾向于频繁的使用 reactions。 黄金法则: 如果你想创建一个基于当前状态的值时，请使用 computed。</p>
+<p>回到excel表格这个比喻中来，公式是计算值的衍生。但对于用户来说，能看到屏幕给出的反应则需要部分重绘GUI。</p>
+<ol>
+<li>Actions(动作)<br>动作 是任一一段可以改变状态的代码。用户事件、后端数据推送、预定事件、等等。 动作类似于用户在excel单元格中输入一个新的值。</li>
+</ol>
+<p>在 MobX 中可以显式地定义动作，它可以帮你把代码组织的更清晰。 如果是在严格模式下使用 MobX的话，MobX 会强制只有在动作之中才可以修改状态。</p>
+<p>原则<br>MobX 支持单向数据流，也就是动作改变状态，而状态的改变会更新所有受影响的视图。</p>
+<p>Action –&gt; State  –&gt; View  单项数据流</p>
+<p>当状态改变时，所有衍生都会进行原子级的自动更新。因此永远不可能观察到中间值。</p>
+<p>所有衍生默认都是同步更新。这意味着例如动作可以在改变状态之后直接可以安全地检查计算值。</p>
+<p>计算值 是延迟更新的。任何不在使用状态的计算值将不会更新，直到需要它进行副作用（I / O）操作时。 如果视图不再使用，那么它会自动被垃圾回收。</p>
+<p>所有的计算值都应该是纯净的。它们不应该用来改变状态。</p>
+<h3 id="实例应用"><a href="#实例应用" class="headerlink" title="实例应用"></a>实例应用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import &#123;observable, autorun&#125; from &apos;mobx&apos;;</span><br><span class="line"></span><br><span class="line">var todoStore = observable(&#123;</span><br><span class="line">    /* 一些观察的状态 */</span><br><span class="line">    todos: [],</span><br><span class="line"></span><br><span class="line">    /* 推导值 */</span><br><span class="line">    get completedCount() &#123;</span><br><span class="line">        return this.todos.filter(todo =&gt; todo.completed).length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">/* 观察状态改变的函数 */</span><br><span class="line">autorun(function() &#123;</span><br><span class="line">    console.log(&quot;Completed %d of %d items&quot;,</span><br><span class="line">        todoStore.completedCount,</span><br><span class="line">        todoStore.todos.length</span><br><span class="line">    );</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">/* ..以及一些改变状态的动作 */</span><br><span class="line">todoStore.todos[0] = &#123;</span><br><span class="line">    title: &quot;Take a walk&quot;,</span><br><span class="line">    completed: false</span><br><span class="line">&#125;;</span><br><span class="line">// -&gt; 同步打印 &apos;Completed 0 of 1 items&apos;</span><br><span class="line"></span><br><span class="line">todoStore.todos[0].completed = true;</span><br><span class="line">// -&gt; 同步打印 &apos;Completed 1 of 1 items&apos;</span><br></pre></td></tr></table></figure>
+      
 
-          
-
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我喝咖啡<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wxpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://liangxiaojun.cn/2018/06/30/mobx初识/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/06/30/mobx的重要API/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          mobx的重要API
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2018/05/25/移动端image拍照方向修正及压缩/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="mobx初识" data-title="mobx初识" data-url="http://liangxiaojun.cn/2018/06/30/mobx初识/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -249,9 +411,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

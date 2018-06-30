@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://liangxiaojun.cn">
-  <title>Tag: 随笔 | kevin梁</title>
+  <title>kevin梁</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客">
-<meta property="og:type" content="website">
+  <meta name="description" content="// clone https://github.com/Tencent/weui.js/blob/master/src/uploader/image.js// updated by cube-ui /*  Tencent is pleased to support the open source community by making WeUI.js available.* Copyright (">
+<meta property="og:type" content="article">
 <meta property="og:title" content="kevin梁">
-<meta property="og:url" content="http://liangxiaojun.cn/tags/随笔/index.html">
+<meta property="og:url" content="http://liangxiaojun.cn/2018/05/25/移动端image拍照方向修正及压缩/index.html">
 <meta property="og:site_name" content="kevin梁">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="// clone https://github.com/Tencent/weui.js/blob/master/src/uploader/image.js// updated by cube-ui /*  Tencent is pleased to support the open source community by making WeUI.js available.* Copyright (">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-25T00:59:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kevin梁">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:description" content="// clone https://github.com/Tencent/weui.js/blob/master/src/uploader/image.js// updated by cube-ui /*  Tencent is pleased to support the open source community by making WeUI.js available.* Copyright (">
   
     <link rel="alternative" href="/atom.xml" title="kevin梁" type="application/atom+xml">
   
@@ -169,64 +170,317 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-移动端image拍照方向修正及压缩" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>// clone <a href="https://github.com/Tencent/weui.js/blob/master/src/uploader/image.js" target="_blank" rel="noopener">https://github.com/Tencent/weui.js/blob/master/src/uploader/image.js</a><br>// updated by cube-ui</p>
+<p>/*</p>
+<ul>
+<li>Tencent is pleased to support the open source community by making WeUI.js available.<br>*</li>
+<li>Copyright (C) 2017 THL A29 Limited, a Tencent company. All rights reserved.<br>*</li>
+<li>Licensed under the MIT License (the “License”); you may not use this file except in compliance</li>
+<li>with the License. You may obtain a copy of the License at<br>*</li>
+<li><a href="http://opensource.org/licenses/MIT" target="_blank" rel="noopener">http://opensource.org/licenses/MIT</a><br>*</li>
+<li>Unless required by applicable law or agreed to in writing, software distributed under the License is</li>
+<li>distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,</li>
+<li>either express or implied. See the License for the specific language governing permissions and</li>
+<li>limitations under the License.<br>*/</li>
+</ul>
+<p>/**</p>
+<ul>
+<li>检查图片是否有被压扁，如果有，返回比率</li>
+<li>ref to <a href="http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios" target="_blank" rel="noopener">http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios</a><br><em>/<br>/</em> eslint-disable <em>/<br>function detectVerticalSquash(img) {<br>// 拍照在IOS7或以下的机型会出现照片被压扁的bug<br>var data<br>var ih = img.naturalHeight<br>var canvas = document.createElement(‘canvas’)<br>canvas.width = 1<br>canvas.height = ih<br>var ctx = canvas.getContext(‘2d’)<br>ctx.drawImage(img, 0, 0)<br>try {<br>   data = ctx.getImageData(0, 0, 1, ih).data<br>} catch (err) {<br>   console.log(‘Cannot check verticalSquash: CORS?’)<br>   return 1<br>}<br>var sy = 0<br>var ey = ih<br>var py = ih<br>while (py &gt; sy) {<br>   var alpha = data[(py - 1) </em> 4 + 3]<br>   if (alpha === 0) {<pre><code>ey = py
+</code></pre>   } else {<pre><code>sy = py
+</code></pre>   }<br>   py = (ey + sy) &gt;&gt; 1 // py = parseInt((ey + sy) / 2)<br>}<br>var ratio = (py / ih)<br>return (ratio === 0) ? 1 : ratio<br>}</li>
+</ul>
+<p>/**</p>
+<ul>
+<li>dataURI to blob, ref to <a href="https://gist.github.com/fupslot/5015897" target="_blank" rel="noopener">https://gist.github.com/fupslot/5015897</a></li>
+<li>@param dataURI<br>*/<br>function dataURItoBuffer(dataURI) {<br>var byteString = atob(dataURI.split(‘,’)[1])<br>var buffer = new ArrayBuffer(byteString.length)<br>var view = new Uint8Array(buffer)<br>for (var i = 0; i &lt; byteString.length; i++) {<pre><code>view[i] = byteString.charCodeAt(i)
+</code></pre>}<br>return buffer<br>}<br>function dataURItoBlob(dataURI) {<br>var mimeString = dataURI.split(‘,’)[0].split(‘:’)[1].split(‘;’)[0]<br>var buffer = dataURItoBuffer(dataURI)<br>return new Blob([buffer], {type: mimeString})<br>}</li>
+</ul>
+<p>/**</p>
+<ul>
+<li>获取图片的orientation</li>
+<li>ref to <a href="http://stackoverflow.com/questions/7584794/accessing-jpeg-exif-rotation-data-in-javascript-on-the-client-side" target="_blank" rel="noopener">http://stackoverflow.com/questions/7584794/accessing-jpeg-exif-rotation-data-in-javascript-on-the-client-side</a><br>*/<br>function getOrientation(buffer) {<br>var view = new DataView(buffer)<br>if (view.getUint16(0, false) != 0xFFD8) return -2<br>var length = view.byteLength, offset = 2<br>while (offset &lt; length) {<pre><code>var marker = view.getUint16(offset, false)
+offset += 2
+if (marker == 0xFFE1) {
+    if (view.getUint32(offset += 2, false) != 0x45786966) return -1
+    var little = view.getUint16(offset += 6, false) == 0x4949
+    offset += view.getUint32(offset + 4, little)
+    var tags = view.getUint16(offset, little)
+    offset += 2
+    for (var i = 0; i &lt; tags; i++)
+        { 
+</code></pre>if (view.getUint16(offset + (i * 12), little) == 0x0112)<pre><code>{return view.getUint16(offset + (i * 12) + 8, little);} 
+</code></pre>}<pre><code>} else if ((marker &amp; 0xFF00) != 0xFF00) break
+else offset += view.getUint16(offset, false)
+</code></pre>}<br>return -1<br>}</li>
+</ul>
+<p>/**</p>
+<ul>
+<li>修正拍照时图片的方向</li>
+<li>ref to <a href="http://stackoverflow.com/questions/19463126/how-to-draw-photo-with-correct-orientation-in-canvas-after-capture-photo-by-usin" target="_blank" rel="noopener">http://stackoverflow.com/questions/19463126/how-to-draw-photo-with-correct-orientation-in-canvas-after-capture-photo-by-usin</a><br>*/<br>function orientationHelper(canvas, ctx, orientation) {<br>const w = canvas.width, h = canvas.height<br>if (orientation &gt; 4) {<pre><code>canvas.width = h
+canvas.height = w
+</code></pre>}<br>switch (orientation) {<pre><code>case 2:
+    ctx.translate(w, 0)
+    ctx.scale(-1, 1)
+    break
+case 3:
+    ctx.translate(w, h)
+    ctx.rotate(Math.PI)
+    break
+case 4:
+    ctx.translate(0, h)
+    ctx.scale(1, -1)
+    break
+case 5:
+    ctx.rotate(0.5 * Math.PI)
+    ctx.scale(1, -1)
+    break
+case 6:
+    ctx.rotate(0.5 * Math.PI)
+    ctx.translate(0, -h)
+    break
+case 7:
+    ctx.rotate(0.5 * Math.PI)
+    ctx.translate(w, -h)
+    ctx.scale(-1, 1)
+    break
+case 8:
+    ctx.rotate(-0.5 * Math.PI)
+    ctx.translate(-w, 0)
+    break
+</code></pre>}<br>}</li>
+</ul>
+<p>/**</p>
+<ul>
+<li><p>压缩图片<br>*/<br>function compress(file, options, callback) {<br>const reader = new FileReader()<br>reader.onload = function (evt) {</p>
+<pre><code>if (options.compress === false) {
+    // 不启用压缩 &amp; base64上传 的分支，不做任何处理，直接返回文件的base64编码
+    file.base64 = evt.target.result
+    callback(file)
+    return
+}
+
+// 启用压缩的分支
+const img = new Image()
+img.onload = function () {
+    const ratio = detectVerticalSquash(img)
+    const orientation = getOrientation(dataURItoBuffer(img.src))
+    const canvas = document.createElement(&apos;canvas&apos;)
+    const ctx = canvas.getContext(&apos;2d&apos;)
+
+    const maxW = options.compress.width
+    const maxH = options.compress.height
+    let w = img.width
+    let h = img.height
+    let dataURL
+
+    if (w &lt; h &amp;&amp; h &gt; maxH) {
+        w = parseInt(maxH * img.width / img.height)
+        h = maxH
+    } else if (w &gt;= h &amp;&amp; w &gt; maxW) {
+        h = parseInt(maxW * img.height / img.width)
+        w = maxW
+    }
+
+    canvas.width = w
+    canvas.height = h
+
+    if (orientation &gt; 0) {
+        orientationHelper(canvas, ctx, orientation)
+    }
+    ctx.drawImage(img, 0, 0, w, h / ratio)
+
+    if (/image\/jpeg/.test(file.type) || /image\/jpg/.test(file.type)) {
+        dataURL = canvas.toDataURL(&apos;image/jpeg&apos;, options.compress.quality)
+    } else {
+        dataURL = canvas.toDataURL(file.type)
+    }
+
+    if (options.type == &apos;file&apos;) {
+        if (/;base64,null/.test(dataURL) || /;base64,$/.test(dataURL)) {
+            // 压缩出错，以文件方式上传的，采用原文件上传
+            console.warn(&apos;Compress fail, dataURL is &apos; + dataURL + &apos;. Next will use origin file to upload.&apos;)
+            callback(file)
+        } else {
+            let blob = dataURItoBlob(dataURL)
+            blob.id = file.id
+            blob.name = file.name
+            blob.lastModified = file.lastModified
+            blob.lastModifiedDate = file.lastModifiedDate
+            callback(blob)
+        }
+    } else {
+        if (/;base64,null/.test(dataURL) || /;base64,$/.test(dataURL)) {
+            // 压缩失败，以base64上传的，直接报错不上传
+            options.onError(file, new Error(&apos;Compress fail, dataURL is &apos; + dataURL + &apos;.&apos;))
+            callback()
+        } else {
+            file.base64 = dataURL
+            callback(file)
+        }
+    }
+}
+img.src = evt.target.result
+</code></pre><p>}<br>reader.readAsDataURL(file)<br>}</p>
+</li>
+</ul>
+<p>export default compress</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我喝咖啡<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wxpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/13/闲谈健身/" class="archive-article-date">
-  	<time datetime="2017-05-13T08:10:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/13/闲谈健身/">闲谈健身</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">健身</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
-          
-
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://liangxiaojun.cn/2018/05/25/移动端image拍照方向修正及压缩/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/06/30/mobx初识/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          mobx初识
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2018/05/18/微信公众号验证签名失败/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">微信公众号验证签名失败</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="移动端image拍照方向修正及压缩" data-title="" data-url="http://liangxiaojun.cn/2018/05/25/移动端image拍照方向修正及压缩/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -249,9 +503,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

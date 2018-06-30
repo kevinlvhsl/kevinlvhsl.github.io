@@ -171,6 +171,335 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mobx的重要API" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/30/mobx的重要API/">mobx的重要API</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/30/mobx的重要API/" class="archive-article-date">
+  	<time datetime="2018-06-30T04:36:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/30/mobx的重要API/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-mobx初识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/30/mobx初识/">mobx初识</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/30/mobx初识/" class="archive-article-date">
+  	<time datetime="2018-06-30T04:15:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="mobx"><a href="#mobx" class="headerlink" title="mobx"></a>mobx</h3><blockquote>
+<p>一个状态管理工具 简单、可扩展</p>
+<ul>
+<li>Observable state(可观察的状态)<br>MobX 为现有的数据结构(如对象，数组和类实例)添加了可观察的功能。 通过使用 @observable 装饰器(ES.Next)来给你的类属性添加注解就可以简单地完成这一切。</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>Computed values(计算值)<br>使用 MobX， 你可以定义在相关数据发生变化时自动更新的值。 通过@computed 装饰器或者利用 (extend)Observable 时调用 的getter / setter 函数来进行使用。(当然，这里也可以再次使用 decorate 来替代 @ 语法)。</p>
+</li>
+<li><p>Reactions(反应)<br>Reactions 和计算值很像，但它不是产生一个新的值，而是会产生一些副作用，比如打印到控制台、网络请求、递增地更新 React 组件树以修补DOM、等等。 简而言之，reactions 在 响应式编程和命令式编程之间建立沟通的桥梁。</p>
+</li>
+<li><p>Actions(动作)</p>
+</li>
+</ul>
+<h3 id="mobx的几个核心要点"><a href="#mobx的几个核心要点" class="headerlink" title="mobx的几个核心要点"></a>mobx的几个核心要点</h3><ul>
+<li><ol>
+<li>定义状态并使其可观察<br>可以用任何你喜欢的数据结构来存储状态，如对象、数组、类。 循环数据结构、引用，都没有关系。 只要确保所有会随时间流逝而改变的属性打上 mobx 的标记使它们变得可观察即可。</li>
+</ol>
+</li>
+<li><ol>
+<li>创建视图以响应状态的变化<br>MobX 会以一种最小限度的方式来更新视图。 事实上这一点可以节省了你大量的样板文件，并且它有着令人匪夷所思的高效。</li>
+</ol>
+</li>
+<li><ol>
+<li>更改状态<br>第三件要做的事就是更改状态。 也就是你的应用究竟要做什么。 不像一些其它框架，MobX 不会命令你如何如何去做。 这是最佳实践，但关键要记住一点: MobX 帮助你以一种简单直观的方式来完成工作。</li>
+</ol>
+</li>
+</ul>
+<p>只有在严格模式(默认是不启用)下使用 MobX 时才需要 action 包装。 建议使用 action，因为它将帮助你更好地组织应用，并表达出一个函数修改状态的意图。 同时,它还自动应用事务以获得最佳性能。</p>
+<h3 id="几个关键词的概念"><a href="#几个关键词的概念" class="headerlink" title="几个关键词的概念"></a>几个关键词的概念</h3><ol>
+<li><p>State(状态)<br>状态 是驱动应用的数据。 通常有像待办事项列表这样的领域特定状态，还有像当前已选元素的视图状态。 记住，状态就像是有数据的excel表格。</p>
+</li>
+<li><p>Derivations(衍生)<br>任何 源自状态并且不会再有任何进一步的相互作用的东西就是衍生。 衍生以多种形式存在:</p>
+</li>
+</ol>
+<p>用户界面<br>衍生数据，比如剩下的待办事项的数量。<br>后端集成，比如把变化发送到服务器端。<br>MobX 区分了两种类型的衍生:</p>
+<p>Computed values(计算值) - 它们是永远可以使用纯函数(pure function)从当前可观察状态中衍生出的值。<br>Reactions(反应) - Reactions 是当状态改变时需要自动发生的副作用。需要有一个桥梁来连接命令式编程(imperative programming)和响应式编程(reactive programming)。或者说得更明确一些，它们最终都需要实现I / O 操作。<br>刚开始使用 MobX 时，人们倾向于频繁的使用 reactions。 黄金法则: 如果你想创建一个基于当前状态的值时，请使用 computed。</p>
+<p>回到excel表格这个比喻中来，公式是计算值的衍生。但对于用户来说，能看到屏幕给出的反应则需要部分重绘GUI。</p>
+<ol>
+<li>Actions(动作)<br>动作 是任一一段可以改变状态的代码。用户事件、后端数据推送、预定事件、等等。 动作类似于用户在excel单元格中输入一个新的值。</li>
+</ol>
+<p>在 MobX 中可以显式地定义动作，它可以帮你把代码组织的更清晰。 如果是在严格模式下使用 MobX的话，MobX 会强制只有在动作之中才可以修改状态。</p>
+<p>原则<br>MobX 支持单向数据流，也就是动作改变状态，而状态的改变会更新所有受影响的视图。</p>
+<p>Action –&gt; State  –&gt; View  单项数据流</p>
+<p>当状态改变时，所有衍生都会进行原子级的自动更新。因此永远不可能观察到中间值。</p>
+<p>所有衍生默认都是同步更新。这意味着例如动作可以在改变状态之后直接可以安全地检查计算值。</p>
+<p>计算值 是延迟更新的。任何不在使用状态的计算值将不会更新，直到需要它进行副作用（I / O）操作时。 如果视图不再使用，那么它会自动被垃圾回收。</p>
+<p>所有的计算值都应该是纯净的。它们不应该用来改变状态。</p>
+<h3 id="实例应用"><a href="#实例应用" class="headerlink" title="实例应用"></a>实例应用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import &#123;observable, autorun&#125; from &apos;mobx&apos;;</span><br><span class="line"></span><br><span class="line">var todoStore = observable(&#123;</span><br><span class="line">    /* 一些观察的状态 */</span><br><span class="line">    todos: [],</span><br><span class="line"></span><br><span class="line">    /* 推导值 */</span><br><span class="line">    get completedCount() &#123;</span><br><span class="line">        return this.todos.filter(todo =&gt; todo.completed).length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">/* 观察状态改变的函数 */</span><br><span class="line">autorun(function() &#123;</span><br><span class="line">    console.log(&quot;Completed %d of %d items&quot;,</span><br><span class="line">        todoStore.completedCount,</span><br><span class="line">        todoStore.todos.length</span><br><span class="line">    );</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">/* ..以及一些改变状态的动作 */</span><br><span class="line">todoStore.todos[0] = &#123;</span><br><span class="line">    title: &quot;Take a walk&quot;,</span><br><span class="line">    completed: false</span><br><span class="line">&#125;;</span><br><span class="line">// -&gt; 同步打印 &apos;Completed 0 of 1 items&apos;</span><br><span class="line"></span><br><span class="line">todoStore.todos[0].completed = true;</span><br><span class="line">// -&gt; 同步打印 &apos;Completed 1 of 1 items&apos;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/30/mobx初识/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-移动端image拍照方向修正及压缩" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>// clone <a href="https://github.com/Tencent/weui.js/blob/master/src/uploader/image.js" target="_blank" rel="noopener">https://github.com/Tencent/weui.js/blob/master/src/uploader/image.js</a><br>// updated by cube-ui</p>
+<p>/*</p>
+<ul>
+<li>Tencent is pleased to support the open source community by making WeUI.js available.<br>*</li>
+<li>Copyright (C) 2017 THL A29 Limited, a Tencent company. All rights reserved.<br>*</li>
+<li>Licensed under the MIT License (the “License”); you may not use this file except in compliance</li>
+<li>with the License. You may obtain a copy of the License at<br>*</li>
+<li><a href="http://opensource.org/licenses/MIT" target="_blank" rel="noopener">http://opensource.org/licenses/MIT</a><br>*</li>
+<li>Unless required by applicable law or agreed to in writing, software distributed under the License is</li>
+<li>distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,</li>
+<li>either express or implied. See the License for the specific language governing permissions and</li>
+<li>limitations under the License.<br>*/</li>
+</ul>
+<p>/**</p>
+<ul>
+<li>检查图片是否有被压扁，如果有，返回比率</li>
+<li>ref to <a href="http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios" target="_blank" rel="noopener">http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios</a><br><em>/<br>/</em> eslint-disable <em>/<br>function detectVerticalSquash(img) {<br>// 拍照在IOS7或以下的机型会出现照片被压扁的bug<br>var data<br>var ih = img.naturalHeight<br>var canvas = document.createElement(‘canvas’)<br>canvas.width = 1<br>canvas.height = ih<br>var ctx = canvas.getContext(‘2d’)<br>ctx.drawImage(img, 0, 0)<br>try {<br>   data = ctx.getImageData(0, 0, 1, ih).data<br>} catch (err) {<br>   console.log(‘Cannot check verticalSquash: CORS?’)<br>   return 1<br>}<br>var sy = 0<br>var ey = ih<br>var py = ih<br>while (py &gt; sy) {<br>   var alpha = data[(py - 1) </em> 4 + 3]<br>   if (alpha === 0) {<pre><code>ey = py
+</code></pre>   } else {<pre><code>sy = py
+</code></pre>   }<br>   py = (ey + sy) &gt;&gt; 1 // py = parseInt((ey + sy) / 2)<br>}<br>var ratio = (py / ih)<br>return (ratio === 0) ? 1 : ratio<br>}</li>
+</ul>
+<p>/**</p>
+<ul>
+<li>dataURI to blob, ref to <a href="https://gist.github.com/fupslot/5015897" target="_blank" rel="noopener">https://gist.github.com/fupslot/5015897</a></li>
+<li>@param dataURI<br>*/<br>function dataURItoBuffer(dataURI) {<br>var byteString = atob(dataURI.split(‘,’)[1])<br>var buffer = new ArrayBuffer(byteString.length)<br>var view = new Uint8Array(buffer)<br>for (var i = 0; i &lt; byteString.length; i++) {<pre><code>view[i] = byteString.charCodeAt(i)
+</code></pre>}<br>return buffer<br>}<br>function dataURItoBlob(dataURI) {<br>var mimeString = dataURI.split(‘,’)[0].split(‘:’)[1].split(‘;’)[0]<br>var buffer = dataURItoBuffer(dataURI)<br>return new Blob([buffer], {type: mimeString})<br>}</li>
+</ul>
+<p>/**</p>
+<ul>
+<li>获取图片的orientation</li>
+<li>ref to <a href="http://stackoverflow.com/questions/7584794/accessing-jpeg-exif-rotation-data-in-javascript-on-the-client-side" target="_blank" rel="noopener">http://stackoverflow.com/questions/7584794/accessing-jpeg-exif-rotation-data-in-javascript-on-the-client-side</a><br>*/<br>function getOrientation(buffer) {<br>var view = new DataView(buffer)<br>if (view.getUint16(0, false) != 0xFFD8) return -2<br>var length = view.byteLength, offset = 2<br>while (offset &lt; length) {<pre><code>var marker = view.getUint16(offset, false)
+offset += 2
+if (marker == 0xFFE1) {
+    if (view.getUint32(offset += 2, false) != 0x45786966) return -1
+    var little = view.getUint16(offset += 6, false) == 0x4949
+    offset += view.getUint32(offset + 4, little)
+    var tags = view.getUint16(offset, little)
+    offset += 2
+    for (var i = 0; i &lt; tags; i++)
+        { 
+</code></pre>if (view.getUint16(offset + (i * 12), little) == 0x0112)<pre><code>{return view.getUint16(offset + (i * 12) + 8, little);} 
+</code></pre>}<pre><code>} else if ((marker &amp; 0xFF00) != 0xFF00) break
+else offset += view.getUint16(offset, false)
+</code></pre>}<br>return -1<br>}</li>
+</ul>
+<p>/**</p>
+<ul>
+<li>修正拍照时图片的方向</li>
+<li>ref to <a href="http://stackoverflow.com/questions/19463126/how-to-draw-photo-with-correct-orientation-in-canvas-after-capture-photo-by-usin" target="_blank" rel="noopener">http://stackoverflow.com/questions/19463126/how-to-draw-photo-with-correct-orientation-in-canvas-after-capture-photo-by-usin</a><br>*/<br>function orientationHelper(canvas, ctx, orientation) {<br>const w = canvas.width, h = canvas.height<br>if (orientation &gt; 4) {<pre><code>canvas.width = h
+canvas.height = w
+</code></pre>}<br>switch (orientation) {<pre><code>case 2:
+    ctx.translate(w, 0)
+    ctx.scale(-1, 1)
+    break
+case 3:
+    ctx.translate(w, h)
+    ctx.rotate(Math.PI)
+    break
+case 4:
+    ctx.translate(0, h)
+    ctx.scale(1, -1)
+    break
+case 5:
+    ctx.rotate(0.5 * Math.PI)
+    ctx.scale(1, -1)
+    break
+case 6:
+    ctx.rotate(0.5 * Math.PI)
+    ctx.translate(0, -h)
+    break
+case 7:
+    ctx.rotate(0.5 * Math.PI)
+    ctx.translate(w, -h)
+    ctx.scale(-1, 1)
+    break
+case 8:
+    ctx.rotate(-0.5 * Math.PI)
+    ctx.translate(-w, 0)
+    break
+</code></pre>}<br>}</li>
+</ul>
+<p>/**</p>
+<ul>
+<li><p>压缩图片<br>*/<br>function compress(file, options, callback) {<br>const reader = new FileReader()<br>reader.onload = function (evt) {</p>
+<pre><code>if (options.compress === false) {
+    // 不启用压缩 &amp; base64上传 的分支，不做任何处理，直接返回文件的base64编码
+    file.base64 = evt.target.result
+    callback(file)
+    return
+}
+
+// 启用压缩的分支
+const img = new Image()
+img.onload = function () {
+    const ratio = detectVerticalSquash(img)
+    const orientation = getOrientation(dataURItoBuffer(img.src))
+    const canvas = document.createElement(&apos;canvas&apos;)
+    const ctx = canvas.getContext(&apos;2d&apos;)
+
+    const maxW = options.compress.width
+    const maxH = options.compress.height
+    let w = img.width
+    let h = img.height
+    let dataURL
+
+    if (w &lt; h &amp;&amp; h &gt; maxH) {
+        w = parseInt(maxH * img.width / img.height)
+        h = maxH
+    } else if (w &gt;= h &amp;&amp; w &gt; maxW) {
+        h = parseInt(maxW * img.height / img.width)
+        w = maxW
+    }
+
+    canvas.width = w
+    canvas.height = h
+
+    if (orientation &gt; 0) {
+        orientationHelper(canvas, ctx, orientation)
+    }
+    ctx.drawImage(img, 0, 0, w, h / ratio)
+
+    if (/image\/jpeg/.test(file.type) || /image\/jpg/.test(file.type)) {
+        dataURL = canvas.toDataURL(&apos;image/jpeg&apos;, options.compress.quality)
+    } else {
+        dataURL = canvas.toDataURL(file.type)
+    }
+
+    if (options.type == &apos;file&apos;) {
+        if (/;base64,null/.test(dataURL) || /;base64,$/.test(dataURL)) {
+            // 压缩出错，以文件方式上传的，采用原文件上传
+            console.warn(&apos;Compress fail, dataURL is &apos; + dataURL + &apos;. Next will use origin file to upload.&apos;)
+            callback(file)
+        } else {
+            let blob = dataURItoBlob(dataURL)
+            blob.id = file.id
+            blob.name = file.name
+            blob.lastModified = file.lastModified
+            blob.lastModifiedDate = file.lastModifiedDate
+            callback(blob)
+        }
+    } else {
+        if (/;base64,null/.test(dataURL) || /;base64,$/.test(dataURL)) {
+            // 压缩失败，以base64上传的，直接报错不上传
+            options.onError(file, new Error(&apos;Compress fail, dataURL is &apos; + dataURL + &apos;.&apos;))
+            callback()
+        } else {
+            file.base64 = dataURL
+            callback(file)
+        }
+    }
+}
+img.src = evt.target.result
+</code></pre><p>}<br>reader.readAsDataURL(file)<br>}</p>
+</li>
+</ul>
+<p>export default compress</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/25/移动端image拍照方向修正及压缩/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-微信公众号验证签名失败" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -673,191 +1002,6 @@
 
 
   
-    <article id="post-微信小游戏cocos" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/29/微信小游戏cocos/">微信小游戏简单入门</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/29/微信小游戏cocos/" class="archive-article-date">
-  	<time datetime="2018-04-29T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/assets/xiaoyouxi.png" alt="微信小游戏"></p>
-<blockquote>
-<p>微信小游戏在2017年底推出，当时微信的跳一跳刷爆了微信群，2018年03月正式开发给外部开发者，也就是说你也可以做自己的小游戏了。</p>
-</blockquote>
-<p>小游戏开放后，就涌现了一波火爆的小游戏， 最强弹一弹  就是其中之一。<br>小游戏要想能火爆，微信下游戏工程师总邹伟 结了以下几点：<br>
-        
-          <a class="article-more-a" href="/2018/04/29/微信小游戏cocos/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/29/微信小游戏cocos/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-webpack-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/25/webpack-md/">webpack.md</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/25/webpack-md/" class="archive-article-date">
-  	<time datetime="2018-02-25T15:21:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/assets/webpack.png" alt="webpack"><br>webpack是一个项目打包工具</p>
-<h3 id="安装-npm-install-webpack-（这里展示webpack1-13-2版本）-使用-直接打包单个js文件-webpack-index-js-index-bundle-js-表示打包index-js-打包后的文件叫做-index-boundle-js-也可以在命令后面直接带参数-如：-–watch-等待-–module-bind-‘css-style-loader-css-loader’"><a href="#安装-npm-install-webpack-（这里展示webpack1-13-2版本）-使用-直接打包单个js文件-webpack-index-js-index-bundle-js-表示打包index-js-打包后的文件叫做-index-boundle-js-也可以在命令后面直接带参数-如：-–watch-等待-–module-bind-‘css-style-loader-css-loader’" class="headerlink" title="安装   npm install webpack （这里展示webpack1.13.2版本） ### 使用 直接打包单个js文件    webpack index.js  index.bundle.js  表示打包index.js  打包后的文件叫做 index.boundle.js 也可以在命令后面直接带参数 如： –watch 等待   –module-bind ‘css=style-loader!css-loader’"></a>安装   npm install webpack （这里展示webpack1.13.2版本） ### 使用 直接打包单个js文件    <code>webpack index.js  index.bundle.js</code>  表示打包index.js  打包后的文件叫做 index.boundle.js 也可以在命令后面直接带参数 如： –watch 等待   –module-bind ‘css=style-loader!css-loader’</h3>
-        
-          <a class="article-more-a" href="/2018/02/25/webpack-md/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/25/webpack-md/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-nginx-初识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/12/nginx-初识/">nginx 初识</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/12/nginx-初识/" class="archive-article-date">
-  	<time datetime="2018-02-12T02:51:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/assets/nginx.png" alt="nginx"></p>
-<h2 id="牛逼的web服务器工具-nginx"><a href="#牛逼的web服务器工具-nginx" class="headerlink" title="牛逼的web服务器工具:nginx"></a>牛逼的web服务器工具:nginx</h2><blockquote>
-<p>一直与服务器打交道，也很多次遇到nginx，一直没有去认真学习过nginx<br>  昨天同事遇到了nginx配置的问题，折腾了一下午一直没有解决，最后也是以一种妥协的方式搞定的，<br>  为了以后遇到这样的问题，能够更快更好的搞定，决定要认真的研究一下 神秘的nginx。</p>
-</blockquote>
-<h3 id="什么是-Nginx？"><a href="#什么是-Nginx？" class="headerlink" title="什么是 Nginx？"></a>什么是 Nginx？</h3><p>Nginx 最初是作为一个 Web 服务器创建的，用于解决 C10k 的问题。作为一个 Web 服务器，它可以以惊人的速度为您的数据服务。但 Nginx 不仅仅是一个 Web 服务器，你还可以将其用作反向代理，与较慢的上游服务器（如：Unicorn 或 Puma）轻松集成。你可以适当地分配流量（负载均衡器）、流媒体、动态调整图像大小、缓存内容等等。<br>基本的 nginx 体系结构由 master 进程和其 worker 进程组成。master 读取配置文件，并维护 worker 进程，而 worker 则会对请求进行实际处理。<br>
-        
-          <a class="article-more-a" href="/2018/02/12/nginx-初识/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务器</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/12/nginx-初识/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -966,11 +1110,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -978,15 +1118,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -998,6 +1138,14 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">健身</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">篮球</a>
               </li>
              
@@ -1006,11 +1154,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">健身</a>
+                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
             
             <div class="clearfix"></div>
