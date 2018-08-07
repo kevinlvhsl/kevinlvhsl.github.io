@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://liangxiaojun.cn">
-  <title>kevin梁</title>
+  <title>移动端ios拍照图片修正方向及压缩 | kevin梁</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="// clone https://github.com/Tencent/weui.js/blob/master/src/uploader/image.js// updated by cube-ui /*  Tencent is pleased to support the open source community by making WeUI.js available.* Copyright (">
+  <meta name="description" content="在h5手机端经常会使用到拍照功能，但是ios上，拍照时，经常拍出来的图片是和实际拍摄的方向有一个角度的旋转(通常是90°)，这样很是影响体验。所以今天到网上找到了一个解决此问题的方法  出处： cube-ui clonehttps://github.com/Tencent/weui.js/blob/master/src/uploader/image.js// updated by cube-ui">
+<meta name="keywords" content="技术,图片上传,ios旋转">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kevin梁">
-<meta property="og:url" content="http://liangxiaojun.cn/2018/05/25/移动端image拍照方向修正及压缩/index.html">
+<meta property="og:title" content="移动端ios拍照图片修正方向及压缩">
+<meta property="og:url" content="http://liangxiaojun.cn/2017/05/16/移动端image拍照方向修正及压缩/index.html">
 <meta property="og:site_name" content="kevin梁">
-<meta property="og:description" content="// clone https://github.com/Tencent/weui.js/blob/master/src/uploader/image.js// updated by cube-ui /*  Tencent is pleased to support the open source community by making WeUI.js available.* Copyright (">
+<meta property="og:description" content="在h5手机端经常会使用到拍照功能，但是ios上，拍照时，经常拍出来的图片是和实际拍摄的方向有一个角度的旋转(通常是90°)，这样很是影响体验。所以今天到网上找到了一个解决此问题的方法  出处： cube-ui clonehttps://github.com/Tencent/weui.js/blob/master/src/uploader/image.js// updated by cube-ui">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-25T00:59:08.000Z">
+<meta property="og:updated_time" content="2018-08-07T03:20:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kevin梁">
-<meta name="twitter:description" content="// clone https://github.com/Tencent/weui.js/blob/master/src/uploader/image.js// updated by cube-ui /*  Tencent is pleased to support the open source community by making WeUI.js available.* Copyright (">
+<meta name="twitter:title" content="移动端ios拍照图片修正方向及压缩">
+<meta name="twitter:description" content="在h5手机端经常会使用到拍照功能，但是ios上，拍照时，经常拍出来的图片是和实际拍摄的方向有一个角度的旋转(通常是90°)，这样很是影响体验。所以今天到网上找到了一个解决此问题的方法  出处： cube-ui clonehttps://github.com/Tencent/weui.js/blob/master/src/uploader/image.js// updated by cube-ui">
   
     <link rel="alternative" href="/atom.xml" title="kevin梁" type="application/atom+xml">
   
@@ -173,164 +174,30 @@
             <article id="post-移动端image拍照方向修正及压缩" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      移动端ios拍照图片修正方向及压缩
+    </h1>
+  
+
+        
+        <a href="/2017/05/16/移动端image拍照方向修正及压缩/" class="archive-article-date">
+  	<time datetime="2017-05-16T02:40:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-16</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>// clone <a href="https://github.com/Tencent/weui.js/blob/master/src/uploader/image.js" target="_blank" rel="noopener">https://github.com/Tencent/weui.js/blob/master/src/uploader/image.js</a><br>// updated by cube-ui</p>
-<p>/*</p>
-<ul>
-<li>Tencent is pleased to support the open source community by making WeUI.js available.<br>*</li>
-<li>Copyright (C) 2017 THL A29 Limited, a Tencent company. All rights reserved.<br>*</li>
-<li>Licensed under the MIT License (the “License”); you may not use this file except in compliance</li>
-<li>with the License. You may obtain a copy of the License at<br>*</li>
-<li><a href="http://opensource.org/licenses/MIT" target="_blank" rel="noopener">http://opensource.org/licenses/MIT</a><br>*</li>
-<li>Unless required by applicable law or agreed to in writing, software distributed under the License is</li>
-<li>distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,</li>
-<li>either express or implied. See the License for the specific language governing permissions and</li>
-<li>limitations under the License.<br>*/</li>
-</ul>
-<p>/**</p>
-<ul>
-<li>检查图片是否有被压扁，如果有，返回比率</li>
-<li>ref to <a href="http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios" target="_blank" rel="noopener">http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios</a><br><em>/<br>/</em> eslint-disable <em>/<br>function detectVerticalSquash(img) {<br>// 拍照在IOS7或以下的机型会出现照片被压扁的bug<br>var data<br>var ih = img.naturalHeight<br>var canvas = document.createElement(‘canvas’)<br>canvas.width = 1<br>canvas.height = ih<br>var ctx = canvas.getContext(‘2d’)<br>ctx.drawImage(img, 0, 0)<br>try {<br>   data = ctx.getImageData(0, 0, 1, ih).data<br>} catch (err) {<br>   console.log(‘Cannot check verticalSquash: CORS?’)<br>   return 1<br>}<br>var sy = 0<br>var ey = ih<br>var py = ih<br>while (py &gt; sy) {<br>   var alpha = data[(py - 1) </em> 4 + 3]<br>   if (alpha === 0) {<pre><code>ey = py
-</code></pre>   } else {<pre><code>sy = py
-</code></pre>   }<br>   py = (ey + sy) &gt;&gt; 1 // py = parseInt((ey + sy) / 2)<br>}<br>var ratio = (py / ih)<br>return (ratio === 0) ? 1 : ratio<br>}</li>
-</ul>
-<p>/**</p>
-<ul>
-<li>dataURI to blob, ref to <a href="https://gist.github.com/fupslot/5015897" target="_blank" rel="noopener">https://gist.github.com/fupslot/5015897</a></li>
-<li>@param dataURI<br>*/<br>function dataURItoBuffer(dataURI) {<br>var byteString = atob(dataURI.split(‘,’)[1])<br>var buffer = new ArrayBuffer(byteString.length)<br>var view = new Uint8Array(buffer)<br>for (var i = 0; i &lt; byteString.length; i++) {<pre><code>view[i] = byteString.charCodeAt(i)
-</code></pre>}<br>return buffer<br>}<br>function dataURItoBlob(dataURI) {<br>var mimeString = dataURI.split(‘,’)[0].split(‘:’)[1].split(‘;’)[0]<br>var buffer = dataURItoBuffer(dataURI)<br>return new Blob([buffer], {type: mimeString})<br>}</li>
-</ul>
-<p>/**</p>
-<ul>
-<li>获取图片的orientation</li>
-<li>ref to <a href="http://stackoverflow.com/questions/7584794/accessing-jpeg-exif-rotation-data-in-javascript-on-the-client-side" target="_blank" rel="noopener">http://stackoverflow.com/questions/7584794/accessing-jpeg-exif-rotation-data-in-javascript-on-the-client-side</a><br>*/<br>function getOrientation(buffer) {<br>var view = new DataView(buffer)<br>if (view.getUint16(0, false) != 0xFFD8) return -2<br>var length = view.byteLength, offset = 2<br>while (offset &lt; length) {<pre><code>var marker = view.getUint16(offset, false)
-offset += 2
-if (marker == 0xFFE1) {
-    if (view.getUint32(offset += 2, false) != 0x45786966) return -1
-    var little = view.getUint16(offset += 6, false) == 0x4949
-    offset += view.getUint32(offset + 4, little)
-    var tags = view.getUint16(offset, little)
-    offset += 2
-    for (var i = 0; i &lt; tags; i++)
-        { 
-</code></pre>if (view.getUint16(offset + (i * 12), little) == 0x0112)<pre><code>{return view.getUint16(offset + (i * 12) + 8, little);} 
-</code></pre>}<pre><code>} else if ((marker &amp; 0xFF00) != 0xFF00) break
-else offset += view.getUint16(offset, false)
-</code></pre>}<br>return -1<br>}</li>
-</ul>
-<p>/**</p>
-<ul>
-<li>修正拍照时图片的方向</li>
-<li>ref to <a href="http://stackoverflow.com/questions/19463126/how-to-draw-photo-with-correct-orientation-in-canvas-after-capture-photo-by-usin" target="_blank" rel="noopener">http://stackoverflow.com/questions/19463126/how-to-draw-photo-with-correct-orientation-in-canvas-after-capture-photo-by-usin</a><br>*/<br>function orientationHelper(canvas, ctx, orientation) {<br>const w = canvas.width, h = canvas.height<br>if (orientation &gt; 4) {<pre><code>canvas.width = h
-canvas.height = w
-</code></pre>}<br>switch (orientation) {<pre><code>case 2:
-    ctx.translate(w, 0)
-    ctx.scale(-1, 1)
-    break
-case 3:
-    ctx.translate(w, h)
-    ctx.rotate(Math.PI)
-    break
-case 4:
-    ctx.translate(0, h)
-    ctx.scale(1, -1)
-    break
-case 5:
-    ctx.rotate(0.5 * Math.PI)
-    ctx.scale(1, -1)
-    break
-case 6:
-    ctx.rotate(0.5 * Math.PI)
-    ctx.translate(0, -h)
-    break
-case 7:
-    ctx.rotate(0.5 * Math.PI)
-    ctx.translate(w, -h)
-    ctx.scale(-1, 1)
-    break
-case 8:
-    ctx.rotate(-0.5 * Math.PI)
-    ctx.translate(-w, 0)
-    break
-</code></pre>}<br>}</li>
-</ul>
-<p>/**</p>
-<ul>
-<li><p>压缩图片<br>*/<br>function compress(file, options, callback) {<br>const reader = new FileReader()<br>reader.onload = function (evt) {</p>
-<pre><code>if (options.compress === false) {
-    // 不启用压缩 &amp; base64上传 的分支，不做任何处理，直接返回文件的base64编码
-    file.base64 = evt.target.result
-    callback(file)
-    return
-}
-
-// 启用压缩的分支
-const img = new Image()
-img.onload = function () {
-    const ratio = detectVerticalSquash(img)
-    const orientation = getOrientation(dataURItoBuffer(img.src))
-    const canvas = document.createElement(&apos;canvas&apos;)
-    const ctx = canvas.getContext(&apos;2d&apos;)
-
-    const maxW = options.compress.width
-    const maxH = options.compress.height
-    let w = img.width
-    let h = img.height
-    let dataURL
-
-    if (w &lt; h &amp;&amp; h &gt; maxH) {
-        w = parseInt(maxH * img.width / img.height)
-        h = maxH
-    } else if (w &gt;= h &amp;&amp; w &gt; maxW) {
-        h = parseInt(maxW * img.height / img.width)
-        w = maxW
-    }
-
-    canvas.width = w
-    canvas.height = h
-
-    if (orientation &gt; 0) {
-        orientationHelper(canvas, ctx, orientation)
-    }
-    ctx.drawImage(img, 0, 0, w, h / ratio)
-
-    if (/image\/jpeg/.test(file.type) || /image\/jpg/.test(file.type)) {
-        dataURL = canvas.toDataURL(&apos;image/jpeg&apos;, options.compress.quality)
-    } else {
-        dataURL = canvas.toDataURL(file.type)
-    }
-
-    if (options.type == &apos;file&apos;) {
-        if (/;base64,null/.test(dataURL) || /;base64,$/.test(dataURL)) {
-            // 压缩出错，以文件方式上传的，采用原文件上传
-            console.warn(&apos;Compress fail, dataURL is &apos; + dataURL + &apos;. Next will use origin file to upload.&apos;)
-            callback(file)
-        } else {
-            let blob = dataURItoBlob(dataURL)
-            blob.id = file.id
-            blob.name = file.name
-            blob.lastModified = file.lastModified
-            blob.lastModifiedDate = file.lastModifiedDate
-            callback(blob)
-        }
-    } else {
-        if (/;base64,null/.test(dataURL) || /;base64,$/.test(dataURL)) {
-            // 压缩失败，以base64上传的，直接报错不上传
-            options.onError(file, new Error(&apos;Compress fail, dataURL is &apos; + dataURL + &apos;.&apos;))
-            callback()
-        } else {
-            file.base64 = dataURL
-            callback(file)
-        }
-    }
-}
-img.src = evt.target.result
-</code></pre><p>}<br>reader.readAsDataURL(file)<br>}</p>
-</li>
-</ul>
-<p>export default compress</p>
-
+        <blockquote>
+<p>在h5手机端经常会使用到拍照功能，但是ios上，拍照时，经常拍出来的图片是和实际拍摄的方向有一个角度的旋转(通常是90°)，这样很是影响体验。所以今天到网上找到了一个解决此问题的方法</p>
+</blockquote>
+<h3 id="出处：-cube-ui"><a href="#出处：-cube-ui" class="headerlink" title="出处： cube-ui"></a>出处： cube-ui</h3><blockquote>
+<p>clone<br><code>https://github.com/Tencent/weui.js/blob/master/src/uploader/image.js</code><br>// updated by cube-ui</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Tencent is pleased to support the open source community by making WeUI.js available.</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* Copyright (C) 2017 THL A29 Limited, a Tencent company. All rights reserved.</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* Licensed under the MIT License (the "License"); you may not use this file except in compliance</span></span><br><span class="line"><span class="comment">* with the License. You may obtain a copy of the License at</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">*       http://opensource.org/licenses/MIT</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* Unless required by applicable law or agreed to in writing, software distributed under the License is</span></span><br><span class="line"><span class="comment">* distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,</span></span><br><span class="line"><span class="comment">* either express or implied. See the License for the specific language governing permissions and</span></span><br><span class="line"><span class="comment">* limitations under the License.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 检查图片是否有被压扁，如果有，返回比率</span></span><br><span class="line"><span class="comment"> * ref to http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/* eslint-disable */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">detectVerticalSquash</span>(<span class="params">img</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 拍照在IOS7或以下的机型会出现照片被压扁的bug</span></span><br><span class="line">  <span class="keyword">var</span> data</span><br><span class="line">  <span class="keyword">var</span> ih = img.naturalHeight</span><br><span class="line">  <span class="keyword">var</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">'canvas'</span>)</span><br><span class="line">  canvas.width = <span class="number">1</span></span><br><span class="line">  canvas.height = ih</span><br><span class="line">  <span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>)</span><br><span class="line">  ctx.drawImage(img, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">      data = ctx.getImageData(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, ih).data</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'Cannot check verticalSquash: CORS?'</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> sy = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> ey = ih</span><br><span class="line">  <span class="keyword">var</span> py = ih</span><br><span class="line">  <span class="keyword">while</span> (py &gt; sy) &#123;</span><br><span class="line">      <span class="keyword">var</span> alpha = data[(py - <span class="number">1</span>) * <span class="number">4</span> + <span class="number">3</span>]</span><br><span class="line">      <span class="keyword">if</span> (alpha === <span class="number">0</span>) &#123;</span><br><span class="line">          ey = py</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          sy = py</span><br><span class="line">      &#125;</span><br><span class="line">      py = (ey + sy) &gt;&gt; <span class="number">1</span> <span class="comment">// py = parseInt((ey + sy) / 2)</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> ratio = (py / ih)</span><br><span class="line">  <span class="keyword">return</span> (ratio === <span class="number">0</span>) ? <span class="number">1</span> : ratio</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* dataURI to blob, ref to https://gist.github.com/fupslot/5015897</span></span><br><span class="line"><span class="comment">* @param dataURI</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dataURItoBuffer</span>(<span class="params">dataURI</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> byteString = atob(dataURI.split(<span class="string">','</span>)[<span class="number">1</span>])</span><br><span class="line">  <span class="keyword">var</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(byteString.length)</span><br><span class="line">  <span class="keyword">var</span> view = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(buffer)</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; byteString.length; i++) &#123;</span><br><span class="line">      view[i] = byteString.charCodeAt(i)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> buffer</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dataURItoBlob</span>(<span class="params">dataURI</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> mimeString = dataURI.split(<span class="string">','</span>)[<span class="number">0</span>].split(<span class="string">':'</span>)[<span class="number">1</span>].split(<span class="string">';'</span>)[<span class="number">0</span>]</span><br><span class="line">  <span class="keyword">var</span> buffer = dataURItoBuffer(dataURI)</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Blob([buffer], &#123;<span class="attr">type</span>: mimeString&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 获取图片的orientation</span></span><br><span class="line"><span class="comment">* ref to http://stackoverflow.com/questions/7584794/accessing-jpeg-exif-rotation-data-in-javascript-on-the-client-side</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getOrientation</span>(<span class="params">buffer</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> view = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer)</span><br><span class="line">  <span class="keyword">if</span> (view.getUint16(<span class="number">0</span>, <span class="literal">false</span>) != <span class="number">0xFFD8</span>) <span class="keyword">return</span> <span class="number">-2</span></span><br><span class="line">  <span class="keyword">var</span> length = view.byteLength, offset = <span class="number">2</span></span><br><span class="line">  <span class="keyword">while</span> (offset &lt; length) &#123;</span><br><span class="line">      <span class="keyword">var</span> marker = view.getUint16(offset, <span class="literal">false</span>)</span><br><span class="line">      offset += <span class="number">2</span></span><br><span class="line">      <span class="keyword">if</span> (marker == <span class="number">0xFFE1</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span> (view.getUint32(offset += <span class="number">2</span>, <span class="literal">false</span>) != <span class="number">0x45786966</span>) <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">          <span class="keyword">var</span> little = view.getUint16(offset += <span class="number">6</span>, <span class="literal">false</span>) == <span class="number">0x4949</span></span><br><span class="line">          offset += view.getUint32(offset + <span class="number">4</span>, little)</span><br><span class="line">          <span class="keyword">var</span> tags = view.getUint16(offset, little)</span><br><span class="line">          offset += <span class="number">2</span></span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; tags; i++)</span><br><span class="line">              &#123;</span><br><span class="line"><span class="keyword">if</span> (view.getUint16(offset + (i * <span class="number">12</span>), little) == <span class="number">0x0112</span>)</span><br><span class="line">                  &#123;<span class="keyword">return</span> view.getUint16(offset + (i * <span class="number">12</span>) + <span class="number">8</span>, little);&#125;</span><br><span class="line">&#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> ((marker &amp; <span class="number">0xFF00</span>) != <span class="number">0xFF00</span>) <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">else</span> offset += view.getUint16(offset, <span class="literal">false</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 修正拍照时图片的方向</span></span><br><span class="line"><span class="comment">* ref to http://stackoverflow.com/questions/19463126/how-to-draw-photo-with-correct-orientation-in-canvas-after-capture-photo-by-usin</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">orientationHelper</span>(<span class="params">canvas, ctx, orientation</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> w = canvas.width, h = canvas.height</span><br><span class="line">  <span class="keyword">if</span> (orientation &gt; <span class="number">4</span>) &#123;</span><br><span class="line">      canvas.width = h</span><br><span class="line">      canvas.height = w</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">switch</span> (orientation) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">          ctx.translate(w, <span class="number">0</span>)</span><br><span class="line">          ctx.scale(<span class="number">-1</span>, <span class="number">1</span>)</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">          ctx.translate(w, h)</span><br><span class="line">          ctx.rotate(<span class="built_in">Math</span>.PI)</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">          ctx.translate(<span class="number">0</span>, h)</span><br><span class="line">          ctx.scale(<span class="number">1</span>, <span class="number">-1</span>)</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">          ctx.rotate(<span class="number">0.5</span> * <span class="built_in">Math</span>.PI)</span><br><span class="line">          ctx.scale(<span class="number">1</span>, <span class="number">-1</span>)</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">          ctx.rotate(<span class="number">0.5</span> * <span class="built_in">Math</span>.PI)</span><br><span class="line">          ctx.translate(<span class="number">0</span>, -h)</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="number">7</span>:</span><br><span class="line">          ctx.rotate(<span class="number">0.5</span> * <span class="built_in">Math</span>.PI)</span><br><span class="line">          ctx.translate(w, -h)</span><br><span class="line">          ctx.scale(<span class="number">-1</span>, <span class="number">1</span>)</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="number">8</span>:</span><br><span class="line">          ctx.rotate(<span class="number">-0.5</span> * <span class="built_in">Math</span>.PI)</span><br><span class="line">          ctx.translate(-w, <span class="number">0</span>)</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 压缩图片</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compress</span>(<span class="params">file, options, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> reader = <span class="keyword">new</span> FileReader()</span><br><span class="line">  reader.onload = <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (options.compress === <span class="literal">false</span>) &#123;</span><br><span class="line">          <span class="comment">// 不启用压缩 &amp; base64上传 的分支，不做任何处理，直接返回文件的base64编码</span></span><br><span class="line">          file.base64 = evt.target.result</span><br><span class="line">          callback(file)</span><br><span class="line">          <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 启用压缩的分支</span></span><br><span class="line">      <span class="keyword">const</span> img = <span class="keyword">new</span> Image()</span><br><span class="line">      img.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="keyword">const</span> ratio = detectVerticalSquash(img)</span><br><span class="line">          <span class="keyword">const</span> orientation = getOrientation(dataURItoBuffer(img.src))</span><br><span class="line">          <span class="keyword">const</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">'canvas'</span>)</span><br><span class="line">          <span class="keyword">const</span> ctx = canvas.getContext(<span class="string">'2d'</span>)</span><br><span class="line"></span><br><span class="line">          <span class="keyword">const</span> maxW = options.compress.width</span><br><span class="line">          <span class="keyword">const</span> maxH = options.compress.height</span><br><span class="line">          <span class="keyword">let</span> w = img.width</span><br><span class="line">          <span class="keyword">let</span> h = img.height</span><br><span class="line">          <span class="keyword">let</span> dataURL</span><br><span class="line"></span><br><span class="line">          <span class="keyword">if</span> (w &lt; h &amp;&amp; h &gt; maxH) &#123;</span><br><span class="line">              w = <span class="built_in">parseInt</span>(maxH * img.width / img.height)</span><br><span class="line">              h = maxH</span><br><span class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (w &gt;= h &amp;&amp; w &gt; maxW) &#123;</span><br><span class="line">              h = <span class="built_in">parseInt</span>(maxW * img.height / img.width)</span><br><span class="line">              w = maxW</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          canvas.width = w</span><br><span class="line">          canvas.height = h</span><br><span class="line"></span><br><span class="line">          <span class="keyword">if</span> (orientation &gt; <span class="number">0</span>) &#123;</span><br><span class="line">              orientationHelper(canvas, ctx, orientation)</span><br><span class="line">          &#125;</span><br><span class="line">          ctx.drawImage(img, <span class="number">0</span>, <span class="number">0</span>, w, h / ratio)</span><br><span class="line"></span><br><span class="line">          <span class="keyword">if</span> (<span class="regexp">/image\/jpeg/</span>.test(file.type) || <span class="regexp">/image\/jpg/</span>.test(file.type)) &#123;</span><br><span class="line">              dataURL = canvas.toDataURL(<span class="string">'image/jpeg'</span>, options.compress.quality)</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              dataURL = canvas.toDataURL(file.type)</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">if</span> (options.type == <span class="string">'file'</span>) &#123;</span><br><span class="line">              <span class="keyword">if</span> (<span class="regexp">/;base64,null/</span>.test(dataURL) || <span class="regexp">/;base64,$/</span>.test(dataURL)) &#123;</span><br><span class="line">                  <span class="comment">// 压缩出错，以文件方式上传的，采用原文件上传</span></span><br><span class="line">                  <span class="built_in">console</span>.warn(<span class="string">'Compress fail, dataURL is '</span> + dataURL + <span class="string">'. Next will use origin file to upload.'</span>)</span><br><span class="line">                  callback(file)</span><br><span class="line">              &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                  <span class="keyword">let</span> blob = dataURItoBlob(dataURL)</span><br><span class="line">                  blob.id = file.id</span><br><span class="line">                  blob.name = file.name</span><br><span class="line">                  blob.lastModified = file.lastModified</span><br><span class="line">                  blob.lastModifiedDate = file.lastModifiedDate</span><br><span class="line">                  callback(blob)</span><br><span class="line">              &#125;</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              <span class="keyword">if</span> (<span class="regexp">/;base64,null/</span>.test(dataURL) || <span class="regexp">/;base64,$/</span>.test(dataURL)) &#123;</span><br><span class="line">                  <span class="comment">// 压缩失败，以base64上传的，直接报错不上传</span></span><br><span class="line">                  options.onError(file, <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Compress fail, dataURL is '</span> + dataURL + <span class="string">'.'</span>))</span><br><span class="line">                  callback()</span><br><span class="line">              &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                  file.base64 = dataURL</span><br><span class="line">                  callback(file)</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      img.src = evt.target.result</span><br><span class="line">  &#125;</span><br><span class="line">  reader.readAsDataURL(file)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> compress</span><br></pre></td></tr></table></figure>
       
 
       
@@ -369,6 +236,25 @@ img.src = evt.target.result
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图片上传</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ios旋转</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -419,7 +305,7 @@ img.src = evt.target.result
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://liangxiaojun.cn/2018/05/25/移动端image拍照方向修正及压缩/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://liangxiaojun.cn/2017/05/16/移动端image拍照方向修正及压缩/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -433,18 +319,18 @@ img.src = evt.target.result
   
 <nav id="article-nav">
   
-    <a href="/2018/06/30/mobx初识/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/01/24/小程序之webview/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          mobx初识
+          小程序之webview
         
       </div>
     </a>
   
   
-    <a href="/2018/05/18/微信公众号验证签名失败/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">微信公众号验证签名失败</div>
+    <a href="/2017/05/13/闲谈健身/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">闲谈健身</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -457,7 +343,7 @@ img.src = evt.target.result
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="移动端image拍照方向修正及压缩" data-title="" data-url="http://liangxiaojun.cn/2018/05/25/移动端image拍照方向修正及压缩/"></div>
+	<div class="ds-thread" data-thread-key="移动端image拍照方向修正及压缩" data-title="移动端ios拍照图片修正方向及压缩" data-url="http://liangxiaojun.cn/2017/05/16/移动端image拍照方向修正及压缩/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -572,22 +458,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cocos</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小游戏</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事件监听</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">优化</a>
               </li>
              
@@ -604,6 +474,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
@@ -612,23 +486,19 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">技术, 微信</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">健身</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -640,7 +510,31 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">技术, 微信</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">健身</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">cocos</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事件监听</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小游戏</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">图片上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ios旋转</a>
               </li>
             
             <div class="clearfix"></div>

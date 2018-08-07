@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="kevin梁">
 <meta property="og:description" content="mobx 一个状态管理工具 简单、可扩展  Observable state(可观察的状态)MobX 为现有的数据结构(如对象，数组和类实例)添加了可观察的功能。 通过使用 @observable 装饰器(ES.Next)来给你的类属性添加注解就可以简单地完成这一切。    Computed values(计算值)使用 MobX， 你可以定义在相关数据发生变化时自动更新的值。 通过@compute">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-30T04:35:20.000Z">
+<meta property="og:updated_time" content="2018-08-07T03:21:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mobx初识">
 <meta name="twitter:description" content="mobx 一个状态管理工具 简单、可扩展  Observable state(可观察的状态)MobX 为现有的数据结构(如对象，数组和类实例)添加了可观察的功能。 通过使用 @observable 装饰器(ES.Next)来给你的类属性添加注解就可以简单地完成这一切。    Computed values(计算值)使用 MobX， 你可以定义在相关数据发生变化时自动更新的值。 通过@compute">
@@ -204,6 +204,7 @@
 <li><p>Actions(动作)</p>
 </li>
 </ul>
+<a id="more"></a>
 <h3 id="mobx的几个核心要点"><a href="#mobx的几个核心要点" class="headerlink" title="mobx的几个核心要点"></a>mobx的几个核心要点</h3><ul>
 <li><ol>
 <li>定义状态并使其可观察<br>可以用任何你喜欢的数据结构来存储状态，如对象、数组、类。 循环数据结构、引用，都没有关系。 只要确保所有会随时间流逝而改变的属性打上 mobx 的标记使它们变得可观察即可。</li>
@@ -238,7 +239,7 @@
 <p>所有衍生默认都是同步更新。这意味着例如动作可以在改变状态之后直接可以安全地检查计算值。</p>
 <p>计算值 是延迟更新的。任何不在使用状态的计算值将不会更新，直到需要它进行副作用（I / O）操作时。 如果视图不再使用，那么它会自动被垃圾回收。</p>
 <p>所有的计算值都应该是纯净的。它们不应该用来改变状态。</p>
-<h3 id="实例应用"><a href="#实例应用" class="headerlink" title="实例应用"></a>实例应用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import &#123;observable, autorun&#125; from &apos;mobx&apos;;</span><br><span class="line"></span><br><span class="line">var todoStore = observable(&#123;</span><br><span class="line">    /* 一些观察的状态 */</span><br><span class="line">    todos: [],</span><br><span class="line"></span><br><span class="line">    /* 推导值 */</span><br><span class="line">    get completedCount() &#123;</span><br><span class="line">        return this.todos.filter(todo =&gt; todo.completed).length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">/* 观察状态改变的函数 */</span><br><span class="line">autorun(function() &#123;</span><br><span class="line">    console.log(&quot;Completed %d of %d items&quot;,</span><br><span class="line">        todoStore.completedCount,</span><br><span class="line">        todoStore.todos.length</span><br><span class="line">    );</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">/* ..以及一些改变状态的动作 */</span><br><span class="line">todoStore.todos[0] = &#123;</span><br><span class="line">    title: &quot;Take a walk&quot;,</span><br><span class="line">    completed: false</span><br><span class="line">&#125;;</span><br><span class="line">// -&gt; 同步打印 &apos;Completed 0 of 1 items&apos;</span><br><span class="line"></span><br><span class="line">todoStore.todos[0].completed = true;</span><br><span class="line">// -&gt; 同步打印 &apos;Completed 1 of 1 items&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="实例应用"><a href="#实例应用" class="headerlink" title="实例应用"></a>实例应用</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;observable, autorun&#125; <span class="keyword">from</span> <span class="string">'mobx'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> todoStore = observable(&#123;</span><br><span class="line">    <span class="comment">/* 一些观察的状态 */</span></span><br><span class="line">    todos: [],</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 推导值 */</span></span><br><span class="line">    get completedCount() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.todos.filter(<span class="function"><span class="params">todo</span> =&gt;</span> todo.completed).length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 观察状态改变的函数 */</span></span><br><span class="line">autorun(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Completed %d of %d items"</span>,</span><br><span class="line">        todoStore.completedCount,</span><br><span class="line">        todoStore.todos.length</span><br><span class="line">    );</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* ..以及一些改变状态的动作 */</span></span><br><span class="line">todoStore.todos[<span class="number">0</span>] = &#123;</span><br><span class="line">    title: <span class="string">"Take a walk"</span>,</span><br><span class="line">    completed: <span class="literal">false</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// -&gt; 同步打印 'Completed 0 of 1 items'</span></span><br><span class="line"></span><br><span class="line">todoStore.todos[<span class="number">0</span>].completed = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">// -&gt; 同步打印 'Completed 1 of 1 items'</span></span><br></pre></td></tr></table></figure>
       
 
       
@@ -351,8 +352,8 @@
     </a>
   
   
-    <a href="/2018/05/25/移动端image拍照方向修正及压缩/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+    <a href="/2018/05/18/微信公众号验证签名失败/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">微信公众号验证签名失败</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -480,22 +481,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cocos</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小游戏</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事件监听</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">优化</a>
               </li>
              
@@ -512,6 +497,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
@@ -520,23 +509,19 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">技术, 微信</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">健身</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,7 +533,31 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">技术, 微信</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">健身</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">cocos</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事件监听</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小游戏</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">图片上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ios旋转</a>
               </li>
             
             <div class="clearfix"></div>
