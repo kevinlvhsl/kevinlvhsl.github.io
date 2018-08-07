@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://liangxiaojun.cn">
   <title>CocosCreator-UI元素 | kevin梁</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Widget: 定位适应组件，看不见摸不着,可以帮助我们固定某个组件离父元素的位置 UI组件有好多好多，这里暂时没有一一去研究实践，就先不写 – 未完">
+  <meta name="description" content="Widget: 定位适应组件，看不见摸不着,可以帮助我们固定某个组件离父元素的位置 UI组件有好多好多，这里暂时用到这么多，其它的实践使用了再写  ProgressBar:进度条 会有一个子组件bar主要设置progress的大小(0~1)，就可以设置进度    ScrollView: 滚动容器 ScrollBar: 滚动条  ScrollView 和 scrollBar 一般都是一起使用的sc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CocosCreator-UI元素">
 <meta property="og:url" content="http://liangxiaojun.cn/2018/05/05/CocosCreator-UI元素/index.html">
 <meta property="og:site_name" content="kevin梁">
-<meta property="og:description" content="Widget: 定位适应组件，看不见摸不着,可以帮助我们固定某个组件离父元素的位置 UI组件有好多好多，这里暂时没有一一去研究实践，就先不写 – 未完">
+<meta property="og:description" content="Widget: 定位适应组件，看不见摸不着,可以帮助我们固定某个组件离父元素的位置 UI组件有好多好多，这里暂时用到这么多，其它的实践使用了再写  ProgressBar:进度条 会有一个子组件bar主要设置progress的大小(0~1)，就可以设置进度    ScrollView: 滚动容器 ScrollBar: 滚动条  ScrollView 和 scrollBar 一般都是一起使用的sc">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://liangxiaojun.cn/assets/cocos_creator.jpg">
-<meta property="og:updated_time" content="2018-05-13T15:12:40.000Z">
+<meta property="og:updated_time" content="2018-08-07T03:04:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CocosCreator-UI元素">
-<meta name="twitter:description" content="Widget: 定位适应组件，看不见摸不着,可以帮助我们固定某个组件离父元素的位置 UI组件有好多好多，这里暂时没有一一去研究实践，就先不写 – 未完">
+<meta name="twitter:description" content="Widget: 定位适应组件，看不见摸不着,可以帮助我们固定某个组件离父元素的位置 UI组件有好多好多，这里暂时用到这么多，其它的实践使用了再写  ProgressBar:进度条 会有一个子组件bar主要设置progress的大小(0~1)，就可以设置进度    ScrollView: 滚动容器 ScrollBar: 滚动条  ScrollView 和 scrollBar 一般都是一起使用的sc">
 <meta name="twitter:image" content="http://liangxiaojun.cn/assets/cocos_creator.jpg">
   
     <link rel="alternative" href="/atom.xml" title="kevin梁" type="application/atom+xml">
@@ -194,8 +194,26 @@
       
         <p><img src="/assets/cocos_creator.jpg" alt="cocos_creator"></p>
 <p>Widget: 定位适应组件，看不见摸不着,可以帮助我们固定某个组件离父元素的位置</p>
-<p>UI组件有好多好多，这里暂时没有一一去研究实践，就先不写</p>
-<p>– 未完</p>
+<p>UI组件有好多好多，这里暂时用到这么多，其它的实践使用了再写</p>
+<ul>
+<li><p>ProgressBar:进度条</p>
+<p>会有一个子组件bar<br>主要设置progress的大小(0~1)，就可以设置进度</p>
+</li>
+</ul>
+<ul>
+<li>ScrollView: 滚动容器</li>
+<li>ScrollBar: 滚动条</li>
+</ul>
+<p>ScrollView 和 scrollBar 一般都是一起使用的<br>scrollview 中会有一个content节点，需要滚动的内容就放到这个节点中，动态这设置这个节点的高度，就可以行成滚动了</p>
+<p>ScrollBar: 需要一个子节点作为滚动条</p>
+<ul>
+<li>Layout: 布局盒子</li>
+</ul>
+<p>layout有3种布局方式，<br>1、横向布局<br>2、纵向布局  竖起排列<br>3、grid布局</p>
+<ul>
+<li>EditBox</li>
+</ul>
+<p>输入框，可以多行输入，可以单行输入。<br>输入框可以触发几个事件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">editBox.on(<span class="string">'editing-did-ended'</span>, <span class="keyword">this</span>.callback, <span class="keyword">this</span>) <span class="comment">// 输入结束时触发</span></span><br><span class="line">editBox.on(<span class="string">'text-changed'</span>, (e) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 每次输入改变时触发</span></span><br><span class="line">&#125;),</span><br><span class="line">callback: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//这里的 event 是一个 EventCustom 对象，你可以通过 event.detail 获取 EditBox 组件</span></span><br><span class="line">    <span class="keyword">var</span> editbox = event.detail</span><br><span class="line">    <span class="keyword">this</span>._jiname = editbox.string.trim()</span><br><span class="line">    editbox.string = <span class="keyword">this</span>._jiname</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -450,15 +468,23 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">事件监听</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color3">优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">微信小游戏</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">黑屏</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -470,7 +496,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">技术, 微信</a>
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,7 +524,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+                <a href="javascript:void(0)" class="js-tag color2">技术, 微信</a>
               </li>
             
             <div class="clearfix"></div>

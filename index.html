@@ -171,27 +171,48 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-mobx的重要API" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-CocosCreator之手动加载远程图片" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/30/mobx的重要API/">mobx的重要API</a>
+      <a class="article-title" href="/2018/08/07/CocosCreator之手动加载远程图片/">CocosCreator之手动加载远程图片减少黑屏时间</a>
     </h1>
   
 
         
-        <a href="/2018/06/30/mobx的重要API/" class="archive-article-date">
-  	<time datetime="2018-06-30T04:36:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-30</time>
+        <a href="/2018/08/07/CocosCreator之手动加载远程图片/" class="archive-article-date">
+  	<time datetime="2018-08-07T01:42:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p><img src="/assets/cocos_creator.jpg" alt="cocos_creator"></p>
+<p>小游戏，只所以为小，因为它的体积确实小，下载起来快，随用随走。</p>
+<blockquote>
+<p>在微信小游戏中， 游戏包体大小是有限制的，首包是4M，分包的话，在cocoscrator中，也只能分包js文件，所以，图片文件还是只能通过远程加载。但是，creator构建出来的图片资源，会一次性被小游戏加载回来，这样，就会造成小游戏在加载图片资源时，会有黑屏，资源过大时，黑屏时间就更长。所以，这时候使用手动动态加载大图，可以有效的减少初始化游戏时的网络压力。</p>
+</blockquote>
+<h3 id="下面通过以下几个方法，来优化我们的游戏"><a href="#下面通过以下几个方法，来优化我们的游戏" class="headerlink" title="下面通过以下几个方法，来优化我们的游戏"></a>下面通过以下几个方法，来优化我们的游戏</h3><h3 id="1、手动加载超大图"><a href="#1、手动加载超大图" class="headerlink" title="1、手动加载超大图"></a>1、手动加载超大图</h3><blockquote>
+<p>将游戏中使用到的大图（超过50kb的），采用低分辨率小图作为初始图，然后在节点onLoad以后，采用cc.loader.load() 方法,来动态加载原图。 这样既不会造成初始没有图，也可以展示更清晰的原图。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 从远程加载图片</span></span><br><span class="line"><span class="comment"> * @param &#123;图片路径&#125; imgPath</span></span><br><span class="line"><span class="comment"> * @param &#123;当前节点&#125; targetNode</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> loadRemoteImage = <span class="function"><span class="keyword">function</span> (<span class="params">imgPath, targetNode, cb</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!imgPath) <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">let</span> type = imgPath.slice(imgPath.lastIndexOf(<span class="string">'.'</span>) + <span class="number">1</span>) || <span class="string">'png'</span></span><br><span class="line">    cc.loader.load(&#123;<span class="attr">url</span>: imgPath, <span class="attr">type</span>: type&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">error, texture</span>) </span>&#123;</span><br><span class="line">        targetNode.getComponent(cc.Sprite).spriteFrame = <span class="keyword">new</span> cc.SpriteFrame(texture)</span><br><span class="line">        cb &amp;&amp; cb()</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 并且修改一下libs下的wx-downloader.js</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">downloadRemoteFile</span>(<span class="params">item, callback</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// Download from remote server  判断传进来的item 是否是要自定义下载</span></span><br><span class="line">        <span class="keyword">var</span> relatUrl = item.url;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// filter protocol url (E.g: https:// or http:// or ftp://)</span></span><br><span class="line">        <span class="keyword">if</span> (REGEX.test(relatUrl)) &#123;</span><br><span class="line">          callback(<span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line">          <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> remoteUrl = <span class="string">''</span>;</span><br><span class="line">        <span class="keyword">if</span> (relatUrl.indexOf(<span class="string">'http'</span>) === <span class="number">0</span>) &#123;</span><br><span class="line">          remoteUrl = relatUrl;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          remoteUrl = wxDownloader.REMOTE_SERVER_ROOT + <span class="string">'/'</span> + relatUrl;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        item.url = remoteUrl;</span><br><span class="line"></span><br><span class="line">        wx.downloadFile(&#123;</span><br><span class="line">          url: remoteUrl,</span><br><span class="line">          success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 这里面不变</span></span><br><span class="line">          &#125;,</span><br><span class="line">          fail: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// Continue to try download with downloader, most probably will also fail</span></span><br><span class="line">            callback(<span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// js代码中使用  第一个参数是要下载的图片地址， 第二个参数值使用图片的Node节点</span></span><br><span class="line">loadRemoteImage(Config.REMOTE_HOST + <span class="string">'/res/gzh.jpg'</span>, <span class="keyword">this</span>.bg)</span><br></pre></td></tr></table></figure>
+<p>### 2、动画图片使用手动加载<br>这两种方法有个共同点，就是这些资源存放在一个固定的目录下， 叫： <code>resources</code> 目录的名字不能改，只能是这个名</p>
+<blockquote>
+<p>1、游戏中如果大量使用帧动画的话，图片资源肯定小不了，这样在场景初始化时，也可能造成黑屏。所有我们就采用动态加载动画图片的方法。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 加载动画的序列帧</span></span><br><span class="line"><span class="comment"> * @param &#123;object&#125; param0</span></span><br><span class="line"><span class="comment"> * cc.loader.loadResDir 加载指定的目录，目录下的文件会以一个资源数组asstes返回</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> loadAnimFrames = <span class="function"><span class="keyword">function</span> (<span class="params">&#123; dir = <span class="string">'watch'</span>, callback&#125; </span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> frames = []</span><br><span class="line">    <span class="keyword">let</span> clip = <span class="literal">null</span></span><br><span class="line">    cc.loader.loadResDir(dir, <span class="function"><span class="keyword">function</span> (<span class="params">err, assets</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (assets &amp;&amp; assets.length) &#123;</span><br><span class="line">            assets.forEach(<span class="function"><span class="params">ass</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (ass.name) &#123;</span><br><span class="line">                    frames.push(ass)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">            clip = cc.AnimationClip.createWithSpriteFrames(frames, <span class="number">5</span>)   <span class="comment">// 创建动画clip， 默认帧率为5， 越大越快</span></span><br><span class="line">            clip.name = dir</span><br><span class="line">            clip.wrapMode = cc.WrapMode.Loop    <span class="comment">// 设置为永久循环</span></span><br><span class="line">            callback &amp;&amp; callback(clip)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line">    <span class="keyword">let</span> anim = <span class="keyword">this</span>.node.getComponent(cc.Animation)</span><br><span class="line">    Util.loadAnimFrames(&#123;</span><br><span class="line">        dir: <span class="string">'eat'</span>,</span><br><span class="line">        callback: <span class="function">(<span class="params">clip</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">// 将加载回来的clip设置到当前节点</span></span><br><span class="line">            anim.addClip(clip)</span><br><span class="line">            anim.play(<span class="string">'eat'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>2、另一种情况就是，图片在游戏场景中本身就是根据数据动态来渲染的，比如：等级不同渲染不同的图标<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// loadRes  加载资源，第一个参数：资源路径(resources下)， 参数2：回调</span></span><br><span class="line"><span class="keyword">let</span> iconMap = &#123;<span class="string">'4'</span>: <span class="string">'icon-level-1.png'</span>, <span class="string">'3'</span>: <span class="string">'icon-level-2.png'</span>,</span><br><span class="line"><span class="string">'2'</span>: <span class="string">'icon-level-3.png'</span>,<span class="string">'1'</span>: <span class="string">'icon-level-4.png'</span>&#125;</span><br><span class="line">cc.loader.loadRes(iconMap[prize.level], <span class="function"><span class="keyword">function</span> (<span class="params">error, texture</span>) </span>&#123;</span><br><span class="line">    levelIcon.getComponent(<span class="string">'cc.Sprite'</span>).spriteFrame = <span class="keyword">new</span> cc.SpriteFrame(texture)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>光做以上步骤还不行， 因为有些游戏中图片还是很多，每一个图片都这样去设置低分辨率小图也不是办法，还有关键的一步。</p>
+</blockquote>
+<h3 id="3、手动加载所有图片资源包-wx-donwloadFile"><a href="#3、手动加载所有图片资源包-wx-donwloadFile" class="headerlink" title="3、手动加载所有图片资源包 wx.donwloadFile"></a>3、手动加载所有图片资源包 wx.donwloadFile</h3><blockquote>
+<p>这里需要做些准备,<br>1、在构建打包以后，要将build目录下，wechatgame/res/raw-assets 目录打包成zip压缩包，并且上传到远程oss服务器上，<br>2、再将这个raw-assets目录删除， 这样小游戏启动时加载图片资源就加载不到。<br>3、再将删除了资源文件的小游戏源码，通过微信开发者工具上传到微信服务器上。<br>这时候，小游戏控制台可能会报一些错误 donwloadfile:ok 这样的错误。 不过这个不用管，它是小游戏自动去下载raw-assets中资源找不到(因为我们把目录删除了)<br>4、然后我们需要在小游戏的主入口场景中加上以下代码，就可以把资源文件手动下载到我们的小游戏文件目录下（这个时候，还需要展示一个加载资源的loading图片覆盖在主场景之上，这样就友好的展示了资源加载过程。）<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 加载远程资源</span></span><br><span class="line"><span class="comment"> * wx.env.USER_DATA_PATH： 这个是小游戏在手机上的临时目录</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line">    loadRemoteAssets () &#123;</span><br><span class="line">        <span class="keyword">const</span> self = <span class="keyword">this</span></span><br><span class="line">        <span class="keyword">const</span> fs = wx.getFileSystemManager()  <span class="comment">// 获取微信小游戏sdk中的 文件系统</span></span><br><span class="line">        <span class="comment">// 然后</span></span><br><span class="line">        <span class="keyword">const</span> downloadTask = wx.downloadFile(&#123;</span><br><span class="line">            url: Config.REMOTE_HOST + <span class="string">'/res/raw-assets.zip'</span>,  <span class="comment">// 我们上传到服务器的资源文件压缩包地址</span></span><br><span class="line">            header: &#123;</span><br><span class="line">                <span class="string">'content-type'</span>: <span class="string">'application/json'</span></span><br><span class="line">            &#125;,</span><br><span class="line">            filePath: <span class="string">''</span>,</span><br><span class="line">            success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>)</span>&#123;    <span class="comment">// 资源下载成功以后，我们将文件解压到小游戏的运行目录</span></span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'资源下载成功'</span>, res)</span><br><span class="line">                <span class="keyword">let</span> zip_res = res.tempFilePath</span><br><span class="line">                fs.unzip(&#123;</span><br><span class="line">                    zipFilePath: zip_res,</span><br><span class="line">                    targetPath: wx.env.USER_DATA_PATH + <span class="string">'/res/'</span>,</span><br><span class="line">                    success: <span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</span><br><span class="line">                        <span class="built_in">console</span>.log(<span class="string">'解压缩成功---'</span>, result)</span><br><span class="line">                        wx.setStorageSync(<span class="string">'downloaded'</span>, <span class="literal">true</span>)</span><br><span class="line">                        self.MainScene.init()       <span class="comment">// 解压成功以后再让主场景初始化数据</span></span><br><span class="line">                        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                            self.hideLoading()</span><br><span class="line">                        &#125;, <span class="number">700</span>)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;,</span><br><span class="line">            fail: <span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.error(<span class="string">'资源下载失败'</span>, err)</span><br><span class="line">            &#125;,</span><br><span class="line">            complete: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'资源下载 complete'</span>)</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">if</span> (downloadTask) &#123;     <span class="comment">// 资源下载的时候，在界面上展示下载的进度，让用户能感知游戏进程</span></span><br><span class="line">            downloadTask.onProgressUpdate(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">                self.loadFileProgress.progress = res.progress / <span class="number">100</span></span><br><span class="line">                self.proLabel.string = <span class="string">'资源加载: '</span> + res.progress + <span class="string">'%'</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+
       
 
       
@@ -199,11 +220,101 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">优化</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">微信小游戏</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">黑屏</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/30/mobx的重要API/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/08/07/CocosCreator之手动加载远程图片/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-mobx的重要API" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/01/mobx的重要API/">mobx的重要API</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/01/mobx的重要API/" class="archive-article-date">
+  	<time datetime="2018-07-01T02:30:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>observe</li>
+<li><p>observer</p>
+</li>
+<li><p>observable</p>
+</li>
+<li><p>action</p>
+</li>
+<li><p>action.bound</p>
+</li>
+<li><p>computed</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/01/mobx的重要API/">展开全文 >></a>
         </p>
       
 
@@ -732,8 +843,26 @@ img.src = evt.target.result
       
         <p><img src="/assets/cocos_creator.jpg" alt="cocos_creator"></p>
 <p>Widget: 定位适应组件，看不见摸不着,可以帮助我们固定某个组件离父元素的位置</p>
-<p>UI组件有好多好多，这里暂时没有一一去研究实践，就先不写</p>
-<p>– 未完</p>
+<p>UI组件有好多好多，这里暂时用到这么多，其它的实践使用了再写</p>
+<ul>
+<li><p>ProgressBar:进度条</p>
+<p>会有一个子组件bar<br>主要设置progress的大小(0~1)，就可以设置进度</p>
+</li>
+</ul>
+<ul>
+<li>ScrollView: 滚动容器</li>
+<li>ScrollBar: 滚动条</li>
+</ul>
+<p>ScrollView 和 scrollBar 一般都是一起使用的<br>scrollview 中会有一个content节点，需要滚动的内容就放到这个节点中，动态这设置这个节点的高度，就可以行成滚动了</p>
+<p>ScrollBar: 需要一个子节点作为滚动条</p>
+<ul>
+<li>Layout: 布局盒子</li>
+</ul>
+<p>layout有3种布局方式，<br>1、横向布局<br>2、纵向布局  竖起排列<br>3、grid布局</p>
+<ul>
+<li>EditBox</li>
+</ul>
+<p>输入框，可以多行输入，可以单行输入。<br>输入框可以触发几个事件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">editBox.on(<span class="string">'editing-did-ended'</span>, <span class="keyword">this</span>.callback, <span class="keyword">this</span>) <span class="comment">// 输入结束时触发</span></span><br><span class="line">editBox.on(<span class="string">'text-changed'</span>, (e) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 每次输入改变时触发</span></span><br><span class="line">&#125;),</span><br><span class="line">callback: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//这里的 event 是一个 EventCustom 对象，你可以通过 event.detail 获取 EditBox 组件</span></span><br><span class="line">    <span class="keyword">var</span> editbox = event.detail</span><br><span class="line">    <span class="keyword">this</span>._jiname = editbox.string.trim()</span><br><span class="line">    editbox.string = <span class="keyword">this</span>._jiname</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -943,68 +1072,9 @@ img.src = evt.target.result
 
 
   
-    <article id="post-微信小游戏API" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/01/微信小游戏API/">微信小游戏API.md</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/01/微信小游戏API/" class="archive-article-date">
-  	<time datetime="2018-05-01T14:10:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="渲染类接口"><a href="#渲染类接口" class="headerlink" title="渲染类接口"></a>渲染类接口</h3><p><code>wx.createCanvas</code>  最基础的创建canvas对象</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/01/微信小游戏API/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1110,15 +1180,23 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">事件监听</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color3">优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">微信小游戏</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">黑屏</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1130,7 +1208,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">技术, 微信</a>
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1154,7 +1236,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+                <a href="javascript:void(0)" class="js-tag color2">技术, 微信</a>
               </li>
             
             <div class="clearfix"></div>
