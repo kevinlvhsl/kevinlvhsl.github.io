@@ -171,6 +171,170 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-微信小游戏之开放数据域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/01/微信小游戏之开放数据域/">微信小游戏之开放数据域</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/01/微信小游戏之开放数据域/" class="archive-article-date">
+  	<time datetime="2018-05-01T14:14:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="开放数据域"><a href="#开放数据域" class="headerlink" title="开放数据域"></a>开放数据域</h3><blockquote>
+<p> 是一个封闭、独立的 JavaScript 作用域。要让代码运行在开放数据域，需要在 game.json 中添加配置项 openDataContext 指定开放数据域的代码目录。添加该配置项表示小游戏启用了开放数据域，这将会导致一些 限制。</p>
+</blockquote>
+<h3 id="主域和开放数据域的通信"><a href="#主域和开放数据域的通信" class="headerlink" title="主域和开放数据域的通信"></a>主域和开放数据域的通信</h3><blockquote>
+<p>开发数据域，需要有一个单独的目录， 并且和主域下的模块不能相互引用。 只能通过message的形式通信。</p>
+</blockquote>
+<ul>
+<li><p>主域调用开放域</p>
+<blockquote>
+<p>主域可以向开放数据域发送消息。调用 wx.getOpenDataContext() 方法可以获取开放数据域实例，调用实例上的 OpenDataContext.postMessage() 方法可以向开放数据域发送消息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// game.js</span><br><span class="line">let openDataContext = wx.getOpenDataContext()</span><br><span class="line">openDataContext.postMessage(&#123;</span><br><span class="line">  text: &apos;hello&apos;,</span><br><span class="line">  year: (new Date()).getFullYear()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>在开放数据域中通过 wx.onMessage() 方法可以监听从主域发来的消息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// src/myOpenDataContext/index.js</span><br><span class="line">wx.onMessage(data =&gt; &#123;</span><br><span class="line">  console.log(data)</span><br><span class="line">  /* &#123;</span><br><span class="line">    text: &apos;hello&apos;,</span><br><span class="line">    year: 2018</span><br><span class="line">  &#125; */</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>开放域不能主动向主域发消息</p>
+<p>限制<br>当小游戏启动开放数据域，即在 game.json 中添加 openDataContext 配置项时。小游戏环境会对主域和开放数据域应用一些限制。</p>
+<h4 id="主域"><a href="#主域" class="headerlink" title="主域"></a>主域</h4><ul>
+<li>sharedCanvas 只能被绘制到上屏 canvas 上。</li>
+<li>上屏 canvas 不能调用 toDataURL，其 context 不能调用 getImageData。</li>
+<li>sharedCanvas 不能调用 toDataURL 和 getContext。</li>
+<li>不能将上屏 canvas 和 sharedCanvas 以任意形式绘制到其他 canvas 上，包括 drawImage、createPattern、texImage2D、texSubImage2D。</li>
+</ul>
+<h3 id="限制功能"><a href="#限制功能" class="headerlink" title="限制功能"></a>限制功能</h3><blockquote>
+<p>开放数据域只能调用有限的 API，如下所示：</p>
+</blockquote>
+<ul>
+<li>帧率</li>
+</ul>
+<p><code>requestAnimationFrame()</code><br><code>cancelAnimationFrame()</code></p>
+<ul>
+<li>Timer</li>
+</ul>
+<p><code>setTimeout()</code><br><code>clearTimeout()</code><br><code>setInterval()</code><br><code>clearInterval()</code></p>
+<ul>
+<li><p>触摸事件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wx.onTouchStart()</span><br><span class="line">wx.onTouchMove()</span><br><span class="line">wx.onTouchEnd()</span><br><span class="line">wx.onTouchCancel()</span><br><span class="line">wx.offTouchStart()</span><br><span class="line">wx.offTouchMove()</span><br><span class="line">wx.offTouchEnd()</span><br><span class="line">wx.offTouchCancel()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>画布</p>
+</li>
+</ul>
+<p><code>wx.createCanvas()</code></p>
+<blockquote>
+<p>开放数据域的所有 canvas 只支持 2d 渲染模式</p>
+</blockquote>
+<ul>
+<li>图片</li>
+</ul>
+<p><code>wx.createImage()</code></p>
+<ul>
+<li>开放数据</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wx.getFriendCloudStorage()</span><br><span class="line">wx.getGroupCloudStorage()</span><br><span class="line">wx.getUserCloudStorage()</span><br><span class="line">wx.setUserCloudStorage()</span><br><span class="line">wx.removeUserCloudStorage()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>监听主域消息</li>
+</ul>
+<p><code>wx.onMessage()</code></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/01/微信小游戏之开放数据域/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-微信小游戏API" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/01/微信小游戏API/">微信小游戏API.md</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/01/微信小游戏API/" class="archive-article-date">
+  	<time datetime="2018-05-01T14:10:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="渲染类接口"><a href="#渲染类接口" class="headerlink" title="渲染类接口"></a>渲染类接口</h3><p><code>wx.createCanvas</code>  最基础的创建canvas对象</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/01/微信小游戏API/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-微信小游戏cocos" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -327,11 +491,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务器</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务器</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
         		</li>
       		
 		</ul>
@@ -393,11 +557,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
         		</li>
       		
 		</ul>
@@ -596,11 +760,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -694,138 +858,6 @@
 
 
   
-    <article id="post-骑士第二轮连续大胜猛龙" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/04/骑士第二轮连续大胜猛龙/">NBA2017季后赛-骑士对阵猛龙</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/04/骑士第二轮连续大胜猛龙/" class="archive-article-date">
-  	<time datetime="2017-05-04T02:10:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="季后赛第二轮-骑士对阵猛龙-第二场"><a href="#季后赛第二轮-骑士对阵猛龙-第二场" class="headerlink" title="季后赛第二轮-骑士对阵猛龙-第二场"></a>季后赛第二轮-骑士对阵猛龙-第二场</h3><p><img src="/assets/詹姆斯-骑士对阵猛龙.jpg" alt=""><br>2017年-5月4日讯 NBA季后赛继续进行，骑士在主场以125-103大胜猛龙，<br>在东部半决赛系列赛大比分上取得2-0的领先，得分刷新队史季后赛纪录，<br>他们已经在季后赛中取得九连胜（包括上赛季总决赛）。<br>勒布朗-詹姆斯拿到39分，个人季后赛生涯总得分达到5777分，超越“天勾”贾巴尔，升至季后赛历史得分榜的第二位。<br>此外，这是詹姆斯季后赛生涯的第89次得分30+，超越科比-布莱恩特升至历史第二；他季后赛生涯三分球命中数达到302个，成为历史上第四位突破300大关的球员。<br>
-        
-          <a class="article-more-a" href="/2017/05/04/骑士第二轮连续大胜猛龙/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">篮球</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NBA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/04/骑士第二轮连续大胜猛龙/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-hexo-文档" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/03/hexo-文档/">hexo 基本命令</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/03/hexo-文档/" class="archive-article-date">
-  	<time datetime="2017-05-03T10:48:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a><br>
-        
-          <a class="article-more-a" href="/2017/05/03/hexo-文档/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/03/hexo-文档/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -840,7 +872,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 kevin liang
+    		&copy; 2020 kevin liang
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -922,6 +954,22 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">cocos</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小游戏</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事件监听</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">优化</a>
               </li>
              
@@ -938,19 +986,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -958,19 +994,31 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">技术, 微信</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">图片上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ios旋转</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">篮球</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NBA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -982,23 +1030,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cocos</a>
+                <a href="javascript:void(0)" class="js-tag color3">篮球</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事件监听</a>
+                <a href="javascript:void(0)" class="js-tag color4">NBA</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小游戏</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">图片上传</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ios旋转</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
             
             <div class="clearfix"></div>
